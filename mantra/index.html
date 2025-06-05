@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sacred Sanskrit Mantra</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -26,8 +30,12 @@
                     },
                     fontFamily: {
                         sanskrit: ['Sanskrit2003', 'serif'],
-                        display: ['Playfair Display', 'serif'],
-                        sans: ['system-ui', 'sans-serif']
+                        display: ['Cormorant Garamond', 'serif'],
+                        sans: ['system-ui', 'sans-serif'],
+                        handwritten: ['Sacramento', 'cursive']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
@@ -36,7 +44,7 @@
     <style>
         @font-face {
             font-family: 'Sanskrit2003';
-            src: url('https://github.com/druvx13/Rahu/blob/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('ttf');
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -74,8 +82,7 @@
         }
         
         .shadow-gold {
-            box-shadow: 0 10px 25px -5px rgba(209, 167, 61, 0.1),
-                        0 10px 10px -5px rgba(209, 167, 61, 0.04);
+            box-shadow: 0 25px 50px -12px rgba(209, 167, 61, 0.25);
         }
         
         .symbol-top::before, .symbol-bottom::after {
@@ -86,6 +93,8 @@
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
+            opacity: 0.3;
+            z-index: 0;
         }
         
         .symbol-top::before {
@@ -94,6 +103,45 @@
         
         .symbol-bottom::after {
             bottom: -2.5rem;
+        }
+        
+        .ornamental-divider {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            margin: 1.5rem 0;
+        }
+        
+        .ornamental-divider::before,
+        .ornamental-divider::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d1a73d, transparent);
+            background-position: center;
+        }
+        
+        .ornamental-divider span {
+            margin: 0 1rem;
+            color: #d1a73d;
+            font-family: 'Sanskrit2003';
+            font-size: 2.5rem;
+            padding: 0 12px;
+        }
+        
+        .watermark {
+            position: absolute;
+            font-family: 'Sanskrit2003', serif;
+            color: rgba(19, 41, 61, 0.03);
+            font-size: 24rem;
+            z-index: -1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            white-space: nowrap;
+            pointer-events: none;
         }
         
         @media (max-width: 768px) {
@@ -113,67 +161,172 @@
             .symbol-bottom::after {
                 bottom: -2rem;
             }
+            
+            .watermark {
+                font-size: 16rem;
+                transform: translate(-50%, -50%) rotate(-15deg);
+            }
         }
     </style>
 </head>
 <body class="bg-gold-100 text-deepblue-900 font-sans leading-relaxed">
-    <div class="min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6">
-        <!-- Header -->
+    <!-- Subtle background watermark -->
+    <div class="fixed inset-0 overflow-hidden z-0 pointer-events-none">
+        <div class="watermark">ॐ</div>
+    </div>
+    
+    <!-- Decorative corner elements -->
+    <div class="hidden md:block fixed top-0 left-0 h-32 w-32 -mt-12 -ml-12 border-t-4 border-l-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed top-0 right-0 h-32 w-32 -mt-12 -mr-12 border-t-4 border-r-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed bottom-0 left-0 h-32 w-32 -mb-12 -ml-12 border-b-4 border-l-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed bottom-0 right-0 h-32 w-32 -mb-12 -mr-12 border-b-4 border-r-4 border-gold-500 opacity-40"></div>
+    
+    <div class="min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 relative z-10">
+        <!-- Header with decorative elements -->
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-display font-bold text-gold-600 tracking-wide mb-2">Sacred Mantra</h1>
-            <div class="w-24 h-1 bg-gold-400 mx-auto rounded"></div>
+            <div class="flex justify-center">
+                <div class="w-8 h-8 border-t-2 border-l-2 border-gold-500 opacity-60 mt-5 mr-2"></div>
+                <h1 class="text-4xl md:text-5xl font-display font-bold text-gold-600 tracking-wider mb-2">
+                    Sacred Mantra
+                </h1>
+                <div class="w-8 h-8 border-b-2 border-r-2 border-gold-500 opacity-60 mb-5 ml-2"></div>
+            </div>
+            <div class="w-32 h-1 bg-gold-400 mx-auto rounded my-4"></div>
+            <p class="font-display text-deepblue-900 text-lg italic max-w-md mx-auto">
+                Ancient Wisdom for Modern Seekers
+            </p>
         </header>
-
-        <!-- Decorative top pattern -->
-        <div class="w-full max-w-3xl decorative-top"></div>
         
-        <!-- Main card -->
-        <div class="relative border-gold bg-white shadow-gold rounded-xl p-8 sm:p-10 my-8 w-full max-w-3xl symbol-top symbol-bottom">
-            <!-- Sanskrit text -->
-            <div class="mb-12">
-                <h2 class="font-display font-bold text-gold-600 mb-4 text-xl">Original Sanskrit</h2>
-                <div class="sanskrit text-center">
+        <!-- Decorative top pattern -->
+        <div class="w-full max-w-4xl decorative-top"></div>
+        
+        <!-- Main card with elegant design -->
+        <div class="relative border-gold bg-white/90 shadow-gold rounded-xl p-8 sm:p-12 my-8 w-full max-w-4xl symbol-top symbol-bottom backdrop-blur-sm">
+            <div class="absolute -left-2 top-1/2 transform -translate-y-1/2">
+                <div class="w-10 h-10 flex items-center justify-center text-gold-600 animate-pulse-slow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="absolute -right-2 top-1/2 transform -translate-y-1/2">
+                <div class="w-10 h-10 flex items-center justify-center text-gold-600 animate-pulse-slow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Sanskrit text section with icon -->
+            <div class="mb-10">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="border-r-2 border-gold-300 h-8 mr-4"></div>
+                    <h2 class="font-display font-bold text-gold-600 text-xl flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        Original Sanskrit
+                    </h2>
+                    <div class="border-l-2 border-gold-300 h-8 ml-4"></div>
+                </div>
+                <div class="sanskrit text-center px-2 py-6 rounded-lg bg-gold-50">
                     ॐ वाङ् मे मनसि प्रतिष्ठिता मनो मे वाचि प्रतिष्ठितम् माविरावीर्म एधि । 
                     वेदस्य म आणीस्थः । श्रुतं मे मा प्रहासीरनेनाधीते- नाहोरात्रान्सन्दधाम्यृतं 
                     वदिष्यामि सत्यं वदिष्यामि ॥ तत् मामवतु तद्वक्तारमवतु अवतु मामवतु वक्तारमवतु वक्तारम् ॥
                 </div>
             </div>
             
-            <!-- Decorative divider -->
-            <div class="relative flex items-center justify-center py-6">
-                <div class="border-t border-gold-300 w-1/3"></div>
-                <span class="text-gold-500 mx-4 text-xl">• • •</span>
-                <div class="border-t border-gold-300 w-1/3"></div>
+            <!-- Decorative divider with Om symbol -->
+            <div class="ornamental-divider">
+                <span>ॐ</span>
             </div>
             
-            <!-- English translation -->
-            <div class="mt-10">
-                <h2 class="font-display font-bold text-gold-600 mb-4 text-xl">English Translation</h2>
-                <div class="font-display text-gray-700 text-lg leading-loose text-center italic">
-                    Om! May my speech be established in my mind; may my mind be established in my speech! 
-                    Reveal Yourself unto me; shine forth for my vision! May what I have studied not leave me! 
-                    May I join, day and night, in that study! I speak the Truth; I speak what is beneficial! 
-                    May That protect me! May That protect the speaker! May That protect me! May That protect the speaker!
+            <!-- English translation with icon -->
+            <div class="mt-8">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="border-r-2 border-gold-300 h-8 mr-4"></div>
+                    <h2 class="font-display font-bold text-gold-600 text-xl flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.5-11 5.5 11H10.5zM12 2l-8 19h16L12 2z" />
+                        </svg>
+                        English Translation
+                    </h2>
+                    <div class="border-l-2 border-gold-300 h-8 ml-4"></div>
+                </div>
+                <div class="font-display text-gray-800 text-lg leading-loose px-4 py-6 rounded-lg bg-white border border-gold-100">
+                    <p class="mb-4">
+                        Om! May my speech be established in my mind; may my mind be established in my speech! 
+                        Reveal Yourself unto me; shine forth for my vision!
+                    </p>
+                    <p>
+                        May what I have studied not leave me! May I join, day and night, in that study! 
+                        I speak the Truth; I speak what is beneficial! 
+                    </p>
+                    <p class="mt-4">
+                        May That protect me! May That protect the speaker! 
+                        May That protect me! May That protect the speaker!
+                    </p>
                 </div>
             </div>
         </div>
         
         <!-- Decorative bottom pattern -->
-        <div class="w-full max-w-3xl decorative-bottom"></div>
+        <div class="w-full max-w-4xl decorative-bottom"></div>
         
-        <!-- Meaning section -->
-        <div class="mt-12 max-w-2xl text-center px-4">
-            <h3 class="font-display font-bold text-xl text-gold-600 mb-3">Essence of the Mantra</h3>
-            <p class="text-gray-700">
-                This sacred chant emphasizes the divine connection between speech and mind, 
-                seeking guidance and protection in the pursuit of truth and wisdom through learning.
-                It represents a profound meditation on knowledge, consciousness, and spiritual awakening.
-            </p>
+        <!-- Meaning and context section -->
+        <div class="mt-14 max-w-2xl mx-auto w-full bg-white/80 p-8 rounded-xl border border-gold-100 shadow-gold">
+            <h3 class="font-display font-bold text-xl text-gold-600 mb-4 text-center flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                </svg>
+                Essence of the Mantra
+            </h3>
+            
+            <div class="text-gray-700">
+                <p class="mb-4">
+                    This sacred chant from the Vedas emphasizes the profound unity between thought (mind) and expression (speech). 
+                    It is a prayer for divine protection and guidance in the pursuit of wisdom, seeking a harmonious alignment 
+                    between our inner consciousness and outer words.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-gold-50 p-4 rounded-lg border border-gold-100 text-center">
+                        <div class="text-gold-500 mb-2 text-2xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4 class="font-display font-semibold text-gold-600">Mind & Speech Union</h4>
+                        <p class="mt-2 text-sm">Seeking harmony between thought and expression</p>
+                    </div>
+                    
+                    <div class="bg-gold-50 p-4 rounded-lg border border-gold-100 text-center">
+                        <div class="text-gold-500 mb-2 text-2xl">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h4 class="font-display font-semibold text-gold-600">Retention of Wisdom</h4>
+                        <p class="mt-2 text-sm">Preservation of studied knowledge over time</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center italic font-display text-gold-500">
+                    "May our words be rooted in truth, and our minds in wisdom"
+                </div>
+            </div>
         </div>
         
-        <!-- Footer -->
-        <footer class="mt-16 text-center text-gray-600 text-sm">
-            <p>May this sacred mantra bring peace and wisdom to all who recite it.</p>
+        <!-- Footer with blessings -->
+        <footer class="mt-16 text-center text-gray-600 text-sm max-w-lg w-full">
+            <div class="border-t border-gold-200 pt-6">
+                <p class="handwritten text-2xl text-gold-600 mb-2">
+                    ॐ शान्तिः शान्तिः शान्तिः
+                </p>
+                <p>
+                    Om Peace, Peace, Peace
+                </p>
+                <p class="mt-4">
+                    May this sacred mantra bring peace, wisdom, and spiritual awakening to all who recite it.
+                </p>
+            </div>
         </footer>
     </div>
 </body>
