@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom of the Upanishads</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'SanskritFont';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .sanskrit {
+            font-family: 'SanskritFont', serif;
+            font-size: 1.8rem;
+            line-height: 1.6;
+            color: #f8f3e6;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+        
+        .om-symbol {
+            font-family: 'SanskritFont', serif;
+            animation: pulse 4s infinite ease-in-out;
+        }
+        
+        .floral-border {
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-.299.13C20.148 18.26 18.47 19 15 19h-1.161l.345-.999zm-18.478 0C.937 19.332 0 18.77 0 18s.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4z' fill='%23d4af37' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            height: 20px;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        .gold-text {
+            color: #d4af37;
+        }
+        
+        .translation {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .sanskrit {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-white flex flex-col items-center justify-center py-12 px-4">
+    <div class="max-w-4xl w-full">
+        <!-- Header with Om symbol -->
+        <div class="text-center mb-12">
+            <div class="floral-border mb-6"></div>
+            <div class="om-symbol text-7xl gold-text mb-4">ॐ</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Wisdom of the Upanishads</h1>
+            <p class="text-lg text-gray-300">Ancient Sanskrit Verse and Its Timeless Meaning</p>
+            <div class="floral-border mt-6"></div>
+        </div>
+        
+        <!-- Main content card -->
+        <div class="card rounded-2xl p-8 md:p-12 relative overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-yellow-500 bg-opacity-10 blur-3xl"></div>
+            <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-purple-500 bg-opacity-10 blur-3xl"></div>
+            
+            <div class="relative z-10">
+                <!-- Sanskrit verse -->
+                <div class="text-center mb-10">
+                    <div class="sanskrit mb-6 leading-relaxed">
+                        नाहं मन्ये सुवेदेति नो न वेदेति वेद च ।<br>
+                        यो नस्तद्वेद तद्वेद नो न वेदेति वेद च ॥ २॥
+                    </div>
+                    <div class="divider my-8"></div>
+                </div>
+                
+                <!-- English translation -->
+                <div class="text-center">
+                    <h2 class="text-2xl font-bold mb-6 gold-text">English Translation</h2>
+                    <div class="translation text-xl mb-8 leading-relaxed">
+                        "I do not think 'I know well', nor 'I do not know'.<br>
+                        He among us who knows that, knows;<br>
+                        not he who thinks he does not know,<br>
+                        nor he who thinks he knows."
+                    </div>
+                    <div class="divider my-8"></div>
+                </div>
+                
+                <!-- Repeated verse for emphasis -->
+                <div class="text-center mt-12">
+                    <h3 class="text-xl font-semibold mb-6 gold-text">Repeated for Emphasis</h3>
+                    <div class="sanskrit mb-6 leading-relaxed">
+                        नाहं मन्ये सुवेदेति नो न वेदेति वेद च ।<br>
+                        यो नस्तद्वेद तद्वेद नो न वेदेति वेद च ॥ २॥
+                    </div>
+                    <div class="translation text-lg italic mt-4">
+                        "I do not think 'I know well', nor 'I do not know'.<br>
+                        He among us who knows that, knows;<br>
+                        not he who thinks he does not know,<br>
+                        nor he who thinks he knows."
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Explanation section -->
+        <div class="card rounded-2xl p-8 mt-10">
+            <h2 class="text-2xl font-bold mb-6 text-center gold-text">The Essence of Wisdom</h2>
+            <div class="space-y-4 text-gray-200">
+                <p>This profound verse from the Upanishads explores the nature of true knowledge and wisdom. It suggests that genuine understanding lies beyond the dualities of claiming knowledge or ignorance.</p>
+                
+                <p>The verse teaches us that:</p>
+                
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>True wisdom transcends the concepts of "knowing" and "not knowing"</li>
+                    <li>Authentic knowledge comes from understanding the nature of knowledge itself</li>
+                    <li>Neither the one who claims ignorance nor the one who claims knowledge truly understands</li>
+                    <li>Real understanding comes from a deeper place beyond intellectual concepts</li>
+                </ul>
+                
+                <p class="pt-4">This ancient teaching invites us to embrace a state of open awareness, free from the limitations of self-assessment regarding our knowledge or lack thereof.</p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-16 text-gray-400">
+            <div class="om-symbol text-5xl gold-text mb-6 floating">ॐ</div>
+            <p>Sacred Sanskrit Verse from the Upanishads</p>
+            <p class="mt-2">Designed with reverence for ancient wisdom</p>
+            <div class="floral-border my-6"></div>
+        </div>
+    </div>
+</body>
+</html>
