@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarvaanga Nyasah - Divine Chanting</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    <style>
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+        }
+        
+        .sanskrit {
+            font-family: 'Sanskrit2003', serif;
+            font-size: 2rem;
+            line-height: 1.6;
+            color: #d4af37;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1f26 0%, #0a0c0f 100%);
+            min-height: 100vh;
+            color: #e1e1e1;
+            overflow-x: hidden;
+        }
+        
+        .gold-divider {
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #f9e076, #d4af37);
+            width: 60%;
+            margin: 2rem auto;
+        }
+        
+        .mantra-card {
+            background: rgba(26, 30, 35, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .mantra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+        
+        .glow {
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        .title-icon {
+            font-size: 2.5rem;
+            color: #d4af37;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+        
+        .verse-container {
+            position: relative;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+        
+        .translation {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b8c4cc;
+            font-weight: 300;
+        }
+        
+        .floral-divider {
+            position: relative;
+            height: 30px;
+            margin: 1.5rem 0;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q25 10 50 5 T100 5" stroke="%23d4af37" fill="none" stroke-width="0.5"/></svg>');
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            opacity: 0.6;
+        }
+        
+        @media (max-width: 768px) {
+            .sanskrit {
+                font-size: 1.6rem;
+            }
+            .verse-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Background decorative elements -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none">
+        <div class="absolute top-20 right-10 w-40 h-40 rounded-full bg-yellow-900 opacity-10 blur-xl"></div>
+        <div class="absolute bottom-20 left-10 w-56 h-56 rounded-full bg-yellow-900 opacity-10 blur-xl"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-10 max-w-4xl">
+        <!-- Header Section -->
+        <header class="text-center pt-10 pb-8">
+            <div class="flex flex-col items-center">
+                <div class="title-icon mb-4">
+                    <i class="fas fa-om"></i>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-100 to-yellow-200">
+                    Sarvaanga Nyasah
+                </h1>
+                <p class="text-lg text-gray-400 max-w-2xl mx-auto">The Divine Ritual of Purifying the Body for Spiritual Practices</p>
+            </div>
+        </header>
+
+        <div class="gold-divider rounded-full"></div>
+
+        <main>
+            <!-- Introduction -->
+            <div class="mantra-card p-6 mb-12">
+                <p class="text-center text-gray-300 mb-2 text-lg italic">The Sarvaanga Nyasah is a sacred Vedic ritual of assigning divine energy to different parts of the body through specific mantras. This purification prepares the practitioner for spiritual practices by sanctifying the entire being.</p>
+                <p class="text-center text-gray-400 mt-4">(Perform the Nyasa with focused attention and devotion)</p>
+            </div>
+
+            <!-- Mantra 1 -->
+            <div class="mantra-card overflow-hidden mb-10">
+                <div class="verse-container">
+                    <div class="sanskrit text-center glow">ॐ अं आं इं ईं उं ऊं ऋं ॠं ऌं ॡं नमो हृदि ।</div>
+                    
+                    <div class="floral-divider"></div>
+                    
+                    <p class="translation text-center">
+                        Om am aam im iim um uum rm rrm lrm llrm namo hridi<br>
+                        (Salutations to the Heart - "Om, I pay homage in my heart to the syllables am, ām, im, īm, um, ūm, ṛm, ṝm, lṛm, and lṝm")
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mantra 2 -->
+            <div class="mantra-card overflow-hidden mb-10">
+                <div class="verse-container">
+                    <div class="sanskrit text-center glow">ॐ एं ऐं ओं औं अं अः कं खं गं घं नमो दक्ष भुजे ।</div>
+                    
+                    <div class="floral-divider"></div>
+                    
+                    <p class="translation text-center">
+                        Om em aim om aum am ah kam kham gam gham namo daksha bhuje<br>
+                        (Salutations to the Right Arm - "Om, I pay homage with my right arm to the syllables em, aim, om, aum, am, aḥ, kam, kham, gam, gham")
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mantra 3 -->
+            <div class="mantra-card overflow-hidden mb-10">
+                <div class="verse-container">
+                    <div class="sanskrit text-center glow">ॐ ङं चं छं जं झं ञं टं ठं डं ढं नमो वाम भुजे ।</div>
+                    
+                    <div class="floral-divider"></div>
+                    
+                    <p class="translation text-center">
+                        Om ngam cham cham jam jham njam tam tham dam dham nam namo vama bhuje<br>
+                        (Salutations to the Left Arm - "Om, I pay homage with my left arm to the syllables ṅam, cam, cham, jam, jham, ñam, ṭam, ṭham, ḍam, ḍham")
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mantra 4 -->
+            <div class="mantra-card overflow-hidden mb-10">
+                <div class="verse-container">
+                    <div class="sanskrit text-center glow">ॐ णं तं थं दं धं नं पं फं बं भं नमो दक्ष पादे ।</div>
+                    
+                    <div class="floral-divider"></div>
+                    
+                    <p class="translation text-center">
+                        Om nam tam tham dam dham nam pam pham bam bham namo daksha pade<br>
+                        (Salutations to the Right Foot - "Om, I pay homage with my right foot to the syllables ṇam, tam, tham, dam, dham, nam, pam, pham, bam, bham")
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mantra 5 -->
+            <div class="mantra-card overflow-hidden mb-10">
+                <div class="verse-container">
+                    <div class="sanskrit text-center glow">ॐ मं यं रं लं वं शं षं सं हं क्षं नमो वाम पादे ।</div>
+                    
+                    <div class="floral-divider"></div>
+                    
+                    <p class="translation text-center">
+                        Om mam yam ram lam vam sham ssam sam ham ksham namo vama pade<br>
+                        (Salutations to the Left Foot - "Om, I pay homage with my left foot to the syllables mam, yam, ram, lam, vam, śam, ṣam, sam, ham, kṣam")
+                    </p>
+                </div>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="mantra-card overflow-hidden mt-14">
+                <div class="verse-container">
+                    <div class="sanskrit text-center text-2xl mb-4">इति विन्यसेत्</div>
+                    <p class="translation text-center text-xl italic">
+                        Iti vinyaset<br>
+                        (Thus one should perform the Nyasa)
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <div class="gold-divider rounded-full my-12"></div>
+
+        <!-- Footer -->
+        <footer class="text-center py-6 text-gray-500 text-sm">
+            <div class="flex justify-center space-x-6 mb-4">
+                <button class="p-3 bg-yellow-900 bg-opacity-20 hover:bg-opacity-40 rounded-full transition">
+                    <i class="fas fa-play text-yellow-600"></i>
+                </button>
+                <button class="p-3 bg-yellow-900 bg-opacity-20 hover:bg-opacity-40 rounded-full transition">
+                    <i class="fas fa-volume-up text-yellow-600"></i>
+                </button>
+                <button class="p-3 bg-yellow-900 bg-opacity-20 hover:bg-opacity-40 rounded-full transition">
+                    <i class="fas fa-book text-yellow-600"></i>
+                </button>
+            </div>
+            <p>Chant with devotion and pure intention. May the divine blessings be upon you.</p>
+            <p class="mt-2">Sacred Texts • Vedic Tradition</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add subtle interaction when hovering over mantra cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.mantra-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const sanskrit = this.querySelector('.sanskrit');
+                    sanskrit.classList.add('glow');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    const sanskrit = this.querySelector('.sanskrit');
+                    sanskrit.classList.remove('glow');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
