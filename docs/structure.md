@@ -1,4 +1,3 @@
-```markdown
 # Project Structure Documentation
 
 This document outlines the directory and file structure for the Sacred Sanskrit Texts Archive project.
@@ -67,4 +66,3 @@ texts/
 *   **Scalability:** Simple to add new texts by creating a new subdirectory in `texts/`.
 *   **Reduced Redundancy:** Aims to have a single canonical version of each text.
 *   **Central Navigation:** The root `index.html` provides a clear entry point and overview of all available content.
-```
