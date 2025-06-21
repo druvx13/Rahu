@@ -1,4 +1,3 @@
-```markdown
 # Sacred Sanskrit Texts Archive
 
 Welcome to the Sacred Sanskrit Texts Archive, a collection of revered Hindu stotras, kavachams, and mantras. This project aims to provide a clean, accessible, and well-organized digital platform for these sacred scriptures, primarily featuring original Sanskrit texts alongside English translations. Some texts may include additional language translations and interactive features.
@@ -91,4 +90,3 @@ While this project is primarily a curated archive, suggestions for new texts, co
 ---
 
 We hope this archive serves as a valuable resource for your spiritual journey and study.
-```
