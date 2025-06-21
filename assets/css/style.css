@@ -1,0 +1,29 @@
+/* Global and reusable styles for the Sacred Sanskrit Texts Archive */
+
+/* Example: Define Sanskrit2003 font-face globally if needed,
+   though individual pages might already define it or use other fonts.
+   If defined here, ensure paths are relative from this CSS file.
+@font-face {
+    font-family: 'Sanskrit2003';
+    src: url('../fonts/Sanskrit2003.ttf') format('truetype');
+}
+*/
+
+body {
+    /* General body styles if not covered by Tailwind utility classes */
+}
+
+/* You can add custom styles for the main portal page or common elements here */
+.header-title {
+    /* Example if more specific styling is needed than inline */
+}
+
+.card-hover-effect {
+    /* Ensure this matches or enhances the inline styles in index.html */
+}
+
+.om-icon {
+    /* Centralized style for Om icon if used across multiple pages */
+    /* font-family: 'Sanskrit2003', 'Noto Sans Devanagari', serif; */
+    /* color: #805AD5; */ /* Example color */
+}
