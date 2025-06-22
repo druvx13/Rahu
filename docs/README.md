@@ -60,4 +60,4 @@ When contributing, please try to maintain a similar style and structure to the e
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. Fonts and specific texts may have their own original copyrights or licenses, which should be respected. The content is provided for educational and spiritual purposes.
+This project is in public domain and is licensed under The  Unlicense - see the [LICENSE](LICENSE) file for details. The content is provided for educational and spiritual purposes.
