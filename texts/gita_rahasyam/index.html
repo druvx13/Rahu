@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gitā Rahasyam – Esoteric Essence of the Bhagavad Gita as interpreted by Jagadguru Śaṅkarācārya and rendered by Dr. Śrīdhar Bhāskaravarnakekar.">
+    <title>Gitā Rahasyam – Complete Text</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+        }
+        .cosmic-glow {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(67,39,152,0.5), transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(94,21,156,0.4), transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .sanskrit {
+            font-family: 'Sanskrit2003', serif;
+            font-size: 1.125rem;
+            text-shadow: 0 0 8px rgba(186,104,200,0.4);
+            margin-bottom: 0.75rem;
+        }
+        header {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 12px rgba(198,116,255,0.8);
+        }
+        .subtitle {
+            font-size: 1.25rem;
+            color: #f9d676;
+            margin-bottom: 1rem;
+        }
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+        article {
+            background: rgba(28,27,46,0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(140,82,255,0.4);
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        article:hover {
+            transform: translateY(-5px);
+        }
+        .verse-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .verse-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            background: linear-gradient(45deg, #7b4397, #dc2430);
+            box-shadow: 0 0 12px rgba(123,67,151,0.6);
+            color: #fff;
+            font-weight: 600;
+            margin-right: 0.75rem;
+        }
+        .english {
+            font-size: 1rem;
+            color: #e0e0ff;
+        }
+        footer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(224,224,255,0.6);
+            padding: 2rem 1rem;
+            border-top: 1px solid rgba(140,82,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-glow"></div>
+    <header>
+        <h1 class="title">गीतारहस्यम्</h1>
+        <p class="subtitle">The Esoteric Essence of the Bhagavad Gita</p>
+        <p><em>According to Jagadguru Adi Shankaracharya's Commentary, rendered by Dr. Śrīdhar Bhāskaravarnakekar</em></p>
+    </header>
+    <main id="verses-container" aria-live="polite"></main>
+    <template id="verse-template">
+        <article>
+            <div class="verse-header">
+                <div class="verse-number" role="heading" aria-level="2"></div>
+                <h2 class="sr-only">Verse Number</h2>
+            </div>
+            <p class="sanskrit" lang="sa"></p>
+            <p class="english"></p>
+        </article>
+    </template>
+    <script>
+const verses = [
+            { number: "१", sanskrit: "वेदोक्तो द्विविधो धर्मो गीतासु प्रतिपादितः । प्रवृत्तिलक्षणो ह्येकश्चान्यो निर्वृत्तिलक्षणः ॥", english: "The Vedas proclaim two forms of dharma in the Gita: One marked by worldly engagement, the other by spiritual renunciation." },
+            { number: "२", sanskrit: "धर्मस्य द्विविधो हेतुर्जगतः संस्थितिस्तथा । प्राणिनोऽभ्युदयश्चान्यो निःश्रेयससमन्वितः ॥", english: "These dual dharmas serve two purposes: The maintenance of cosmic order, and the ultimate liberation of all living beings." },
+            { number: "३", sanskrit: "क्षीणे विवेकविज्ञाने विदुषां कामवर्धने । ग्लानिमापद्यते धर्मो ह्यधर्मः कामवर्धने ॥", english: "When discernment wanes and desire grows, dharma declines, and adharma thrives in fostering desires." },
+            { number: "४", sanskrit: "ब्राह्मण्याधीनमेवेह वर्णाश्रमविभाजनम् । ब्राह्मण्ये रक्षिते धर्मो वैदिकः स्यात् सुरक्षितः ॥", english: "Caste and stage divisions exist under the authority of Brahminical order; when protected by Brahminical wisdom, dharma remains Vedic and preserved." },
+            { number: "५", sanskrit: "ब्राह्मणत्वं विजानीयाद् भौमं ब्रह्म सनातनम् । तद्रक्षणार्थं कृष्णत्वं प्राप नारायणः स्वयम् ॥", english: "Recognize Brahminhood as eternal divine principle; to safeguard it, Narayana himself incarnated as Krishna." },
+            { number: "६", sanskrit: "शोकमोहाब्धिनिर्मग्नं पार्थं प्रत्याह केशवः । द्विविधं वैदिकं धर्मं सर्वलोकाद्दिधीर्षया । प्रचीयते हि धर्मोऽसौ पाल्यते यो गुणाधिकैः ॥", english: "Addressing Arjuna in grief and delusion, Keshava expounds twofold Vedic dharma that ensures welfare of all worlds, maintained by the predominance of virtues." },
+            { number: "७", sanskrit: "सङ्ग्रहः सर्ववेदार्थसाराणामीश्वरोदितः । व्यासः सप्तशतश्लोकैस्तमेवोपनिबद्धवान् ॥", english: "The Lord summarized the essence of all Vedas; Vyasa compiled it into seven hundred verses in his commentary." },
+            { number: "८", sanskrit: "निःश्रेयसं परं ज्ञेयं गीताशास्त्रप्रयोजनम् । सहेतुकस्य संसारस्यात्यन्तोपरमो हि तत् ॥", english: "Supreme bliss is the goal of the Gita’s teaching; for the seeker of liberation, it is the ultimate end of worldly existence." },
+            { number: "९", sanskrit: "निःश्रेयसं तदाध्यात्मज्ञाननिष्ठास्वरूपिणः । प्राप्यते धर्मतः सर्वकर्मसंन्यासापूर्वकात् ॥", english: "Such bliss is the very nature of spiritual knowledge; it is attained by renouncing all actions in accordance with dharma." },
+            { number: "१०", sanskrit: "भगवाननुगीतासु गीताधर्मप्रयोजनम् । समस्तकर्म संन्यासापरमित्यब्रवीत् स्वयम् ॥", english: "The Lord also stated the purpose of Gita’s dharma: supreme renunciation of all actions." },
+            { number: "११", sanskrit: "वर्णानामाश्रमाणां योऽभ्युदयैकप्रयोजनः । प्रवृत्तिलक्षणो धर्मः स स्वर्गप्राप्तिसाधनम् ॥", english: "If one’s sole aim in Varna and Ashrama is worldly rise, that dharma is marked by action and leads only to heaven." },
+            { number: "१२", sanskrit: "फलाभिसन्धानहितो ब्रह्मार्पणधिया तथा । प्रवृत्तिलक्षणो धर्मोऽनुष्ठेयः सत्वशुद्धये ॥", english: "Dharma marked by action without attachment to results, dedicated to Brahman, is to be practiced for purity of mind." },
+            { number: "१३", sanskrit: "सत्त्वशुद्धतया ज्ञाननिष्ठापात्रत्वमाप्तवान् । विन्दते परम ज्ञानं निःश्रेयसफलप्रदम् ॥", english: "With purity of mind, one becomes fit for steadfast knowledge and attains supreme wisdom, the fruit of liberation." },
+            { number: "१४", sanskrit: "प्रवृत्तिलक्षणो धर्मो गीतासु प्रतिपादितः । ज्ञानोत्पत्तिनिदानत्वान्निःश्रेयसपरो हि सः ॥", english: "In the Gita, dharma marked by action is taught as the cause of knowledge’s origin, yet inferior to liberation." },
+            { number: "१५", sanskrit: "योगिनः कर्म कुर्वन्ति सङ्गं त्यक्त्वाऽऽत्मशुद्धये । हेतुः प्रवृत्तिधर्मस्य गीतावाक्येऽत्र दृश्यते ॥", english: "Yogis perform actions devoid of attachment for purification of self; this is the purpose of active dharma as stated in Gita." },
+            { number: "१६", sanskrit: "तं शाश्वतं वैदिकमेव धर्म द्विधा हि निःश्रेयसमात्रहेतुम् । तथा परं ब्रह्म च केशवाख्यं गीतामहाशास्त्रमभिव्यनक्ति ॥", english: "That eternal Vedic dharma is twofold; only salvation is its final goal, and beyond that Brahman, as proclaimed in the great treatise of Gita." },
+            { number: "१७", sanskrit: "यो हि सम्यग विजानीते गीताशास्त्रार्थमान्तरम् समस्तपुरुषार्थानां स सिद्धिमधिगच्छति ॥", english: "He who rightly understands the inner meaning of Gita’s teaching attains perfection in all goals of life." },
+            { number: "१८", sanskrit: "शोकमोहादयो दोषाः संसारोत्पत्तिहेतवः । विषादयोगो बोद्धव्यस्तदुत्पत्तिप्रबुद्धये ॥", english: "Grief and delusion cause the cycle of birth; the yoga of depression must be understood to awaken from it." },
+            { number: "१९", sanskrit: "विवेकः शोकमोहाभ्यां विज्ञानं चाभिभूयते । ततः स्वधर्मं सन्त्यज्य प्रतिषिद्धे प्रवर्तते ॥", english: "Through discrimination one overcomes grief and delusion, attains knowledge, and then acts against injunctions abandoning one’s own duty." },
+            { number: "२०", sanskrit: "यथा स्वयं प्रवृत्तोऽपि क्षात्रधर्म निजेऽर्जुनः । उपरम्य ततो मेने परधर्मं हितावहम् ॥", english: "As Arjuna engaged in Kshatriya duty, then renounced it considering another’s duty beneficial." },
+            { number: "२१", sanskrit: "स्वधर्मेऽपि प्रवृत्तानां प्रवृत्तिः प्रायशो नृणाम् । फलाभिसन्धिसहिता साहङ्कारा च दृश्यते ॥", english: "Even in one’s own duty performed with attachment to outcomes, egotism and craving for fruit are seen." },
+            { number: "२२", sanskrit: "सकामकर्मतो बुद्धिर्जायते पापपुण्ययोः । तत एव हि संसारे जीवोऽयं परिवर्तते ॥", english: "From action done with craving arises intellect concerned with sin and virtue, and the soul cycles in samsara." },
+            { number: "२३", sanskrit: "इष्टजन्मसुखानिष्टजन्मदुःखाप्तилक्षणः संसारः परिहर्तव्यः शोकमोहसमुद्भवः ॥", english: "Samsara entails happiness of desired birth and suffering of undesired; it must be overcome as it arises from grief and delusion." },
+            { number: "२४", sanskrit: "समस्तकर्मसंन्यासापूर्वकादतिनिर्मलात् । आत्मज्ञानादृते नैव निवृत्तिः शोकमोहयोः ॥", english: "Without self-knowledge, mere renunciation of all actions does not free from grief and delusion, however pure." },
+            { number: "२५", sanskrit: "निमित्तीकृत्य तत् पार्थं शोकमोहसमाकुलम् । भगवानदिशद् गीतां सर्वानुग्रहहेतवे ॥", english: "Observing Arjuna immersed in grief, the Lord directed him to Gita for universal grace." },
+            { number: "२६", sanskrit: "(पूर्वपक्षः) कुरु कर्मेति ब्रुवतोऽभिप्रायः श्रीहरेः स्फुटो नूनम् । ज्ञानाद्धि कर्मसहितात् कैवल्यप्राप्तिरिति वदन्त्येके ॥", english: "(First view) Some assert that supreme liberation comes through knowledge combined with action as Lord Hari said ‘do your duty’." },
+            { number: "२७", sanskrit: "धर्म्यं युद्धमकृत्वा पापं स्यादिति निवेदयन् कृष्णः । श्रौतं स्मार्तं हिंसाक्रूरं कर्मापि मुक्तये प्राह ॥", english: "Krishna declared that warfare without righteous purpose is sinful, yet Vedic or Smarta violence in duty leads to liberation." },
+            { number: "२८", sanskrit: "(उत्तरपक्षः) कैवल्यप्राप्तये ज्ञान-कर्मयोगसमुच्चयम् । ये दर्शयन्ति गीतासु तेषां हि तद्सन्मतम् ॥", english: "(Opposing view) The true teaching is union of knowledge and action for liberation; those who show this in Gita hold the correct opinion." },
+            { number: "२९", sanskrit: "साङ्ख्य-योगाभिधं बुद्धिद्वयं लोकेषु वर्तते । ज्ञान-कर्माभिधा द्वेधा निष्ठा गीतोदिता ततः ॥", english: "In world twofold wisdom exists: Sankhya and Yoga; thus in Gita twofold path named knowledge and action is declared." },
+            { number: "३०", sanskrit: "षड्विक्रियाविहीनत्वादकर्तात्मैति या मतिः । सा साङ्ख्यबुद्धिः साङ्ख्याख्यज्ञानिनामुचिता मम ॥", english: "That which considers absence of six transformations and non-doership as knowledge is Sankhya wisdom, which I call misnamed among Knower." },
+            { number: "३१", sanskrit: "प्रायेण साङ्ख्यबुद्धेः प्राग् योगबुद्धि﻿प्रजायते । ययात्मा देहसम्भिन्नः कर्ता भोक्तेति भासते ॥", english: "Before Sankhya arises Yoga philosophy: The soul distinct from body appears as doer and enjoyer." },
+            { number: "३२", sanskrit: "धर्माधर्मविवेकेन मोक्षसाधनकर्मणाम् । निरन्तरमनुष्ठानं तद् योग इति कथ्यते ॥", english: "Yoga is defined as constant performance of acts conducive to liberation by distinguishing dharma from adharma." },
+            { number: "३३", sanskrit: "योगबुद्धि समाश्रित्य येऽन्तःकरणशुद्धये । योगाख्यं कर्म कुर्वन्ति ते योगिन इति स्मृताः ॥", english: "Those who perform action named yoga relying on yogic wisdom for inner purification are called yogins." },
+            { number: "३४", sanskrit: "ज्ञान-कर्मामिधं निष्ठाद्वयं प्राहेश्वरः पृथक् । पश्यन्नेकत्र पुरुषे वृद्धिद्वयमसम्भवम् ॥", english: "The Lord separately praised twofold steadfastness in knowledge and action: unseen together in one person." },
+            { number: "३५", sanskrit: "बृहदारण्यकेऽप्येतद् निष्ठाद्वयमुदीरितम् । यत्राकामस्य संन्यासाः प्रोक्तं कर्म च काम्यतः ॥", english: "Even in Brihadaranyaka Upanishad two steadfast paths are declared: renunciation of desire and desirable action." },
+            { number: "३६", sanskrit: "यदि स्यात् सम्मतः श्रौतकर्मज्ञानसमुच्चयः । गीतासु नोपपद्येत विभागवचनं तदा । ज्यायसी चेदिति प्रश्नः पार्थस्यापि न युज्यते ॥", english: "If knowledge-action union was right method, sectioning in Gita would not apply; question of superiority would not arise even for Arjuna." },
+            { number: "३७", sanskrit: "असंभवमनुष्ठानमेकेन ज्ञानकर्मणोः । न चेदिदं हरेरुक्तं शृणुयादर्जुनः कथम् ॥", english: "Without union of knowledge and action performing one only is impossible; if not thus spoken by Hari, Arjuna would not listen." },
+            { number: "३८", sanskrit: "अश्रुतं च कथं बुद्धेर्ज्यायस्त्वं कर्मणोऽर्जुनः । ज्यायसीत्यादिभिर्वाक्यैर्मृषाङ्घारोपयेत् प्रभौ ॥", english: "If you consider another's words false, how would you conceive the superiority of action, Arjuna?" },
+            { number: "३९", sanskrit: "उक्तः स्याद् यदि सर्वेषां ज्ञानकर्मसमुच्चयः । पार्थस्यापि कृते तर्हि स एव हि निवेदितः ॥", english: "If union of knowledge and action was spoken for all, then even for Arjuna that alone would suffice." },
+            { number: "४०", sanskrit: "उभयोरुपदेशेऽपि प्रश्नोत्तरसमाश्रितः ॥ 'यच्छ्रेय एतयोरेक''मिति नैवोपपद्यते ॥", english: "Despite teaching both, question-answer depends: ‘which of the two is better?’ is not resolved." },
+            { number: "४१", sanskrit: "शीतं च मधुरं चान्नं भोक्तव्यं पित्तशान्तये । इत्युक्तेऽन्यतरश्रेयोजिज्ञासा नोपपद्यते ॥", english: "Having declared cold and sweet food for pacifying bile, no further inquiry about superior gain arises." },
+            { number: "४२", sanskrit: "पार्थप्रश्नोऽथ कल्प्येत कृष्णोक्तानवधारणात् । तदुत्तरे कथं नोक्तो बुद्धि-कर्म-समुच्चयः ॥", english: "If Arjuna’s question is hypothetical due to misinterpretation of Krishna’s words, then why not asked about union of knowledge and action in reply?" },
+            { number: "४३", sanskrit: "लोकेऽस्मिन् द्विविधा निष्ठा पुरा प्रोक्तेति चोत्तरम् । पृष्टादननुरूपं तन्नेश्वरस्योपपद्यते ॥", english: "The reply is that twofold steadfastness was spoken earlier in world; the Lord’s teaching conforms to question context." },
+            { number: "४४", sanskrit: "समुच्चयस्तथा बुद्धेः श्रौतवत् स्मार्तकर्मणा । नाभिप्रेतोऽन्यथा सर्व विभागवचनं वृथा ॥", english: "If union was meant for Vedic or Smarta act, then all sectioning teaching is meaningless." },
+            { number: "४५", sanskrit: "युद्ध कर्म क्षत्रियस्य स्मार्त मित्यपि जाननः । उपालम्भो वृथा 'घोरे कर्मणी'त्यर्जुनस्य च ॥", english: "Though war is Smarta duty for Kshatriya, Arjuna’s lament 'terrible work' is misplaced." },
+            { number: "४६", sanskrit: "तस्माद् गीतासु नैवेषन्मात्रेणापि प्रदर्श्यताम् । कर्मणा द्विविधेनात्मज्ञानस्य हि समुच्चयः ॥", english: "Hence in Gita not even once is union shown directly; union of self-knowledge occurs by twofold action." },
+            { number: "४७", sanskrit: "कर्मण्यभिप्रवृत्तस्याज्ञानरागादिदोषतः । सत्वशुद्धतया ज्ञानं सर्वं ब्रह्मेति जायते ॥", english: "For one engaged in action without craving defects, through purity of mind emerges knowledge realizing all as Brahman." },
+            { number: "४८", sanskrit: "निवृत्तं ज्ञान्नतो यस्य कर्म वा तत्प्रयोजनम् । स हि कर्म प्रवृत्तश्चेल्लोकसङ्ग्रहहेतवे । तस्मिन्नपि न सम्भाव्यो ज्ञानकर्मसमुच्चयः ॥", english: "For one whose knowledge is stilled, action is only for world welfare; union of knowledge and action is impossible even there." },
+            { number: "४९", sanskrit: "यथा भगवति क्षात्रकर्मज्ञानसमुच्चयः । न सम्भवति निष्कामे तथा तादृशि पण्डिते ॥", english: "As union of Kshatriya action and knowledge was impossible for the Lord, so in such learned person." },
+            { number: "५०", sanskrit: "न करोमीति तत्त्वज्ञो मन्यते भगवत्समः । फलं च नाभिसन्धत्ते क्रियमाणस्य कर्मणः ॥", english: "A knower who says 'I do not' considers himself equal to God and does not seek the result of action." },
+            { number: "५१", sanskrit: "काम्ये यज्ञे प्रवृत्तस्य कामे सामिकृते हते । क्रियमाणः पुनर्यज्ञो निष्कामः खलु जायते । प्रमाणं भगवद्वाक्य- 'कुर्वन्नपि न लिप्यते' ॥", english: "For one performing desired sacrifice desiring fruits, if desire is killed, action becomes sacrifice without desire, as scripture says ‘though acting, not bound’." },
+            { number: "५२", sanskrit: " 'कर्मणैव हि संसिद्धिमास्थिता जनकादयः' । वाक्यमेवंविधं ज्ञेयं प्रविभज्यैव तत्त्वतः ॥", english: "Understand properly by dividing: ‘Only by action have great beings like Janaka attained perfection.’" },
+            { number: "५३", sanskrit: "अथ चेज्जनकाद्यास्ते नैव तत्त्वविदो मताः । कर्मणा चित्तशुद्धिं ते प्राप्ता इत्यवगम्यताम् ॥", english: "Those like Janaka who are not philosophers have attained purity of mind through action; let this be recognized." },
+            { number: "५४", sanskrit: " 'योगिनः कर्म कुर्वन्ति सङ्गं त्यक्त्वाऽऽत्मशुद्धये' । इत्यस्मिन् भगवद्वाक्ये ज्ञेयं कर्मप्रयोजनम् ॥", english: "In the verse ‘Yogins perform actions abandoning attachment for self-purification’, the purpose of action is to purify." },
+            { number: "५५", sanskrit: "न हि निःश्रेयसप्राप्तिर्ज्ञान-कर्मसमुच्चयात् । अभिप्रायेण गीतायास्तत्त्वज्ञानात्तु केवलात् ॥", english: "Liberation is not attained by combining knowledge and action; solely through realization of truth as declared in Gita." }
+        ];
+        const container = document.getElementById('verses-container');
+        const template = document.getElementById('verse-template');
+        const fragment = document.createDocumentFragment();
+        verses.forEach(v => {
+            const clone = template.content.cloneNode(true);
+            clone.querySelector('.verse-number').textContent = v.number;
+            clone.querySelector('.sanskrit').textContent = v.sanskrit;
+            clone.querySelector('.english').textContent = v.english;
+            fragment.appendChild(clone);
+        });
+        container.appendChild(fragment);
+    </script>
+    <footer>
+        <p>© 2025 Dr. Śrīdhar Bhāskaravarnakekar’s Gitā Rahasyam. All rights reserved.</p>
+    </footer>
+</body>
+</html>
