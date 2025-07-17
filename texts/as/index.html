@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divine Invocation - A Sacred Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        .sanskrit-font {
+            font-family: 'Sanskrit2003', serif;
+        }
+        
+        body {
+            font-family: 'Crimson Text', serif;
+            background: radial-gradient(circle at 20% 20%, #1a1a2e, #16213e, #0f0f23);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 20px rgba(147, 197, 253, 0.5), 
+                         0 0 40px rgba(147, 197, 253, 0.3),
+                         0 0 60px rgba(147, 197, 253, 0.1);
+        }
+        
+        .floating-dust {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .mantra-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .divine-glow {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 400% 400%;
+            animation: divinePulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes divinePulse {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        .translation-line {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .translation-line:nth-child(odd) {
+            animation-delay: 0.2s;
+        }
+        
+        .translation-line:nth-child(even) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .sacred-symbol {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(147, 197, 253, 0.3);
+            transform: scale(0);
+            animation: rippleEffect 2s ease-out;
+        }
+        
+        @keyframes rippleEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Floating Divine Particles -->
+    <div id="floatingParticles" class="fixed inset-0 pointer-events-none z-0"></div>
+    
+    <!-- Main Container -->
+    <div class="relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-4 py-20">
+            <div class="text-center max-w-6xl mx-auto">
+                <div class="mb-8">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-light text-white mb-6 tracking-wide">
+                        Sacred Invocation
+                    </h1>
+                    <div class="w-24 h-1 divine-glow mx-auto rounded-full mb-8"></div>
+                </div>
+                
+                <!-- Sanskrit Mantra -->
+                <div class="mantra-card rounded-2xl p-8 md:p-12 mb-12 max-w-4xl mx-auto">
+                    <div class="sanskrit-font text-3xl md:text-5xl lg:text-6xl leading-relaxed text-center text-blue-200 glow-text">
+                        चित्स्वरूपां मायामयीं विश्वविलासिनीं स्वप्रकाशां नित्यां 
+                        आनन्दाङ्गीं असङ्गाम् ईश्वरजीवभेदभासिनीं परां धाम् 
+                        तां त्वां वन्दे देवीं कृपाकरां शिवाम्
+                    </div>
+                </div>
+                
+                <!-- Sacred Symbol -->
+                <div class="text-6xl md:text-8xl sacred-symbol mb-8">ॐ</div>
+                
+                <!-- Scroll Indicator -->
+                <div class="animate-bounce">
+                    <svg class="w-6 h-6 mx-auto text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Translation Section -->
+        <section class="py-20 px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl text-center mb-16 text-white">
+                    Divine Translation
+                </h2>
+                
+                <div class="space-y-8">
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                To the One whose very form is Pure Consciousness,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                Who is the embodiment of divine illusion,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                The playful enchantress of the entire universe,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                Self-luminous, eternal, and ever-blissful,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                Unattached, yet manifesting the apparent distinction
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                Between the Lord and the individual soul,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                The supreme abode of divine grace,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8">
+                            <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                                To You, O Goddess of compassion, the auspicious one,
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="translation-line">
+                        <div class="mantra-card rounded-xl p-6 md:p-8 bg-gradient-to-r from-blue-900/30 to-purple-900/30">
+                            <p class="text-xl md:text-2xl text-white font-medium">
+                                I offer my humble salutations.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive Meditation Section -->
+        <section class="py-20 px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl mb-8 text-white">Sacred Meditation</h2>
+                <p class="text-gray-300 mb-12 text-lg">
+                    Click below to begin your journey into divine consciousness
+                </p>
+                
+                <button id="meditationBtn" class="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full text-white font-medium hover:from-blue-500 hover:to-purple-500 transition-all duration-300 transform hover:scale-105">
+                    Begin Meditation
+                </button>
+                
+                <div id="meditationDisplay" class="mt-12 hidden">
+                    <div class="mantra-card rounded-2xl p-8">
+                        <div class="sanskrit-font text-2xl md:text-3xl text-blue-200 mb-4" id="currentWord"></div>
+                        <div class="text-gray-300" id="currentTranslation"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="py-12 text-center text-gray-400">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="sacred-symbol text-4xl mb-4">॥ ॐ शान्तिः शान्तिः शान्तिः ॥</div>
+                <p class="text-sm">
+                    May peace, peace, peace be unto all beings
+                </p>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Create floating particles
+        function createFloatingParticles() {
+            const container = document.getElementById('floatingParticles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'floating-dust';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 20 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        // Create ripple effect
+        function createRipple(e) {
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.width = ripple.style.height = '50px';
+            ripple.style.left = e.clientX - 25 + 'px';
+            ripple.style.top = e.clientY - 25 + 'px';
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 2000);
+        }
+        
+        // Meditation functionality
+        const mantraWords = [
+            { word: "चित्स्वरूपां", translation: "Pure Consciousness" },
+            { word: "मायामयीं", translation: "Divine Illusion" },
+            { word: "विश्वविलासिनीं", translation: "Universal Playful One" },
+            { word: "स्वप्रकाशां", translation: "Self-luminous" },
+            { word: "नित्यां", translation: "Eternal" },
+            { word: "आनन्दाङ्गीं", translation: "Ever-blissful" },
+            { word: "असङ्गाम्", translation: "Unattached" },
+            { word: "ईश्वरजीवभेदभासिनीं", translation: "Manifesting the distinction" },
+            { word: "परां", translation: "Supreme" },
+            { word: "धाम्", translation: "Abode" },
+            { word: "कृपाकरां", translation: "Compassionate" },
+            { word: "शिवाम्", translation: "Auspicious" }
+        ];
+        
+        let currentIndex = 0;
+        let meditationInterval;
+        
+        function startMeditation() {
+            const display = document.getElementById('meditationDisplay');
+            const btn = document.getElementById('meditationBtn');
+            
+            display.classList.remove('hidden');
+            btn.textContent = 'End Meditation';
+            btn.onclick = endMeditation;
+            
+            function cycleWords() {
+                document.getElementById('currentWord').textContent = mantraWords[currentIndex].word;
+                document.getElementById('currentTranslation').textContent = mantraWords[currentIndex].translation;
+                currentIndex = (currentIndex + 1) % mantraWords.length;
+            }
+            
+            cycleWords();
+            meditationInterval = setInterval(cycleWords, 3000);
+        }
+        
+        function endMeditation() {
+            const display = document.getElementById('meditationDisplay');
+            const btn = document.getElementById('meditationBtn');
+            
+            clearInterval(meditationInterval);
+            display.classList.add('hidden');
+            btn.textContent = 'Begin Meditation';
+            btn.onclick = startMeditation;
+            currentIndex = 0;
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingParticles();
+            document.addEventListener('click', createRipple);
+            document.getElementById('meditationBtn').onclick = startMeditation;
+        });
+        
+        // Smooth scroll for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.translation-line').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
