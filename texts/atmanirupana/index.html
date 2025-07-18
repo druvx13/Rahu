@@ -1,433 +1,152 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आत्मतत्त्वनिरूपणम् - Ātmatattvanirūpaṇam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <style>
+        /* Define the custom font for Sanskrit text */
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
 
+        /* Apply the custom font to elements with lang="sa" */
+        .sanskrit-text {
+            font-family: 'Sanskrit2003', sans-serif;
+            font-size: 1.5rem; /* 24px */
+            line-height: 2.5rem; /* 40px */
+        }
+
+        /* Apply a beautiful serif font for English text */
+        .english-text {
+            font-family: 'Lora', serif;
+            font-size: 1.125rem; /* 18px */
+            line-height: 1.75rem; /* 28px */
+        }
+        
+        /* General body styling */
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0ff;
-            font-family: 'Poppins', sans-serif;
+            background-color: #FFF8E1; /* A warm, parchment-like background */
+            color: #424242; /* A dark gray for better readability */
         }
 
-        .cosmic-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: twinkle 4s infinite;
-            z-index: -1;
+        /* Styling for the main title */
+        .main-title {
+            font-family: 'Sanskrit2003', 'Lora', serif;
+            color: #8D6E63; /* A soft brown color */
         }
         
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .sanskrit {
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
-            font-weight: bold;
-        }
-
-        .chinese {
-            font-family: 'Noto Serif SC', serif;
-            font-weight: 500;
-        }
-
-        .card {
-            background: rgba(28, 27, 46, 0.4);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(140, 82, 255, 0.5);
-            border-left: 1px solid rgba(140, 82, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .title-glow {
-            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
-        }
-
-        .verse-number {
-            background: linear-gradient(45deg, #7b4397, #dc2430);
-            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
-        }
-
-        .tabs button {
-            transition: all 0.3s ease;
-        }
-
-        .tabs button.active {
-            background: rgba(123, 67, 151, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
-        }
-        
+        /* Styling for verse containers */
         .verse-container {
-            transition: opacity 0.4s ease;
+            border-left: 4px solid #A1887F; /* A soft brown border */
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
         }
 
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .play-btn {
-            background: rgba(123, 67, 151, 0.3);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
+        /* Styling for section titles */
+        .section-title {
+            font-family: 'Sanskrit2003', 'Lora', serif;
+            font-weight: 600;
+            color: #6D4C41; /* A darker brown */
+            border-bottom: 2px solid #D7CCC8;
         }
         
-        .mantra-player {
-            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-        }
-
-        .translation-note {
-            background: rgba(123, 67, 151, 0.15);
-            border-left: 3px solid rgba(198, 116, 255, 0.8);
+        .speaker-tag {
+            font-family: 'Lora', serif;
+            font-weight: 700;
+            font-style: italic;
+            color: #A1887F;
         }
     </style>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cosmic: {
-                            100: '#1a1833',
-                            200: '#24224a',
-                            300: '#39366b',
-                        },
-                        gold: {
-                            100: '#ffedcc',
-                            200: '#f9d676',
-                            300: '#d8af4f',
-                        }
-                    }
-                }
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create cosmic stars
-            const container = document.querySelector('.cosmic-glow');
-            for(let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 4}s`;
-                container.appendChild(star);
-            }
-            
-            // Tab switching functionality
-            const tabs = document.querySelectorAll('.translation-tab');
-            const verseContainers = document.querySelectorAll('.verse-container');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetLang = tab.getAttribute('data-lang');
-
-                    // Update active tab
-                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
-                    tab.classList.add('active', 'bg-purple-800');
-
-                    // Show the correct translation
-                    verseContainers.forEach(container => {
-                        container.style.opacity = '0';
-                        setTimeout(() => {
-                            if(container.classList.contains(targetLang)) {
-                                container.style.display = 'block';
-                                setTimeout(() => {
-                                    container.style.opacity = '1';
-                                }, 50);
-                            } else {
-                                container.style.display = 'none';
-                            }
-                        }, 300);
-                    });
-                });
-            });
-
-            // Activate first tab by default
-            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
-
-            // Fade-in verse containers
-            document.querySelectorAll('.verse-container.en').forEach(container => {
-                setTimeout(() => {
-                    container.classList.add('fade-in');
-                }, 300);
-            });
-
-            // Play button effect
-            const playBtn = document.querySelector('.play-btn');
-            if(playBtn) {
-                playBtn.addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
-                    this.classList.add('bg-green-600');
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
-                        this.classList.remove('bg-green-600');
-                    }, 4000);
-                });
-            }
-        });
-    </script>
 </head>
-<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
+<body class="antialiased">
 
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+
+        <!-- Main Title -->
+        <header class="text-center mb-12">
+            <h1 class="main-title text-4xl md:text-6xl font-bold">आत्मतत्त्वनिरूपणम्</h1>
+            <p class="english-text text-xl md:text-2xl text-gray-600 mt-2">The Exposition of the Nature of the Self</p>
+            <p class="english-text text-lg text-gray-500">(From the Devi Gita, Chapter 1)</p>
+        </header>
+
+        <main class="space-y-8">
+            
+            <section>
+                <div class="space-y-6">
+                    <article class="verse-container rounded-lg p-6">
+                        <p class="speaker-tag">श्रीदेव्युवाच (The Divine Mother said):</p>
+                        <p class="sanskrit-text text-brown-800 mt-2">श‍ृण्वन्तु निर्जराः सर्वे व्याहरन्त्या वचो मम । यस्य श्रवणमात्रेण मद्रूपत्वं प्रपद्यते ॥ १॥</p>
+                        <p class="english-text mt-4">Listen, all you gods, to my words which I am uttering. By the mere hearing of which, one attains my own nature. (1)</p>
+                    </article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अहमेवास पूर्वं तु नान्यत्किञ्चिन्नगाधिप । तदात्मरूपं चित्संवित्परब्रह्मैकनामकम् ॥ २॥</p><p class="english-text mt-4">In the beginning, O Lord of the Mountains, I alone existed, and nothing else. That was the form of the Self, named solely as Cit (Consciousness), Saṃvit (Awareness), and Para-Brahman (the Supreme Absolute). (2)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अप्रतर्क्यमनिर्देश्यमनौपम्यमनामयम् । तस्य काचित्स्वतः सिद्धा शक्तिर्मायेति विश्रुता ॥ ३॥</p><p class="english-text mt-4">It is beyond logic, indescribable, incomparable, and without affliction. Of That, there is a certain self-existent power, renowned as Maya. (3)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">न सती सा नासती सा नोभयात्मा विरोधतः । एतद्विलक्षणा काचिद्वस्तुभूतास्ति सर्वदा ॥ ४॥</p><p class="english-text mt-4">She is neither existent nor non-existent, nor is she both, due to contradiction. She is some real entity, distinct from these, and exists eternally. (4)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">पावकस्योष्णतेवेयमुष्णांशोरिव दीधितिः । चन्द्रस्य चन्द्रिकेवेयं ममेयं सहजा ध्रुवा ॥ ५॥</p><p class="english-text mt-4">Just as heat is to fire, as radiance is to the sun, as moonlight is to the moon, this power of mine is innate and constant. (5)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तस्यां कर्माणि जीवानां जीवाः कालाश्च सञ्चरे । अभेदेन विलीनाः स्युः सुषुप्तौ व्यवहारवत् ॥ ६॥</p><p class="english-text mt-4">In her, the karmas of living beings, the beings themselves, and time move about. They become merged without distinction, just as worldly activities cease in deep sleep. (6)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">स्वशक्तेश्च समायोगादहं बीजात्मतां गता । स्वाधारावरणात्तस्या दोषत्वं च समागतम् ॥ ७॥</p><p class="english-text mt-4">Through union with my own power, I attain the state of the seed-form. From its veiling of its own substratum, its nature as a defect arises. (7)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">चैतन्यस्य समायोगान्निमित्तत्वं च कथ्यते । प्रपञ्चपरिणामाच्च समवायित्वमुच्यते ॥ ८॥</p><p class="english-text mt-4">Due to the association with Consciousness, it is called the efficient cause. And due to its transformation into the universe, it is called the material cause. (8)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">केचित्तां तप इत्याहुस्तमः केचिज्जडं परे । ज्ञानं मायां प्रधानं च प्रकृतिं शक्तिमप्यजाम् ॥ ९॥</p><p class="english-text mt-4">Some call it Tapas (austerity), some Tamas (darkness), others Jada (inert). Some call it Jnana (knowledge), Maya, Pradhana, Prakriti, Shakti, and also Aja (the unborn). (9)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">विमर्श इति तां प्राहुः शैवशास्त्रविशारदाः । अविद्यामितरे प्राहुर्वेदतत्त्वार्थचिन्तकाः ॥ १०॥</p><p class="english-text mt-4">Those proficient in Shaiva scriptures call it Vimarsha (self-reflection). Others, who contemplate the meaning of the Vedic truth, call it Avidya (ignorance). (10)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">एवं नानाविधानि स्युर्नामानि निगमादिषु । तस्या जडत्वं दृश्यत्वाज्ज्ञाननाशात्ततोऽसती ॥ ११॥</p<p class="english-text mt-4">Thus, it has various names in the Vedas and other scriptures. Its inertness comes from its being an object of perception; because it is destroyed by knowledge, it is therefore unreal. (11)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">चैतन्यस्य न दृश्यत्वं दृश्यत्वे जडमेव तत् । स्वप्रकाशं च चैतन्यं न परेण प्रकाशितम् ॥ १२॥</p><p class="english-text mt-4">Consciousness is not an object of perception; if it were perceived, it would be inert. And Consciousness is self-luminous, not illuminated by another. (12)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अनवस्थादोषसत्त्वान्न स्वेनापि प्रकाशितम् । कर्मकर्त्रीविरोधः स्यात्तस्मात्तद्दीपवत्स्वयम् ॥ १३॥</p<p class="english-text mt-4">Nor is it illuminated by itself, because of the fault of infinite regress and the contradiction of being both subject and object. Therefore, like a lamp, it is self-luminous. (13)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">प्रकाशमानमन्येषां भासकं विद्धि पर्वत । अत एव च नित्यत्वं सिद्धसंवित्तनोर्मम ॥ १४॥</p<p class="english-text mt-4">Know, O Mountain, that while being self-luminous, it illuminates others. For this very reason, the eternality of my form, which is pure consciousness, is established. (14)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">जाग्रत्स्वप्नसुषुप्त्यादौ दृश्यस्य व्यभिचारतः । संविदो व्यभिचारश्च नानुभूतोऽस्ति कर्हिचित् ॥ १५॥</p<p class="english-text mt-4">Because the perceived world is transient in states like waking, dream, and deep sleep, whereas the transience of consciousness has never been experienced at any time. (15)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">यदि तस्याप्यनुभवस्तर्ह्ययं येन साक्षिणा । अनुभूतः स एवात्र शिष्टः संविद्वपुः पुरा ॥ १६॥</p<p class="english-text mt-4">If even its (consciousness's) experience were perceived, then that very witness by which it is experienced would remain here as the primeval form of consciousness. (16)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अत एव च नित्यत्वं प्रोक्तं सच्छास्त्रकोविदैः । आनन्दरूपता चास्याः परप्रेमास्पदत्वतः ॥ १७॥</p<p class="english-text mt-4">For this very reason, its eternality is declared by those well-versed in the true scriptures. And its nature as bliss is due to its being the object of supreme love. (17)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">मा न भूवं हि भूयासमिति प्रेमात्मनि स्थितम् । सर्वस्यान्यस्य मिथ्यात्वादसङ्गत्वं स्फुटं मम ॥ १८॥</p<p class="english-text mt-4">The love for the Self is established in the thought, "May I not cease to be; indeed, may I exist." Because everything else is unreal, my unattached nature is evident. (18)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अपरिच्छिन्नताप्येवमत एव मता मम । तच्च ज्ञानं नात्मधर्मो धर्मत्वे जडताऽऽत्मनः ॥ १९॥</p<p class="english-text mt-4">For this very reason, my nature is also considered to be unlimited. And that knowledge is not a property of the Self; if it were a property, the Self would be inert. (19)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">ज्ञानस्य जडशेषत्वं न दृष्टं न च सम्भवि । चिद्धर्मत्वं तथा नास्ति चितश्चिन्न हि भिद्यते ॥ २०॥</p<p class="english-text mt-4">Knowledge being subsidiary to an inert object is neither seen nor possible. Likewise, it cannot be a property of Consciousness, for Consciousness does not differ from consciousness. (20)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तस्मादात्मा ज्ञानरूपः सुखरूपश्च सर्वदा । सत्यः पूर्णोऽप्यसङ्गश्च द्वैतजालविवर्जितः ॥ २१॥</p<p class="english-text mt-4">Therefore, the Self is eternally of the nature of knowledge and of the nature of bliss. It is real, complete, unattached, and free from the net of duality. (21)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">स पुनः कामकर्मादियुक्तया स्वीयमायया । पूर्वानुभूतसंस्कारात् कालकर्मविपाकतः ॥ २२॥</p<p class="english-text mt-4">That Self, again, through its own Maya associated with desire, karma, etc., from the impressions of past experiences, and from the ripening of time and karma... (22)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अविवेकाच्च तत्त्वस्य सिसृक्षावान्प्रजायते । अबुद्धिपूर्वः सर्गोऽयं कथितस्ते नगाधिप ॥ २३॥</p<p class="english-text mt-4">...and from a lack of discrimination of reality, becomes desirous of creating. This creation, O Lord of Mountains, is said to be without prior deliberation. (23)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">एतद्धि यन्मया प्रोक्तं मम रूपमलौकिकम् । अव्याकृतं तदव्यक्तं मायाशबलमित्यपि ॥ २४॥</p<p class="english-text mt-4">This extraordinary form of mine which I have described is also called the Unmanifest (Avyakta), the Undifferentiated (Avyakrita), and that which is variegated by Maya (Maya-shabala). (24)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">प्रोच्यते सर्वशास्त्रेषु सर्वकारणकारणम् । तत्त्वानामादिभूतं च सच्चिदानन्दविग्रहम् ॥ २५॥</p<p class="english-text mt-4">It is declared in all scriptures as the cause of all causes, the origin of all principles (tattvas), and the embodiment of existence-consciousness-bliss. (25)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">सर्वकर्मघनीभूतमिच्छाज्ञानक्रियाश्रयम् । ह्रीङ्कारमन्त्रवाच्यं तदादितत्त्वं तदुच्यते ॥ २६॥</p<p class="english-text mt-4">It is the solidification of all karma, the substratum of will, knowledge, and action. That which is denoted by the Hrimkara mantra is called the primal principle (Adi-tattva). (26)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तस्मादाकाश उत्पन्नः शब्दतन्मात्ररूपकः । भवेत्स्पर्शात्मको वायुस्तेजोरूपात्मकं पुनः ॥ २७॥</p<p class="english-text mt-4">From That, space (akasha) arose, whose nature is the subtle element of sound. Then came air (vayu), whose nature is touch; and then fire (tejas), whose nature is form. (27)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">जलं रसात्मकं पश्चात्ततो गन्धात्मिका धरा । शब्दैकगुण आकाशो वायुः स्पर्शरवान्वितः ॥ २८॥</p<p class="english-text mt-4">Afterwards, water (jala) of the nature of taste, and from that, earth (dhara) of the nature of smell. Space has the single quality of sound; air has touch and sound. (28)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">शब्दस्पर्शरूपगुणं तेज इत्युच्यते बुधैः । शब्दस्पर्शरूपरसैरापो वेदगुणाः स्मृताः ॥ २९॥</p<p class="english-text mt-4">Fire is said by the wise to have the qualities of sound, touch, and form. Water is known to have four qualities: sound, touch, form, and taste. (29)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">शब्दस्पर्शरूपरसगन्धैः पञ्चगुणा धरा । तेभ्योऽभवन्महत्सूत्रं यल्लिङ्गं परिचक्षते ॥ ३०॥</p<p class="english-text mt-4">Earth has five qualities: sound, touch, form, taste, and smell. From these (subtle elements) arose the great thread (Mahat-sutra), which is called the Linga (subtle body). (30)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">सर्वात्मकं तत्सम्प्रोक्तं सूक्ष्मदेहोऽयमात्मनः । अव्यक्तं कारणो देहः स चोक्तः पूर्वमेव हि ॥ ३१॥</p<p class="english-text mt-4">That is said to be the all-encompassing subtle body of the Self. The Unmanifest is the causal body, and that has indeed been spoken of before. (31)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">यस्मिञ्जगद्बीजरूपं स्थितं लिङ्गोद्भवो यतः । ततः स्थूलानि भूतानि पञ्चीकरणमार्गतः ॥ ३२॥</p<p class="english-text mt-4">In which resides the seed-form of the universe, and from which the subtle body arises. From that, through the process of quintuplication (Panchikarana), the gross elements are born. (32)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">पञ्चसङ्ख्यानि जायन्ते तत्प्रकारस्त्वथोच्यते । पूर्वोक्तानि च भूतानि प्रत्येकं विभजेद्द्विधा ॥ ३३॥</p<p class="english-text mt-4">Five in number they arise, and their process is now described. Divide each of the aforementioned elements into two parts. (33)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">एकैकं भागमेकस्य चतुर्धा विभजेद्गिरे । स्वस्वेतरद्वितीयांशे योजनात्पञ्च पञ्च ते ॥ ३४॥</p<p class="english-text mt-4">O Mountain, divide one part of each into four. By combining these with the other half of each of the other elements, they each become fivefold. (34)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तत्कार्यं च विराड्देहः स्थूलदेहोऽयमात्मनः । पञ्चभूतस्थसत्त्वांशैः श्रोत्रादीनां समुद्भवः ॥ ३५॥</p<p class="english-text mt-4">Its effect is the Virat-deha, the gross body of the Self. From the sattvic parts of the five elements arises the ear and other sense organs of knowledge. (35)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">ज्ञानेन्द्रियाणां राजेन्द्र प्रत्येकं मिलितैस्तु तैः । अन्तःकरणमेकं स्याद्वृत्तिभेदाच्चतुर्विधम् ॥ ३६॥</p<p class="english-text mt-4">O King of Mountains, from their individual and combined sattvic parts, the single inner instrument (antahkarana) comes into being, which is fourfold due to its different functions. (36)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">यदा तु सङ्कल्पविकल्पकृत्यं तदा भवेत्तन्मन इत्यभिख्यम् । स्याद्बुद्धिसंज्ञं च यदा प्रवेत्ति सुनिश्चितं संशयहीनरूपम् ॥ ३७॥</p<p class="english-text mt-4">When it performs the function of volition and doubt, then it is known as the mind (manas). And it is termed intellect (buddhi) when it ascertains with certainty, free from doubt. (37)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">अनुसन्धानरूपं तच्चित्तं च परिकीर्तितम् । अहङ्कृत्यात्मवृत्त्या तु तदहङ्कारतां गतम् ॥ ३८॥</p<p class="english-text mt-4">In its form of recollection, it is called the memory (citta). And through the function of self-identification ('I'-ness), it attains the state of ego (ahankara). (38)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तेषां रजोंशैर्जातानि क्रमात्कर्मेन्द्रियाणि च । प्रत्येकं मिलितैस्तैस्तु प्राणो भवति पञ्चधा ॥ ३९॥</p<p class="english-text mt-4">From their rajasic parts, the organs of action are born in sequence. And from their combined rajasic parts, the vital force (prana) becomes fivefold. (39)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">हृदि प्राणो गुदेऽपानो नाभिस्थस्तु समानकः । कण्ठदेशेऽप्युदानः स्याद्व्यानः सर्वशरीरगः ॥ ४०॥</p<p class="english-text mt-4">Prana is in the heart, Apana is in the anus, Samana is situated in the navel. Udana is in the region of the throat, and Vyana pervades the entire body. (40)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">ज्ञानेन्द्रियाणि पञ्चैव पञ्चकर्मेन्द्रियाणि च । प्राणादिपञ्चकं चैव धिया च सहितं मनः ॥ ४१॥</p<p class="english-text mt-4">The five organs of knowledge, the five organs of action, the five vital forces (Prana, etc.), and the mind together with the intellect... (41)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">एतत्सूक्ष्मशरीरं स्यान्मम लिङ्गं यदुच्यते । तत्र या प्रकृतिः प्रोक्ता सा राजन्द्विविधा स्मृता ॥ ४२॥</p<p class="english-text mt-4">...this constitutes the subtle body, which is called my Linga. Therein, O King, the Prakriti that was mentioned is known to be twofold. (42)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">सत्त्वात्मिका तु माया स्यादविद्या गुणमिश्रिता । स्वाश्रयं या तु संरक्षेत्सा मायेति निगद्यते ॥ ४३॥</p<p class="english-text mt-4">That which is of the nature of pure Sattva is Maya; Avidya is that which is mixed with the other gunas. That which protects its own substratum is called Maya. (43)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तस्यां यत्प्रतिबिम्बं स्याद्बिम्बभूतस्य चेशितुः । स ईश्वरः समाख्यातः स्वाश्रयज्ञानवान्परः ॥ ४४॥</p<p class="english-text mt-4">The reflection in that (Maya) of the Lord, who is the original, is called Ishvara. He is the supreme one, possessing knowledge of His own substratum. (44)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">सर्वज्ञः सर्वकर्ता च सर्वानुग्रहकारकः । अविद्यायां तु यत्किञ्चित्प्रतिबिम्बं नगाधिप ॥ ४५॥</p<p class="english-text mt-4">He is all-knowing, the doer of all, and the bestower of grace on all. Whereas the reflection in Avidya, O Lord of Mountains... (45)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">तदेव जीवसंज्ञं स्यात्सर्वदुःखाश्रयं पुनः । द्वयोरपीह सम्प्रोक्तं देहत्रयमविद्यया ॥ ४६॥</p<p class="english-text mt-4">...that itself is known as the Jiva (individual soul), which is the repository of all sorrows. For both of them (Ishvara and Jiva), three bodies are said to exist here due to Avidya. (46)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">देहत्रयाभिमानाच्चाप्यभून्नामत्रयं पुनः । प्राज्ञस्तु कारणात्मा स्यात्सूक्ष्मदेही तु तैजसः ॥ ४७॥</p<p class="english-text mt-4">And from the identification with the three bodies, three names also arise. Prajna is the causal self, Taijasa is the subtle-bodied one. (47)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">स्थूलदेही तु विश्वाख्यस्त्रिविधः परिकीर्तितः । एवमीशोऽपि सम्प्रोक्त ईशसूत्रविराट्पदैः ॥ ४८॥</p<p class="english-text mt-4">The gross-bodied one is known as Vishva; thus he is described as threefold. In the same way, Isha (the Lord) is also described by the terms Isha, Sutra, and Virat. (48)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">प्रथमो व्यष्टिरूपस्तु समष्ट्यात्मा परः स्मृतः । स हि सर्वेश्वरः साक्षाज्जीवानुग्रहकाम्यया ॥ ४९॥</p<p class="english-text mt-4">The first (Jiva) is the individual form, while the other (Ishvara) is known as the collective Self. He, indeed, is the Lord of all, who directly, out of a desire to bestow grace upon the Jivas... (49)</p></article>
+                    <article class="verse-container rounded-lg p-6"><p class="sanskrit-text">करोति विविधं विश्वं नानाभोगाश्रयं पुनः । मच्छक्तिप्रेरितो नित्यं मयि राजन्प्रकल्पितः ॥ ५०॥</p<p class="english-text mt-4">...creates the diverse universe, which is the repository of various experiences. O King, he is eternally impelled by my power and is projected in me. (50)</p></article>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 pt-8 border-t border-gray-300">
+            <p class="sanskrit-text text-lg text-gray-600">इति देवीभागवते सप्तमस्कन्धेद्वात्रिंशाध्यायान्तर्गतं देव्याः आत्मतत्त्वनिरूपणं समाप्तम् । इति श्रीदेवीभागवते देवीगीतायां प्रथमोऽध्यायः ।</p>
+            <p class="english-text text-sm text-gray-500 mt-2">Thus ends the "Exposition of the Nature of the Self" by the Devi, within the thirty-second chapter of the seventh canto of the Devi Bhagavata. Thus ends the first chapter of the Devi Gita in the holy Srimad Devi Bhagavatam.</p>
+        </footer>
+
+    </div>
+
 </body>
 </html>

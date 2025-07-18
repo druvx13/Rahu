@@ -1,433 +1,333 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
-
-        body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0ff;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .cosmic-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .star {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: twinkle 4s infinite;
-            z-index: -1;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        .sanskrit {
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
-            font-weight: bold;
-        }
-        
-        .chinese {
-            font-family: 'Noto Serif SC', serif;
-            font-weight: 500;
-        }
-        
-        .card {
-            background: rgba(28, 27, 46, 0.4);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(140, 82, 255, 0.5);
-            border-left: 1px solid rgba(140, 82, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .title-glow {
-            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
-        }
-        
-        .verse-number {
-            background: linear-gradient(45deg, #7b4397, #dc2430);
-            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
-        }
-        
-        .tabs button {
-            transition: all 0.3s ease;
-        }
-        
-        .tabs button.active {
-            background: rgba(123, 67, 151, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
-        }
-        
-        .verse-container {
-            transition: opacity 0.4s ease;
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .play-btn {
-            background: rgba(123, 67, 151, 0.3);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-        
-        .play-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
-        }
-        
-        .mantra-player {
-            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-        }
-        
-        .translation-note {
-            background: rgba(123, 67, 151, 0.15);
-            border-left: 3px solid rgba(198, 116, 255, 0.8);
-        }
-    </style>
-<script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Sanskrit Mantra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cosmic: {
-                            100: '#1a1833',
-                            200: '#24224a',
-                            300: '#39366b',
-                        },
                         gold: {
-                            100: '#ffedcc',
-                            200: '#f9d676',
-                            300: '#d8af4f',
+                            50: '#fdfbf7',
+                            100: '#faf5e9',
+                            200: '#f4eacf',
+                            300: '#ecdaa6',
+                            400: '#e2c46e',
+                            500: '#d1a73d',
+                            600: '#b98e30',
+                        },
+                        deepblue: {
+                            900: '#13293d',
                         }
+                    },
+                    fontFamily: {
+                        sanskrit: ['Sanskrit2003', 'serif'],
+                        display: ['Cormorant Garamond', 'serif'],
+                        sans: ['system-ui', 'sans-serif'],
+                        handwritten: ['Sacramento', 'cursive']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create cosmic stars
-            const container = document.querySelector('.cosmic-glow');
-            for(let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 4}s`;
-                container.appendChild(star);
-            }
-            
-            // Tab switching functionality
-            const tabs = document.querySelectorAll('.translation-tab');
-            const verseContainers = document.querySelectorAll('.verse-container');
-            
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetLang = tab.getAttribute('data-lang');
-
-                    // Update active tab
-                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
-                    tab.classList.add('active', 'bg-purple-800');
-
-                    // Show the correct translation
-                    verseContainers.forEach(container => {
-                        container.style.opacity = '0';
-                        setTimeout(() => {
-                            if(container.classList.contains(targetLang)) {
-                                container.style.display = 'block';
-                                setTimeout(() => {
-                                    container.style.opacity = '1';
-                                }, 50);
-                            } else {
-                                container.style.display = 'none';
-                            }
-                        }, 300);
-                    });
-                });
-            });
-            
-            // Activate first tab by default
-            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
-            
-            // Fade-in verse containers
-            document.querySelectorAll('.verse-container.en').forEach(container => {
-                setTimeout(() => {
-                    container.classList.add('fade-in');
-                }, 300);
-            });
-            
-            // Play button effect
-            const playBtn = document.querySelector('.play-btn');
-            if(playBtn) {
-                playBtn.addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
-                    this.classList.add('bg-green-600');
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
-                        this.classList.remove('bg-green-600');
-                    }, 4000);
-                });
-            }
-        });
     </script>
+    <style>
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('../../assets/fonts/Sanskrit2003.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #faf5e9 0%, #f9f4e8 50%, #f0e7d3 100%);
+            min-height: 100vh;
+        }
+        
+        .sanskrit {
+            font-family: 'Sanskrit2003', 'serif';
+            font-size: 2.25rem;
+            line-height: 1.8;
+            color: #13293d;
+        }
+        
+        .border-gold {
+            border: 3px double;
+            border-color: #d1a73d;
+        }
+        
+        .decorative-top::before, .decorative-bottom::after {
+            content: "";
+            display: block;
+            height: 40px;
+            width: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10"><path fill="none" stroke="%23d1a73d" stroke-width="0.8" d="M0,5 Q25,0 50,5 T100,5" /></svg>');
+            background-repeat: repeat-x;
+            background-position: center;
+            opacity: 0.7;
+        }
+        
+        .decorative-bottom::after {
+            transform: rotate(180deg);
+        }
+        
+        .shadow-gold {
+            box-shadow: 0 25px 50px -12px rgba(209, 167, 61, 0.25);
+        }
+        
+        .symbol-top::before, .symbol-bottom::after {
+            content: "ॐ";
+            color: #d1a73d;
+            font-size: 4rem;
+            font-family: 'Sanskrit2003', 'serif';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .symbol-top::before {
+            top: -2.5rem;
+        }
+        
+        .symbol-bottom::after {
+            bottom: -2.5rem;
+        }
+        
+        .ornamental-divider {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            margin: 1.5rem 0;
+        }
+        
+        .ornamental-divider::before,
+        .ornamental-divider::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d1a73d, transparent);
+            background-position: center;
+        }
+        
+        .ornamental-divider span {
+            margin: 0 1rem;
+            color: #d1a73d;
+            font-family: 'Sanskrit2003';
+            font-size: 2.5rem;
+            padding: 0 12px;
+        }
+        
+        .watermark {
+            position: absolute;
+            font-family: 'Sanskrit2003', serif;
+            color: rgba(19, 41, 61, 0.03);
+            font-size: 24rem;
+            z-index: -1;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) rotate(-25deg);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sanskrit {
+                font-size: 1.8rem;
+                line-height: 1.7;
+            }
+            
+            .symbol-top::before, .symbol-bottom::after {
+                font-size: 3rem;
+            }
+            
+            .symbol-top::before {
+                top: -2rem;
+            }
+            
+            .symbol-bottom::after {
+                bottom: -2rem;
+            }
+            
+            .watermark {
+                font-size: 16rem;
+                transform: translate(-50%, -50%) rotate(-15deg);
+            }
+        }
+    </style>
 </head>
-<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
+<body class="bg-gold-100 text-deepblue-900 font-sans leading-relaxed">
+    <!-- Subtle background watermark -->
+    <div class="fixed inset-0 overflow-hidden z-0 pointer-events-none">
+        <div class="watermark">ॐ</div>
+    </div>
+    
+    <!-- Decorative corner elements -->
+    <div class="hidden md:block fixed top-0 left-0 h-32 w-32 -mt-12 -ml-12 border-t-4 border-l-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed top-0 right-0 h-32 w-32 -mt-12 -mr-12 border-t-4 border-r-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed bottom-0 left-0 h-32 w-32 -mb-12 -ml-12 border-b-4 border-l-4 border-gold-500 opacity-40"></div>
+    <div class="hidden md:block fixed bottom-0 right-0 h-32 w-32 -mb-12 -mr-12 border-b-4 border-r-4 border-gold-500 opacity-40"></div>
+    
+    <div class="min-h-screen flex flex-col justify-center items-center py-12 px-4 sm:px-6 relative z-10">
+        <!-- Header with decorative elements -->
+        <header class="text-center mb-12">
+            <div class="flex justify-center">
+                <div class="w-8 h-8 border-t-2 border-l-2 border-gold-500 opacity-60 mt-5 mr-2"></div>
+                <h1 class="text-4xl md:text-5xl font-display font-bold text-gold-600 tracking-wider mb-2">
+                    Sacred Mantra
+                </h1>
+                <div class="w-8 h-8 border-b-2 border-r-2 border-gold-500 opacity-60 mb-5 ml-2"></div>
+            </div>
+            <div class="w-32 h-1 bg-gold-400 mx-auto rounded my-4"></div>
+            <p class="font-display text-deepblue-900 text-lg italic max-w-md mx-auto">
+                Ancient Wisdom for Modern Seekers
+            </p>
+        </header>
+        
+        <!-- Decorative top pattern -->
+        <div class="w-full max-w-4xl decorative-top"></div>
+        
+        <!-- Main card with elegant design -->
+        <div class="relative border-gold bg-white/90 shadow-gold rounded-xl p-8 sm:p-12 my-8 w-full max-w-4xl symbol-top symbol-bottom backdrop-blur-sm">
+            <div class="absolute -left-2 top-1/2 transform -translate-y-1/2">
+                <div class="w-10 h-10 flex items-center justify-center text-gold-600 animate-pulse-slow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="absolute -right-2 top-1/2 transform -translate-y-1/2">
+                <div class="w-10 h-10 flex items-center justify-center text-gold-600 animate-pulse-slow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Sanskrit text section with icon -->
+            <div class="mb-10">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="border-r-2 border-gold-300 h-8 mr-4"></div>
+                    <h2 class="font-display font-bold text-gold-600 text-xl flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                        </svg>
+                        Original Sanskrit
+                    </h2>
+                    <div class="border-l-2 border-gold-300 h-8 ml-4"></div>
+                </div>
+                <div class="sanskrit text-center px-2 py-6 rounded-lg bg-gold-50">
+                    ॐ वाङ् मे मनसि प्रतिष्ठिता मनो मे वाचि प्रतिष्ठितम् माविरावीर्म एधि । 
+                    वेदस्य म आणीस्थः । श्रुतं मे मा प्रहासीरनेनाधीते- नाहोरात्रान्सन्दधाम्यृतं 
+                    वदिष्यामि सत्यं वदिष्यामि ॥ तत् मामवतु तद्वक्तारमवतु अवतु मामवतु वक्तारमवतु वक्तारम् ॥
+                </div>
+            </div>
+            
+            <!-- Decorative divider with Om symbol -->
+            <div class="ornamental-divider">
+                <span>ॐ</span>
+            </div>
+            
+            <!-- English translation with icon -->
+            <div class="mt-8">
+                <div class="flex items-center justify-center mb-6">
+                    <div class="border-r-2 border-gold-300 h-8 mr-4"></div>
+                    <h2 class="font-display font-bold text-gold-600 text-xl flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 21l5.5-11 5.5 11H10.5zM12 2l-8 19h16L12 2z" />
+                        </svg>
+                        English Translation
+                    </h2>
+                    <div class="border-l-2 border-gold-300 h-8 ml-4"></div>
+                </div>
+                <div class="font-display text-gray-800 text-lg leading-loose px-4 py-6 rounded-lg bg-white border border-gold-100">
+                    <p class="mb-4">
+                        Om! May my speech be established in my mind; may my mind be established in my speech! 
+                        Reveal Yourself unto me; shine forth for my vision!
+                    </p>
+                    <p>
+                        May what I have studied not leave me! May I join, day and night, in that study! 
+                        I speak the Truth; I speak what is beneficial! 
+                    </p>
+                    <p class="mt-4">
+                        May That protect me! May That protect the speaker! 
+                        May That protect me! May That protect the speaker!
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative bottom pattern -->
+        <div class="w-full max-w-4xl decorative-bottom"></div>
+        
+        <!-- Meaning and context section -->
+        <div class="mt-14 max-w-2xl mx-auto w-full bg-white/80 p-8 rounded-xl border border-gold-100 shadow-gold">
+            <h3 class="font-display font-bold text-xl text-gold-600 mb-4 text-center flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+                </svg>
+                Essence of the Mantra
+            </h3>
+            
+            <div class="text-gray-700">
+                <p class="mb-4">
+                    This sacred chant from the Vedas emphasizes the profound unity between thought (mind) and expression (speech). 
+                    It is a prayer for divine protection and guidance in the pursuit of wisdom, seeking a harmonious alignment 
+                    between our inner consciousness and outer words.
+                </p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                    <div class="bg-gold-50 p-4 rounded-lg border border-gold-100 text-center">
+                        <div class="text-gold-500 mb-2 text-2xl">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h4 class="font-display font-semibold text-gold-600">Mind & Speech Union</h4>
+                        <p class="mt-2 text-sm">Seeking harmony between thought and expression</p>
+                    </div>
+                    
+                    <div class="bg-gold-50 p-4 rounded-lg border border-gold-100 text-center">
+                        <div class="text-gold-500 mb-2 text-2xl">
+                            <i class="fa-solid fa-book-open-reader"></i>
+                        </div>
+                        <h4 class="font-display font-semibold text-gold-600">Retention of Wisdom</h4>
+                        <p class="mt-2 text-sm">Preservation of studied knowledge over time</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center italic font-display text-gold-500">
+                    "May our words be rooted in truth, and our minds in wisdom"
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer with blessings -->
+        <footer class="mt-16 text-center text-gray-600 text-sm max-w-lg w-full">
+            <div class="border-t border-gold-200 pt-6">
+                <p class="sanskrit text-2xl text-gold-600 mb-2">
+                    ॐ शान्तिः शान्तिः शान्तिः
+                </p>
+                <p>
+                    Om Peace, Peace, Peace
+                </p>
+                <p class="mt-4">
+                    May this sacred mantra bring peace, wisdom, and spiritual awakening to all who recite it.
+                </p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
