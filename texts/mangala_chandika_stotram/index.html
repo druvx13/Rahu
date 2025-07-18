@@ -1,364 +1,433 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mangala Kavacham - The Divine Armor of Mars</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&family=Cormorant+Garamond:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a5b8c77853.js" crossorigin="anonymous"></script>
-    <style>
-        .devanagari {
-            font-family: 'Noto Serif Devanagari', serif;
-            line-height: 2.2;
-            font-size: 1.35rem;
-        }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
         
         body {
-            font-family: 'Cormorant Garamond', serif;
-            background: linear-gradient(135deg, #fdf6f8 0%, #f7f0fd 100%);
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
+            font-family: 'Poppins', sans-serif;
         }
         
-        .border-glow:hover {
-            box-shadow: 0 0 25px rgba(206, 18, 18, 0.4);
+        .cosmic-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
         }
         
-        .mantra-box {
-            background: rgba(255, 255, 255, 0.9);
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .sanskrit {
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
+            font-weight: bold;
+        }
+
+        .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 500;
+        }
+
+        .card {
+            background: rgba(28, 27, 46, 0.4);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(225, 190, 231, 0.3);
-            box-shadow: 0 8px 32px rgba(149, 7, 64, 0.15);
+            border-top: 1px solid rgba(140, 82, 255, 0.5);
+            border-left: 1px solid rgba(140, 82, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .title-glow {
+            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
+        }
+
+        .verse-number {
+            background: linear-gradient(45deg, #7b4397, #dc2430);
+            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
+        }
+
+        .tabs button {
+            transition: all 0.3s ease;
         }
         
-        .scroll-container::-webkit-scrollbar {
-            width: 8px;
+        .tabs button.active {
+            background: rgba(123, 67, 151, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
         }
         
-        .scroll-container::-webkit-scrollbar-track {
-            background: rgba(245, 224, 233, 0.5);
-            border-radius: 4px;
+        .verse-container {
+            transition: opacity 0.4s ease;
         }
         
-        .scroll-container::-webkit-scrollbar-thumb {
-            background: #d73e68;
-            border-radius: 4px;
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
         }
         
-        .header-bg {
-            background: linear-gradient(45deg, #b5003c 0%, #860029 100%);
-            box-shadow: 0 8px 20px rgba(173, 4, 67, 0.4);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .title-border {
-            border-bottom: 3px solid #d73e68;
-            border-image: linear-gradient(to right, transparent, #d73e68, transparent) 1;
+        .play-btn {
+            background: rgba(123, 67, 151, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
         }
         
-        .footer-bg {
-            background: linear-gradient(to top, #2f0a28 0%, #4c142b 100%);
+        .play-btn:hover {
+            transform: scale(1.1);
         }
         
-        .gold-text {
-            background: linear-gradient(to right, #cf9a48 0%, #fff6b9 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
+        }
+
+        .mantra-player {
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+        }
+
+        .translation-note {
+            background: rgba(123, 67, 151, 0.15);
+            border-left: 3px solid rgba(198, 116, 255, 0.8);
         }
     </style>
-</head>
-<body class="min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="header-bg text-white py-6">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col items-center justify-center">
-                <div class="flex items-center mb-4">
-                    <div class="bg-red-500 p-3 rounded-full mr-3 transform rotate-12">
-                        <i class="fa-solid fa-star text-yellow-200 text-xl"></i>
-                    </div>
-                    <h1 class="text-3xl md:text-4xl font-bold tracking-wider">Mangala Kavacham</h1>
-                </div>
-                <p class="text-xl text-center italic text-yellow-100 max-w-3xl">
-                    The Divine Armor of Mars for Protection and Blessings
-                </p>
-            </div>
-        </div>
-    </header>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            100: '#1a1833',
+                            200: '#24224a',
+                            300: '#39366b',
+                        },
+                        gold: {
+                            100: '#ffedcc',
+                            200: '#f9d676',
+                            300: '#d8af4f',
+                        }
+                    }
+                }
+            }
+        }
 
-    <!-- Introduction Section -->
-    <section class="py-12 px-4">
-        <div class="container mx-auto max-w-5xl">
-            <div class="bg-amber-50 rounded-2xl p-8 shadow-lg border border-amber-100 mb-16 relative overflow-hidden">
-                <div class="absolute -top-4 -right-4 w-24 h-24 bg-red-600 rounded-full opacity-10"></div>
-                <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-red-800 rounded-full opacity-10"></div>
-                
-                <div class="relative z-10">
-                    <h2 class="text-3xl font-bold mb-6 text-center text-red-800">Introduction to Mangala Kavacham</h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-                        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-red-600">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3"><i class="fas fa-book text-red-500 mr-2"></i>Origin</h3>
-                            <p class="text-gray-700">From the Markandeya Purana, this hymn invokes Angaraka (Mars) for protection and blessings.</p>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-orange-500">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3"><i class="fas fa-shield-alt text-orange-500 mr-2"></i>Purpose</h3>
-                            <p class="text-gray-700">Acts as divine armor protecting devotees from enemies, diseases, and negative energies.</p>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-yellow-600">
-                            <h3 class="text-xl font-semibold text-gray-800 mb-3"><i class="fas fa-gem text-yellow-600 mr-2"></i>Significance</h3>
-                            <p class="text-gray-700">Bestows strength, courage, health, prosperity and success in endeavors.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-red-50 p-6 rounded-lg border-l-4 border-red-700">
-                        <div class="flex">
-                            <div class="mr-4">
-                                <i class="fas fa-info-circle text-red-700 text-3xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-red-900">
-                                    The hymn details Angaraka's divine form (red garments, red body, four-armed, carrying a club) 
-                                    and how he protects each part of the body when worshipped with devotion.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mantras Section -->
-    <section class="py-8 px-4">
-        <div class="container mx-auto max-w-6xl">
-            <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-16">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <!-- Left Column - Sanskrit -->
-                    <div class="p-6 md:p-10 bg-red-50">
-                        <div class="flex items-center mb-6">
-                            <div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center mr-3">
-                                <i class="fas fa-om text-white text-lg"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-red-800">Sanskrit Verses</h2>
-                        </div>
-                        
-                        <div class="scroll-container max-h-[80vh] overflow-y-auto p-4">
-                            <div class="devanagari text-red-900 leading-relaxed mb-6 space-y-10">
-                                <p>॥ मङ्गलकवचम् ॥</p>
-                                <p>श्रीगणेशाय नमः ।</p>
-                                <p>अस्य श्री अङ्गारककवचस्तोत्रमन्त्रस्य कश्यप ऋषिः, अनुष्टुप् छन्दः, अङ्गारको देवता, भौमप्रीत्यर्थं जपे विनियोगः ।</p>
-                                <p>रक्ताम्बरो रक्तवपुः किरीटी चतुर्भुजो मेषगमो गदाभृत् ।<br>धरासुतः शक्तिधरश्च शूली सदा मम स्याद्वरदः प्रशान्तः ॥ १॥</p>
-                                <p>अङ्गारकः शिरो रक्षेन्मुखं वै धरणीसुतः ।<br>श्रवौ रक्ताम्बरः पातु नेत्रे मे रक्तलोचनः ॥ २॥</p>
-                                <p>नासां शक्तिधरः पातु मुखं मे रक्तलोचनः ।<br>भुजौ मे रक्तमाली च हस्तौ शक्तिधरस्तथा ॥ ३॥</p>
-                                <p>वक्षः पातु वराङ्गश्च हृदयं पातु रोहितः ।<br>कटिं मे ग्रहराजश्च मुखं चैव धरासुतः ॥ ४॥</p>
-                                <p>जानुजङ्घे कुजः पातु पादौ भक्तप्रियः सदा ।<br>सर्वाण्यन्यानि चाङ्गानि रक्षेन्मे मेषवाहनः ॥ ५॥</p>
-                                <p>य इदं कवचं दिव्यं सर्वशत्रुनिवारणम् ।<br>भूतप्रेतपिशाचानां नाशनं सर्वसिद्धिदम् ॥ ६॥</p>
-                                <p>सर्वरोगहरं चैव सर्वसम्पत्प्रदं शुभम् ।<br>भुक्तिमुक्तिप्रदं नॄणां सर्वसौभाग्यवर्धनम् ।<br>रोगबन्धविमोक्षं च सत्यमेतन्न संशयः ॥ ७॥</p>
-                                <p>॥ इति श्रीमार्कण्डेयपुराणे मङ्गलकवचं सम्पूर्णम् ॥</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Column - English Translation -->
-                    <div class="p-6 md:p-10 bg-amber-50">
-                        <div class="flex items-center mb-6">
-                            <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center mr-3">
-                                <i class="fas fa-language text-white text-lg"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-amber-900">English Translation</h2>
-                        </div>
-                        
-                        <div class="scroll-container max-h-[80vh] overflow-y-auto p-4">
-                            <div class="text-amber-900 leading-relaxed mb-6 space-y-10">
-                                <p class="italic font-semibold">The Mangala Kavacham</p>
-                                <p>Salutations to Lord Ganesha.</p>
-                                <p>The sage of this Angaraka Kavacham hymn is Kashyapa, its meter is Anushtup, the deity is Angaraka (Mars), and its purpose is to propitiate Mars through chanting.</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">Wearing red garments, with a red body, crowned, four-armed, riding a ram, wielding a mace - the son of Earth, bearing a spear and a power-weapon. May he, the bestower of boons and the tranquil one, be always with me. (1)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">May Angaraka protect my head; may the son of Earth protect my face. May the red-garmented one protect my ears; may the red-eyed one protect my eyes. (2)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">May the wielder of the power-weapon protect my nose; may the red-eyed one protect my face. May the one adorned with red garlands protect my arms; and may the wielder of the power-weapon protect my hands. (3)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">May Varanga protect my chest; may Rohita protect my heart. May the king of planets protect my waist; and may the son of Earth protect my face. (4)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">May Kuja (Mars) protect my knees and shanks; may the one who loves his devotees always protect my feet. May the rider of the ram protect all my other limbs. (5)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">This divine armor removes all enemies, destroys all ghosts, evil spirits, and demons, and bestows all accomplishments. (6)</p>
-                                <p class="border-l-4 border-amber-500 pl-4 py-2 bg-amber-100">It cures all diseases, bestows all wealth and auspiciousness. It grants enjoyment and liberation to human beings and enhances all fortunes. It certainly liberates from disease and bondage - this is true, without a doubt. (7)</p>
-                                <p class="italic">Thus completes the Mangala Kavacham in the Shri Markandeya Purana.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="p-6 bg-gradient-to-r from-red-900 to-amber-900 text-center">
-                    <div class="flex justify-center">
-                        <div class="w-16 h-16 rounded-full bg-amber-500 flex items-center justify-center transform rotate-12 border-4 border-yellow-300">
-                            <i class="fas fa-hands-praying text-white text-2xl"></i>
-                        </div>
-                    </div>
-                    <p class="text-yellow-200 mt-4 text-lg italic">
-                        Reciting this hymn with devotion grants protection, success, and removes all obstacles.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Key Benefits Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto max-w-5xl">
-            <div class="text-center mb-14">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Divine Protection & Blessings</h2>
-                <div class="w-32 h-1 bg-gradient-to-r from-red-500 to-amber-500 mx-auto rounded"></div>
-            </div>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create cosmic stars
+            const container = document.querySelector('.cosmic-glow');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mx-auto">
-                            <i class="fas fa-shield-alt text-red-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Protection from Enemies</h3>
-                    <p class="text-gray-700 text-center">Removes all adversaries and negative influences from your life</p>
-                </div>
-                
-                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mx-auto">
-                            <i class="fas fa-heartbeat text-amber-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Health & Healing</h3>
-                    <p class="text-gray-700 text-center">Cures diseases and liberates from suffering and bondage</p>
-                </div>
-                
-                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto">
-                            <i class="fas fa-coins text-green-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Wealth & Prosperity</h3>
-                    <p class="text-gray-700 text-center">Bestows all forms of wealth and abundance</p>
-                </div>
-                
-                <div class="bg-white rounded-xl shadow-lg p-6 transform hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="text-center mb-4">
-                        <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto">
-                            <i class="fas fa-lotus text-purple-600 text-2xl"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3 text-center">Spiritual Fulfillment</h3>
-                    <p class="text-gray-700 text-center">Grants enjoyment, liberation and enhances spiritual growth</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.translation-tab');
+            const verseContainers = document.querySelectorAll('.verse-container');
 
-    <!-- How to Recite -->
-    <section class="py-16 bg-gradient-to-br from-red-50 to-amber-50 px-4">
-        <div class="container mx-auto max-w-4xl">
-            <div class="bg-white rounded-3xl shadow-xl p-8 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-48 h-48 bg-red-100 rounded-bl-full"></div>
-                
-                <div class="relative z-10">
-                    <h2 class="text-3xl font-bold text-center mb-4 text-red-800">How to Recite the Mangala Kavacham</h2>
-                    <div class="w-32 h-1 bg-gradient-to-r from-amber-500 to-red-500 mx-auto rounded mb-10"></div>
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetLang = tab.getAttribute('data-lang');
                     
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 rounded-full bg-red-200 flex items-center justify-center flex-shrink-0 mr-4">
-                                <span class="text-red-700 font-bold">1</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-800">Optimal Timing</h3>
-                                <p class="text-gray-700">Recite on Tuesdays during Mangala Hora (Mars period), especially during Shukla Paksha (bright lunar fortnight)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 rounded-full bg-amber-200 flex items-center justify-center flex-shrink-0 mr-4">
-                                <span class="text-amber-700 font-bold">2</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-800">Preparation</h3>
-                                <p class="text-gray-700">Take bath and wear clean clothes, preferably red in color. Light a ghee lamp and incense</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 rounded-full bg-green-200 flex items-center justify-center flex-shrink-0 mr-4">
-                                <span class="text-green-700 font-bold">3</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-800">Facing Direction</h3>
-                                <p class="text-gray-700">Face east or north while seated on a red-colored asana (mat)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start">
-                            <div class="w-12 h-12 rounded-full bg-blue-200 flex items-center justify-center flex-shrink-0 mr-4">
-                                <span class="text-blue-700 font-bold">4</span>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-semibold text-gray-800">Recitation Method</h3>
-                                <p class="text-gray-700">Chant with devotion, either 11, 21 or 108 times. Visualize Mars protecting you with his divine armor</p>
-                            </div>
-                        </div>
-                    </div>
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
+                    tab.classList.add('active', 'bg-purple-800');
                     
-                    <div class="mt-12 p-6 bg-red-50 rounded-xl border border-red-200">
-                        <div class="flex items-center">
-                            <div class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center mr-4">
-                                <i class="fas fa-gem text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <p class="text-red-800 italic font-medium">
-                                    Regular recitation grants courage, success in ventures, and protection from accidents and unforeseen dangers.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    // Show the correct translation
+                    verseContainers.forEach(container => {
+                        container.style.opacity = '0';
+                        setTimeout(() => {
+                            if(container.classList.contains(targetLang)) {
+                                container.style.display = 'block';
+                                setTimeout(() => {
+                                    container.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                container.style.display = 'none';
+                            }
+                        }, 300);
+                    });
+                });
+            });
 
-    <!-- Footer -->
-    <footer class="footer-bg text-white py-12 mt-auto">
-        <div class="container mx-auto px-4">
-            <div class="text-center">
-                <div class="mb-6">
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-red-700 to-amber-700 flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-om text-yellow-200 text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold gold-text">Mangala Kavacham</h3>
-                </div>
-                
-                <p class="text-yellow-100 max-w-2xl mx-auto mb-8">
-                    May Lord Mars bless you with strength, protection, and success in all endeavors. Recite with devotion and witness divine blessings in your life.
-                </p>
-                
-                <div class="flex justify-center space-x-4 mb-8">
-                    <a href="#" class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-amber-800 flex items-center justify-center">
-                        <i class="fab fa-pinterest"></i>
-                    </a>
-                </div>
-                
-                <p class="text-amber-200 italic">
-                    "ॐ अङ्गारकाय नमः" (Om Angarakaya Namah)
-                </p>
-                <p class="text-amber-100 text-sm mt-10">
-                    Sacred Hymn from the Markandeya Purana • Divine Armor of Mars
-                </p>
-            </div>
-        </div>
-    </footer>
+            // Activate first tab by default
+            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
+
+            // Fade-in verse containers
+            document.querySelectorAll('.verse-container.en').forEach(container => {
+                setTimeout(() => {
+                    container.classList.add('fade-in');
+                }, 300);
+            });
+
+            // Play button effect
+            const playBtn = document.querySelector('.play-btn');
+            if(playBtn) {
+                playBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
+                        this.classList.remove('bg-green-600');
+                    }, 4000);
+                });
+            }
+        });
+    </script>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
 </body>
 </html>

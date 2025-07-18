@@ -19,12 +19,9 @@ The repository is organized as follows:
 *   `LICENSE`: Contains the license information for this project (currently MIT License).
 *   `assets/`: Contains shared assets used by the portal page.
     *   `assets/css/style.css`: Global stylesheet (currently minimal as most styling is inline or via Tailwind CSS).
-    *   `assets/fonts/Sanskrit2003.ttf`: A font used for displaying Sanskrit characters, particularly the 'ॐ' symbol on the main portal.
+    *   `assets/Sanskrit2003.ttf`: A font used for displaying Sanskrit characters, particularly the 'ॐ' symbol on the main portal.
 *   `texts/`: This directory houses all the individual sacred texts. Each text is contained within its own subdirectory.
     *   `texts/[text_name]/index.html`: Each subdirectory (e.g., `texts/rahu_kavacham/`) contains an `index.html` file that displays the specific text. These pages may have their own specific styling and assets.
-*   `docs/`: Contains additional documentation related to the project.
-    *   `docs/README.md`: Original documentation (may be outdated or merged here).
-    *   `docs/structure.md`: Document describing the original structure (may be outdated or merged here).
 
 ## About the Texts
 
@@ -61,3 +58,28 @@ When contributing, please try to maintain a similar style and structure to the e
 ## License
 
 This project is in public domain and is licensed under The  Unlicense - see the [LICENSE](LICENSE) file for details. The content is provided for educational and spiritual purposes.
+
+## Available Texts
+
+*   [Bhavanopanishad Or Srichkropanishad](texts/Bhavanopanishad_or_SriChkropanishad/index.html)
+*   [Mantra Of Fearlessness](texts/Mantra_of_fearlessness/index.html)
+*   [Aham Brahmasmi](texts/aham_brahmasmi/index.html)
+*   [Angirasa Shiva Stotram](texts/angirasa_shiva_stotram/index.html)
+*   [As](texts/as/index.html)
+*   [Astha Bhairav Stotram](texts/astha_bhairav_stotram/index.html)
+*   [Atmanirupana](texts/atmanirupana/index.html)
+*   [Brahma Vedam](texts/brahma_vedam/index.html)
+*   [Ganapati Atharvashirsha](texts/ganapati_atharvashirsha/index.html)
+*   [Gita Rahasyam](texts/gita_rahasyam/index.html)
+*   [Mangala Chandika Stotram](texts/mangala_chandika_stotram/index.html)
+*   [Panchakshari Mantra Japa](texts/panchakshari_mantra_japa/index.html)
+*   [Punyaha Vachanam](texts/punyaha_vachanam/index.html)
+*   [Rahu Kavacham](texts/rahu_kavacham/index.html)
+*   [Sacred Sanskrit Mantra](texts/sacred_sanskrit_mantra/index.html)
+*   [Sarvam Mithya](texts/sarvam_mithya/index.html)
+*   [Shani Shodashanama Stotram](texts/shani_shodashanama_stotram/index.html)
+*   [Sri Suktam](texts/sri_suktam/index.html)
+*   [Surya Stuti](texts/surya_stuti/index.html)
+*   [Upanishads](texts/upanishads/index.html)
+*   [Vairagya Panchakam](texts/vairagya_panchakam/index.html)
+*   [Verses](texts/verses/index.html)
