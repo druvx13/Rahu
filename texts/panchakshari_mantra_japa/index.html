@@ -1,433 +1,444 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahu Mantra with Translation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Crimson+Text:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap');
         
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0ff;
             font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0c0032, #190061, #240090);
+            background-attachment: fixed;
+            color: #e6e6ff;
+            scroll-behavior: smooth;
         }
         
-        .cosmic-glow {
-            position: fixed;
+        .sanskrit {
+            font-family: 'Noto Sans Devanagari', serif;
+            line-height: 2;
+        }
+        
+        .decorative-border {
+            position: relative;
+            padding: 30px;
+        }
+        
+        .decorative-border::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(165, 105, 189, 0.5);
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        
+        .mantra-box {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mantra-box::before {
+            content: "";
+            position: absolute;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: all 0.8s ease;
+        }
+        
+        .mantra-box:hover::before {
+            left: 100%;
         }
         
         .star {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            animation: twinkle 4s infinite;
-            z-index: -1;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: 0;
         }
         
         @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
         }
         
-        .sanskrit {
-            font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
-            font-weight: bold;
+        .section-title {
+            position: relative;
+            padding-bottom: 10px;
+            margin-bottom: 25px;
         }
         
-        .chinese {
-            font-family: 'Noto Serif SC', serif;
-            font-weight: 500;
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #9c27b0, #00bcd4);
         }
         
-        .card {
-            background: rgba(28, 27, 46, 0.4);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(140, 82, 255, 0.5);
-            border-left: 1px solid rgba(140, 82, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .title-glow {
-            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
-        }
-        
-        .verse-number {
-            background: linear-gradient(45deg, #7b4397, #dc2430);
-            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
-        }
-        
-        .tabs button {
+        .nav-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #ba68c8;
+            border-radius: 50%;
             transition: all 0.3s ease;
         }
         
-        .tabs button.active {
-            background: rgba(123, 67, 151, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
-        }
-        
-        .verse-container {
-            transition: opacity 0.4s ease;
+        .nav-dot.active {
+            background: #00e5ff;
+            transform: scale(1.5);
         }
         
         .fade-in {
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 1s ease-in-out;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        .play-btn {
-            background: rgba(123, 67, 151, 0.3);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+        .luminous-text {
+            text-shadow: 0 0 5px rgba(188, 143, 255, 0.8), 0 0 15px rgba(188, 143, 255, 0.6);
         }
         
-        .play-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
-        }
-        
-        .mantra-player {
-            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-        }
-        
-        .translation-note {
-            background: rgba(123, 67, 151, 0.15);
-            border-left: 3px solid rgba(198, 116, 255, 0.8);
-        }
-    </style>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        cosmic: {
-                            100: '#1a1833',
-                            200: '#24224a',
-                            300: '#39366b',
-                        },
-                        gold: {
-                            100: '#ffedcc',
-                            200: '#f9d676',
-                            300: '#d8af4f',
-                        }
-                    }
-                }
+        @media (max-width: 768px) {
+            .decorative-border {
+                padding: 15px;
             }
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Create cosmic stars
-            const container = document.querySelector('.cosmic-glow');
-            for(let i = 0; i < 150; i++) {
+    </style>
+</head>
+<body>
+    <div id="stars-container" class="fixed inset-0 z-0 overflow-hidden"></div>
+    
+    <!-- Header -->
+    <header class="py-6 px-4 md:px-8 bg-black bg-opacity-20 backdrop-blur-md border-b border-purple-900 fixed top-0 w-full z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-12 rounded-full bg-purple-900 flex items-center justify-center">
+                    <i class="fas fa-om text-2xl text-purple-400"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                        Rahu Mantra
+                    </h1>
+                    <p class="text-xs text-purple-300">Vedic Chants & Translation</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex space-x-8">
+                <a href="#mantra" class="text-purple-300 hover:text-white transition-colors duration-300">Mantra</a>
+                <a href="#translation" class="text-purple-300 hover:text-white transition-colors duration-300">Translation</a>
+                <a href="#meaning" class="text-purple-300 hover:text-white transition-colors duration-300">Meaning</a>
+            </nav>
+            
+            <button id="navToggler" class="md:hidden text-purple-300">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Navigation -->
+    <div id="mobileNav" class="fixed top-24 right-0 h-[calc(100vh-6rem)] w-0 overflow-y-auto bg-black bg-opacity-90 backdrop-blur-lg z-40 transition-all duration-300 ease-out">
+        <div class="flex flex-col py-8 px-6">
+            <a href="#mantra" class="py-3 text-purple-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-praying-hands mr-3"></i> Mantra
+            </a>
+            <a href="#translation" class="py-3 text-purple-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-language mr-3"></i> Translation
+            </a>
+            <a href="#meaning" class="py-3 text-purple-300 hover:text-white transition-colors flex items-center">
+                <i class="fas fa-book-open mr-3"></i> Meaning
+            </a>
+        </div>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-28 pb-20 px-4 relative z-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
+                    The Sacred <span class="luminous-text text-purple-300">Rahu Mantra</span>
+                </h1>
+                <p class="text-lg md:text-xl text-purple-200 mb-8 leading-relaxed">
+                    A powerful Vedic chant dedicated to Rahu, the shadow planet of transformation. This ancient Sanskrit verse invites divine energy, protection, and spiritual awakening.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#mantra" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-full text-white font-medium shadow-lg hover:shadow-purple-900/30 transition-all">
+                        View Mantra
+                    </a>
+                    <a href="#" class="px-6 py-3 border-2 border-purple-600 hover:bg-purple-900/30 rounded-full text-purple-300 font-medium transition-all">
+                        <i class="fas fa-play-circle mr-2"></i> Listen
+                    </a>
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm border border-purple-700/30 flex items-center justify-center shadow-2xl relative overflow-hidden">
+                        <div class="absolute inset-0 rounded-full">
+                            <div class="absolute top-4 left-4 w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
+                            <div class="absolute top-12 right-6 w-3 h-3 bg-purple-400 rounded-full animate-pulse delay-200"></div>
+                            <div class="absolute bottom-8 left-12 w-2 h-2 bg-white rounded-full animate-pulse delay-300"></div>
+                            <div class="absolute bottom-16 right-16 w-3 h-3 bg-purple-300 rounded-full animate-pulse delay-700"></div>
+                        </div>
+                        <div class="text-center py-8 px-6">
+                            <i class="fas fa-om text-6xl md:text-7xl text-white opacity-40 mb-4"></i>
+                            <p class="text-purple-300 italic">ॐ रां राहवे नमः</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-r from-purple-500/10 to-transparent rounded-full animate-pulse -z-10"></div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-r from-blue-500/10 to-transparent rounded-full animate-pulse -z-10"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Mantra Section -->
+    <section id="mantra" class="py-28 px-4 relative mt-16">
+        <div class="max-w-4xl mx-auto mb-16 text-center">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center inline-block">
+                The Sacred Rahu Mantra
+            </h2>
+            <p class="mt-4 text-purple-200">
+                Complete Sanskrit chant with Vedic structure details
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto mantra-box bg-black/20 backdrop-blur-md border border-purple-900/40 rounded-xl overflow-hidden fade-in">
+            <div class="decorative-border">
+                <div class="sanskrit text-2xl md:text-3xl leading-relaxed text-center text-purple-100">
+                    <p class="mb-6">अथ राहुमन्त्रः - ॐ रां राहवे नमः ।</p>
+                    <p class="mb-6">ॐ अस्य श्रीराहुमन्त्रस्य ब्रह्माऋषिः, पङ्क्तिश्छन्दः, राहुर्देवता, रां बीजम्, वेशः शक्तिः, श्रीराहुप्रीतये जपे विनियोगः ।</p>
+                    <p class="mb-6">ॐ ब्रह्मऋषये नमः शिरसे । ॐ पङ्क्तिश्छन्दसे नमः मुखे । ॐ राहुदेवताये नमः हृदि । ॐ रां बीजाय नमः गुह्ये । ॐ वेशः शक्तये नमः पादयोः । इति ऋष्यादिन्यासः ।</p>
+                    <p class="mb-6">ॐ रां अङ्गुष्ठाभ्यां नमः । ॐ रां तर्जनीभ्यां नमः । ॐ रां मध्यमाभ्यां नमः । औं रां अनामिकाभ्यां नमः । ॐ रां कनिष्ठिकाभ्यां नमः ।</p>
+                    <p class="mb-6">ॐ रां कवचाय हुँ । ॐ रां नेत्रत्रयाय वैषट् । ॐ रां अस्त्राय फट् । इति हृदयादिन्यासं कृत्वा ध्यायेत् ।</p>
+                    <p class="mb-6">वन्दे राहुं धूम्रवर्णं अर्धकायं कृताञ्जलिम् । विकृतास्यं रक्तनेत्रं धूम्रालङ्कारमन्वहम् ॥ १॥</p>
+                    <p class="mb-6">एवं ध्यात्वा मानसोपचारैः सम्पूज्य जपेत् ॥</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Translation Section -->
+    <section id="translation" class="py-28 px-4 bg-black/10 backdrop-blur-sm mt-16">
+        <div class="max-w-4xl mx-auto mb-16 text-center">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center inline-block">
+                English Translation
+            </h2>
+            <p class="mt-4 text-purple-200">
+                The profound meaning of the mantra explained
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto mantra-box bg-black/20 backdrop-blur-md border border-blue-900/40 rounded-xl overflow-hidden fade-in">
+            <div class="decorative-border p-6">
+                <div class="text-xl md:text-2xl leading-relaxed text-center text-blue-100">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>अथ राहुमन्त्रः - ॐ रां राहवे नमः ।</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Now the Rahu Mantra: Om Ram Rahave Namah.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>ॐ अस्य श्रीराहुमन्त्रस्य ब्रह्माऋषिः, पङ्क्तिश्छन्दः, राहुर्देवता, रां बीजम्, वेशः शक्तिः, श्रीराहुप्रीतये जपे विनियोगः ।</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Om. Of this revered Rahu mantra, Brahma is the seer, Pankti is the meter, Rahu is the deity, Ram is the seed, Vesha is the power. It is used for chanting to please Lord Rahu.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>ॐ ब्रह्मऋषये नमः शिरसे ।<br>ॐ पङ्क्तिश्छन्दसे नमः मुखे ।<br>ॐ राहुदेवताये नमः हृदि ।<br>ॐ रां बीजाय नमः गुह्ये ।<br>ॐ वेशः शक्तये नमः पादयोः ।<br>इति ऋष्यादिन्यासः ।</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Om. Salutations to Brahma Rishi at the head.<br>Om. Salutations to the Pankti meter at the mouth.<br>Om. Salutations to the deity Rahu at the heart.<br>Om. Salutations to the seed Ram at the root/base.<br>Om. Salutations to the power Vesha at the feet.<br>Thus completes the placement of seer, etc.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>ॐ रां अङ्गुष्ठाभ्यां नमः ।<br>ॐ रां तर्जनीभ्यां नमः ।<br>ॐ रां मध्यमाभ्यां नमः ।<br>औं रां अनामिकाभ्यां नमः ।<br>ॐ रां कनिष्ठिकाभ्यां नमः ।</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Om Ram, salutations with the thumbs.<br>Om Ram, salutations with the index fingers.<br>Om Ram, salutations with the middle fingers.<br>Om Ram, salutations with the ring fingers.<br>Om Ram, salutations with the little fingers.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>ॐ रां कवचाय हुँ ।<br>ॐ रां नेत्रत्रयाय वैषट् ।<br>ॐ रां अस्त्राय फट् ।<br>इति हृदयादिन्यासं कृत्वा ध्यायेत् ।</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Om Ram, for armor (protection) - Hum.<br>Om Ram, for the three eyes - Vaushat.<br>Om Ram, for the weapon - Phat.<br>After performing the placement starting from the heart, one should meditate.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>वन्दे राहुं धूम्रवर्णं अर्धकायं कृताञ्जलिम् ।<br>विकृतास्यं रक्तनेत्रं धूम्रालङ्कारमन्वहम् ॥ १॥</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>I worship Rahu, smoky in color, with half a body, hands folded in reverence.<br>With a fierce face, red eyes, adorned with smoky ornaments daily.</p>
+                        </div>
+                        
+                        <div class="sanskrit text-purple-200 p-4 bg-purple-900/20 rounded-lg">
+                            <p>एवं ध्यात्वा मानसोपचारैः सम्पूज्य जपेत् ॥</p>
+                        </div>
+                        <div class="text-left p-4">
+                            <p>Thus meditating, worshiping with mental offerings, one should chant.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Meaning & Practice -->
+    <section id="meaning" class="py-28 px-4 mt-16">
+        <div class="max-w-4xl mx-auto mb-16 text-center">
+            <h2 class="section-title text-3xl md:text-4xl font-bold text-center inline-block">
+                Significance & Practice
+            </h2>
+            <p class="mt-4 text-purple-200">
+                Understanding the spiritual depth of the Rahu Mantra
+            </p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+            <div class="bg-purple-900/20 backdrop-blur-md p-8 rounded-2xl border border-purple-900/40 fade-in">
+                <h3 class="text-2xl font-bold text-purple-300 mb-6 flex items-center">
+                    <i class="fas fa-moon mr-3"></i> Rahu: The Cosmic Shadow
+                </h3>
+                <p class="mb-4">
+                    In Vedic astrology, Rahu is considered a shadow planet that influences our desires, obsessions, and worldly attachments. Chanting the Rahu Mantra helps balance this energy and transform negative tendencies into spiritual growth.
+                </p>
+                <p class="mb-4">
+                    The mantra invokes Rahu's protective energies while helping to overcome obstacles and challenges related to the planet's karmic influences in one's birth chart.
+                </p>
+                <div class="mt-6 bg-black/30 p-4 rounded-xl border border-purple-900/30">
+                    <h4 class="font-bold text-purple-200 mb-2">Ideal Times for Chanting</h4>
+                    <ul class="list-disc pl-5 text-purple-100 space-y-2">
+                        <li>Saturday evenings during sunset</li>
+                        <li>During lunar eclipses</li>
+                        <li>Rahu Kalam (specific daily time period)</li>
+                        <li>On Rahu-related lunar days</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-blue-900/20 backdrop-blur-md p-8 rounded-2xl border border-blue-900/40 fade-in">
+                <h3 class="text-2xl font-bold text-blue-300 mb-6 flex items-center">
+                    <i class="fas fa-hands-praying mr-3"></i> Ritual Practice Guide
+                </h3>
+                <p class="mb-4">
+                    To maximize the benefits of the Rahu Mantra, follow this traditional practice sequence:
+                </p>
+                <ol class="list-decimal pl-5 mb-6 space-y-3">
+                    <li><span class="font-medium">Purification:</span> Begin with cleansing rituals like achamanam (sipping water) and pranayama</li>
+                    <li><span class="font-medium">Nyasa:</span> Perform the placement rituals as described in the mantra</li>
+                    <li><span class="font-medium">Dhyana:</span> Meditate on Rahu's divine form as visualized in the verse</li>
+                    <li><span class="font-medium">Japa:</span> Chant the primary mantra "Om Ram Rahave Namah" 108 times</li>
+                    <li><span class="font-medium">Puja:</span> Offer mental or physical worship to Rahu</li>
+                </ol>
+                <div class="bg-black/30 p-4 rounded-xl border border-blue-900/30">
+                    <p class="italic text-blue-200">
+                        "Regular chanting of this Rahu Mantra brings protection from negative influences, promotes clarity in difficult situations, and helps in overcoming fears and obsessions."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-10 px-4 bg-black/40 backdrop-blur-md border-t border-purple-900/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-om text-white text-3xl"></i>
+                </div>
+                <p class="text-purple-300 font-medium">Divine Chants for Spiritual Transformation</p>
+            </div>
+            
+            <div class="text-center text-sm text-purple-400">
+                <p>© 2023 Rahu Mantra - Sacred Vedic Wisdom</p>
+                <p class="mt-2">This page is for devotional and educational purposes only</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Create dynamic stars in background
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const starCount = 120;
+            
+            for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
+                
                 const size = Math.random() * 3;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
+                
                 star.style.left = `${Math.random() * 100}%`;
                 star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 4}s`;
+                
+                star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+                star.style.setProperty('--delay', `${Math.random() * 5}s`);
+                
                 container.appendChild(star);
             }
-
-            // Tab switching functionality
-            const tabs = document.querySelectorAll('.translation-tab');
-            const verseContainers = document.querySelectorAll('.verse-container');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetLang = tab.getAttribute('data-lang');
-
-                    // Update active tab
-                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
-                    tab.classList.add('active', 'bg-purple-800');
-
-                    // Show the correct translation
-                    verseContainers.forEach(container => {
-                        container.style.opacity = '0';
-                        setTimeout(() => {
-                            if(container.classList.contains(targetLang)) {
-                                container.style.display = 'block';
-                                setTimeout(() => {
-                                    container.style.opacity = '1';
-                                }, 50);
-                            } else {
-                                container.style.display = 'none';
-                            }
-                        }, 300);
-                    });
-                });
-            });
-
-            // Activate first tab by default
-            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
-            
-            // Fade-in verse containers
-            document.querySelectorAll('.verse-container.en').forEach(container => {
-                setTimeout(() => {
-                    container.classList.add('fade-in');
-                }, 300);
-            });
-
-            // Play button effect
-            const playBtn = document.querySelector('.play-btn');
-            if(playBtn) {
-                playBtn.addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
-                    this.classList.add('bg-green-600');
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
-                        this.classList.remove('bg-green-600');
-                    }, 4000);
-                });
+        }
+        
+        // Initialize stars
+        createStars();
+        
+        // Mobile navigation toggler
+        const navToggler = document.getElementById('navToggler');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        navToggler.addEventListener('click', () => {
+            if (mobileNav.style.width === '0px' || mobileNav.style.width === '') {
+                mobileNav.style.width = '250px';
+            } else {
+                mobileNav.style.width = '0';
             }
         });
+        
+        // Close mobile nav when clicking links
+        document.querySelectorAll('#mobileNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.style.width = '0';
+            });
+        });
+        
+        // Section observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('section > div > .fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
     </script>
-</head>
-<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
 </body>
 </html>

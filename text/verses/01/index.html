@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Non-Dual Reality Mantra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .sanskrit-font {
+            font-family: 'Sanskrit2003', serif;
+            font-size: 2.5rem;
+            line-height: 1.4;
+        }
+        
+        .divider {
+            background: linear-gradient(to right, transparent, #64748b, transparent);
+            height: 1px;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(199, 210, 254, 0.5);
+        }
+        
+        .card-gradient {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.8));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23a5b4fc' fill-opacity='0.3' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(165, 180, 252, 0.3);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans flex flex-col items-center justify-center py-12 px-4">
+    <!-- Background particles -->
+    <div id="particles"></div>
+    
+    <!-- Main container -->
+    <div class="max-w-4xl w-full relative z-10">
+        <!-- Header -->
+        <header class="text-center mb-12 fade-in">
+            <div class="ornament top-0"></div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 glow-text text-indigo-200 font-playfair">The Supreme Non-Dual Reality</h1>
+            <p class="text-lg text-slate-400 max-w-2xl mx-auto">A profound Sanskrit mantra revealing the nature of ultimate reality</p>
+            <div class="ornament bottom-0"></div>
+        </header>
+        
+        <!-- Mantra Card -->
+        <div class="card-gradient rounded-2xl p-8 md:p-12 shadow-2xl mb-16 relative overflow-hidden fade-in" style="animation-delay: 0.2s;">
+            <!-- Decorative elements -->
+            <div class="absolute top-4 right-4 w-16 h-16 rounded-full bg-indigo-900/20 blur-xl"></div>
+            <div class="absolute bottom-4 left-4 w-24 h-24 rounded-full bg-violet-800/20 blur-xl"></div>
+            
+            <!-- Sanskrit Original -->
+            <div class="text-center mb-10">
+                <h2 class="text-xl font-semibold mb-4 text-indigo-300">Original Sanskrit (Devanagari)</h2>
+                <div class="sanskrit-font text-indigo-100 leading-relaxed">
+                    न सृष्टिर्नापि संहारः ।<br>
+                    न बन्धो न च साधकः ।<br>
+                    अजमेतदद्वयं हि परम् ॥
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="divider my-8 w-3/4 mx-auto"></div>
+            
+            <!-- IAST Transliteration -->
+            <div class="text-center mb-10">
+                <h2 class="text-xl font-semibold mb-4 text-indigo-300">IAST Transliteration</h2>
+                <div class="text-2xl italic font-cormorant text-slate-200">
+                    Na sṛṣṭirnāpi saṁhāraḥ ।<br>
+                    Na bandho na ca sādhakaḥ ।<br>
+                    Ajāmetadadvayaṁ hi param ॥
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="divider my-8 w-3/4 mx-auto"></div>
+            
+            <!-- English Translation -->
+            <div class="text-center">
+                <h2 class="text-xl font-semibold mb-4 text-indigo-300">Approximate English Meaning</h2>
+                <div class="text-2xl font-cormorant text-slate-100 max-w-2xl mx-auto">
+                    "There is no creation, nor is there dissolution;<br>
+                    No bondage exists, nor indeed any aspirant;<br>
+                    This unborn, non-dual [reality] is verily the supreme."
+                </div>
+            </div>
+        </div>
+        
+        <!-- Explanation Section -->
+        <div class="card-gradient rounded-2xl p-8 mb-12 fade-in" style="animation-delay: 0.4s;">
+            <h2 class="text-2xl font-semibold mb-6 text-center text-indigo-200">Understanding the Mantra</h2>
+            <div class="space-y-4 text-slate-300">
+                <p class="text-lg">This profound verse points to the ultimate nature of reality beyond all conceptual frameworks. It negates the fundamental concepts that form the basis of our understanding of existence:</p>
+                
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><span class="font-semibold text-indigo-200">No creation/dissolution:</span> The universe isn't created nor destroyed in ultimate reality</li>
+                    <li><span class="font-semibold text-indigo-200">No bondage:</span> The sense of limitation or separation is illusory</li>
+                    <li><span class="font-semibold text-indigo-200">No aspirant:</span> Even the seeker of truth is part of the illusion</li>
+                </ul>
+                
+                <p class="text-lg pt-2">The mantra culminates by pointing to the supreme reality that is <span class="italic">unborn</span> (beyond birth/death) and <span class="italic">non-dual</span> (beyond all distinctions and separations).</p>
+            </div>
+        </div>
+        
+        <!-- Symbolic Representation -->
+        <div class="flex flex-col items-center mb-16 fade-in" style="animation-delay: 0.6s;">
+            <h2 class="text-2xl font-semibold mb-8 text-center text-indigo-200">Symbol of Non-Duality</h2>
+            <div class="relative w-64 h-64 flex items-center justify-center floating">
+                <!-- Outer circle -->
+                <div class="absolute w-full h-full rounded-full border-2 border-indigo-500/30"></div>
+                
+                <!-- Inner circle -->
+                <div class="absolute w-48 h-48 rounded-full border border-indigo-400/50"></div>
+                
+                <!-- Dot representing the non-dual reality -->
+                <div class="absolute w-8 h-8 rounded-full bg-indigo-400 shadow-lg shadow-indigo-500/50"></div>
+                
+                <!-- Flowing lines -->
+                <div class="absolute w-full h-0.5 bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
+                <div class="absolute w-0.5 h-full bg-gradient-to-b from-transparent via-indigo-500 to-transparent"></div>
+                
+                <!-- Rotating elements -->
+                <div class="absolute w-56 h-56 rounded-full border border-indigo-400/20 animate-spin-slow" style="animation-duration: 30s;"></div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="text-center text-slate-500 pt-8 border-t border-slate-800 fade-in" style="animation-delay: 0.8s;">
+            <p>Wisdom from ancient Sanskrit scriptures • The path of non-dual realization</p>
+            <p class="mt-2">"In the seeing of truth, there is no knower and nothing known"</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Create background particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random properties
+                const size = Math.random() * 5 + 1;
+                const posX = Math.random() * window.innerWidth;
+                const posY = Math.random() * window.innerHeight;
+                const opacity = Math.random() * 0.4 + 0.1;
+                const animationDuration = Math.random() * 20 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}px`;
+                particle.style.top = `${posY}px`;
+                particle.style.opacity = opacity;
+                particle.style.animation = `float ${animationDuration}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+            
+            // Add subtle animations to mantra text
+            const mantraLines = document.querySelectorAll('.sanskrit-font, .text-2xl');
+            mantraLines.forEach((line, index) => {
+                line.style.opacity = 0;
+                line.style.animation = `fadeIn 1s ease-out forwards`;
+                line.style.animationDelay = `${0.5 + index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>

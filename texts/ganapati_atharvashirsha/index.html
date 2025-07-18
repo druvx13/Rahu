@@ -1,433 +1,358 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>
-</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudgala Upanishad | Sacred Text with Translation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;700&display=swap');
         
-        body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #e0e0ff;
-            font-family: 'Poppins', sans-serif;
+        .devanagari {
+            font-family: 'Noto Serif Devanagari', serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
         }
         
-        .cosmic-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .star {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 50%;
-            animation: twinkle 4s infinite;
-            z-index: -1;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        .sanskrit {
+        .english {
             font-family: 'Playfair Display', serif;
-            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
-            font-weight: bold;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
         
-        .chinese {
-            font-family: 'Noto Serif SC', serif;
-            font-weight: 500;
-        }
-        
-        .card {
-            background: rgba(28, 27, 46, 0.4);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(140, 82, 255, 0.5);
-            border-left: 1px solid rgba(140, 82, 255, 0.3);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-        
-        .title-glow {
-            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
-        }
-        
-        .verse-number {
-            background: linear-gradient(45deg, #7b4397, #dc2430);
-            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
-        }
-        
-        .tabs button {
-            transition: all 0.3s ease;
-        }
-        
-        .tabs button.active {
-            background: rgba(123, 67, 151, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
+        .gold-border {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to bottom right, #d4af37, #996515, #d4af37);
+            border-image-slice: 1;
+            border-radius: 0;
         }
         
         .verse-container {
-            transition: opacity 0.4s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-
+        
+        .gold-text {
+            background: linear-gradient(to right, #d4af37, #996515);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
         .fade-in {
-            animation: fadeIn 0.8s ease forwards;
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+        
+        .pattern-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .scroll-up {
+            animation: scrollUp 1s forwards;
+        }
+        
+        @keyframes scrollUp {
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        .play-btn {
-            background: rgba(123, 67, 151, 0.3);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
-            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
-        }
-
-        .mantra-player {
-            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
-        }
-
-        .translation-note {
-            background: rgba(123, 67, 151, 0.15);
-            border-left: 3px solid rgba(198, 116, 255, 0.8);
-        }
     </style>
-<script>
+    <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        cosmic: {
-                            100: '#1a1833',
-                            200: '#24224a',
-                            300: '#39366b',
-                        },
-                        gold: {
-                            100: '#ffedcc',
-                            200: '#f9d676',
-                            300: '#d8af4f',
-                        }
+                        'gold': '#d4af37',
+                        'dark-gold': '#996515',
+                        'rich-bg': '#f5f1e8',
+                        'text-gold': '#c2a155'
                     }
                 }
             }
         }
-
+        
         document.addEventListener('DOMContentLoaded', function() {
-            // Create cosmic stars
-            const container = document.querySelector('.cosmic-glow');
-            for(let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.classList.add('star');
-                const size = Math.random() * 3;
-                star.style.width = `${size}px`;
-                star.style.height = `${size}px`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 4}s`;
-                container.appendChild(star);
-            }
-
-            // Tab switching functionality
-            const tabs = document.querySelectorAll('.translation-tab');
             const verseContainers = document.querySelectorAll('.verse-container');
             
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetLang = tab.getAttribute('data-lang');
-
-                    // Update active tab
-                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
-                    tab.classList.add('active', 'bg-purple-800');
-
-                    // Show the correct translation
-                    verseContainers.forEach(container => {
-                        container.style.opacity = '0';
-                        setTimeout(() => {
-                            if(container.classList.contains(targetLang)) {
-                                container.style.display = 'block';
-                                setTimeout(() => {
-                                    container.style.opacity = '1';
-                                }, 50);
-                            } else {
-                                container.style.display = 'none';
-                            }
-                        }, 300);
-                    });
+            // Initialize intersection observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
                 });
+            }, { threshold: 0.1 });
+            
+            verseContainers.forEach(container => {
+                observer.observe(container);
             });
             
-            // Activate first tab by default
-            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
-            
-            // Fade-in verse containers
-            document.querySelectorAll('.verse-container.en').forEach(container => {
+            // Animate shanti text on page load
+            const shantiElements = document.querySelectorAll('.shanti');
+            shantiElements.forEach((el, index) => {
                 setTimeout(() => {
-                    container.classList.add('fade-in');
-                }, 300);
+                    el.classList.add('scroll-up');
+                }, index * 200);
             });
             
-            // Play button effect
-            const playBtn = document.querySelector('.play-btn');
-            if(playBtn) {
-                playBtn.addEventListener('click', function() {
-                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
-                    this.classList.add('bg-green-600');
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
-                        this.classList.remove('bg-green-600');
-                    }, 4000);
-                });
-            }
+            // Handle scroll to top button
+            const scrollButton = document.getElementById('scrollTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollButton.classList.remove('opacity-0', 'invisible');
+                    scrollButton.classList.add('opacity-100');
+                } else {
+                    scrollButton.classList.remove('opacity-100');
+                    scrollButton.classList.add('opacity-0', 'invisible');
+                }
+            });
+            
+            scrollButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         });
     </script>
 </head>
-<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
-<div class="container mx-auto flex justify-between items-center">
-<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
-    Home
-   </a>
-</div>
-</nav>
-<div class="cosmic-glow">
-</div>
-<!-- Header -->
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
-<!-- Footer -->
-<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
-<p class="chinese">
-   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
-  </p>
-<p class="mt-2">
-   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
-  </p>
-<!---<div class="mt-6 flex justify-center space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
-                <i class="fas fa-book"></i>
-            </a>
-        </div>--->
-<div class="mt-6 flex justify-center space-x-4">
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-<span>
-    ॐ रां राहवे नमः
-   </span>
-<div class="w-8 h-px bg-purple-500 mt-3">
-</div>
-</div>
-</footer>
+<body class="bg-gradient-to-b from-slate-900 via-indigo-900 to-slate-900 text-white">
+    <!-- Scroll to top button -->
+    <button id="scrollTopBtn" class="fixed bottom-8 right-8 bg-gradient-to-r from-gold to-dark-gold p-3 rounded-full shadow-xl transform transition-all duration-500 hover:scale-110 opacity-0 invisible z-50">
+        <i class="fas fa-arrow-up text-white text-xl"></i>
+    </button>
+    
+    <!-- Page header -->
+    <header class="text-center py-16 relative overflow-hidden pattern-bg">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/70 via-indigo-900/70 to-slate-900/70 z-0"></div>
+        <div class="container mx-auto relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gold-text">Mudgala Upanishad</h1>
+            <div class="w-32 h-1 bg-gradient-to-r from-gold to-dark-gold mx-auto mb-6"></div>
+            <p class="text-xl max-w-3xl mx-auto text-gray-200 italic">
+                Divine wisdom revealed to Sage Mudgala - The sacred teachings on Purusha Sukta
+            </p>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-slate-900 to-transparent z-10"></div>
+    </header>
+    
+    <main class="py-12 bg-gradient-to-b from-slate-800/30 via-slate-900/20 to-slate-800/30">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-8 gold-text">Sacred Text and Translation</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Presented here is the complete text of the Mudgala Upanishad in its original Sanskrit Devanagari script, accompanied by an authentic English translation, preserving the profound wisdom of the ancient sages.
+                </p>
+            </div>
+            
+            <!-- Verse blocks -->
+            <div class="space-y-12">
+                <!-- Header Verse -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-xl text-amber-200 leading-relaxed text-justify">
+                        श्रीमत्पुरुषसूक्तार्थं पूर्णानन्दकलेवरम् । पुरुषोत्तमविख्यातं पूर्णं ब्रह्म भवाम्यहम् ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        I am that Brahman, which is known as the Supreme Person, whose body is full of bliss, celebrated as the meaning of the great Purusha Sukta.
+                    </div>
+                </div>
+                
+                <!-- Opening Prayer -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-lg text-amber-200 leading-relaxed text-justify">
+                        ॐ वाङ् मे मनसि प्रतिष्ठिता मनो मे वाचि प्रतिष्ठितमाविरावीर्म एधि ॥<br>
+                        वेदस्य म आणीस्थः । श्रुतं मे मा प्रहासीरनेनाधीते- नाहोरात्रान्सन्दधाम्यृतं वदिष्यामि सत्यं वदिष्यामि ॥<br>
+                        तन्मामवतु तद्वक्तारमवतु अवतु मामवतु वक्तारमवतु वक्तारम् ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        Om! May my speech be established in my mind; may my mind be established in my speech! Reveal yourself unto me; shine forth for my vision!<br>
+                        May what I have studied not leave me! May I join day and night by that study! I speak the Truth! I speak what is beneficial!<br>
+                        May That protect me! May That protect the speaker! May that protect me! May that protect the speaker!
+                    </div>
+                </div>
+                
+                <!-- Primary Teachings -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-lg text-amber-200 leading-relaxed text-justify">
+                        ॐ पुरुषसूक्तार्थनिर्णयं व्याख्यास्यामः पुरुषसंहितायां पुरुषसूक्तार्थः संग्रहेण प्रोच्यते ।<br>
+                        सहस्रशीर्षेत्यत्र सशब्दोऽनन्तवाचकः । अनन्तयोजनं प्राह दशाङ्गुलवचस्तथा ॥ १॥<br><br>
+                        
+                        तस्य प्रथमया विष्णोर्देशतो व्याप्तिरीरिता । द्वितीयया चास्य विष्णोः कालतो व्याप्तिरुच्यते ॥ २॥<br><br>
+                        
+                        विष्णोर्मोक्षप्रदत्वं च कथितं तु तृतीयया । एतावानिति मन्त्रेण वैभवं कथितं हरेः ॥ ३॥<br><br>
+                        
+                        एतेनैव च मन्त्रेण चतुर्व्यूहो विभाषितः । त्रिपादित्यनया प्रोक्तमनिरुद्धस्य वैभवम् ॥ ४॥<br><br>
+                        
+                        तस्माद्विराडित्यनया पादनारायणाद्धरेः । प्रकृतेः पुरुषस्यापि समुत्पत्तिः प्रदर्शिता ॥ ५॥<br><br>
+                        
+                        यत्पुरुषेणेत्यनया सृष्टियज्ञः समीरितः । सप्तास्यासन्परिधयः समिधश्च समीरिताः ॥ ६॥<br><br>
+                        
+                        तं यज्ञमिति मन्त्रेण सृष्टियज्ञः समीरितः । अनेनैव च मन्त्रेण मोक्षश्च समुदीरितः ॥ ७॥<br><br>
+                        
+                        तस्मादिति च मन्त्रेण जगत्सृष्टिः समीरिता । वेदाहमिति मन्त्राभ्यां वैभवं कथितं हरेः ॥ ८॥<br><br>
+                        
+                        यज्ञेनेत्युपसंहारः सृष्टेर्मोक्षस्य चेरितः । य एवमेतज्जानाति स हि मुक्तो भवेदिति ॥ ९॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        Om! We shall expound the determination of the meaning of the Purusha Sukta. In the Purusha Samhita, the meaning of Purusha Sukta is summarized.<br>
+                        In the phrase "Sahasra-shirsha" (thousand-headed), the word "sa" signifies infinity. "Ananta Yojana" (infinite distance) is spoken of as well as "dasha angula" (ten fingers) meaning subtlety. (1)<br><br>
+                        
+                        By the first verse, the spatial omnipresence of Vishnu is declared. By the second verse, his temporal omnipresence is proclaimed. (2)<br><br>
+                        
+                        By the third verse, Vishnu's bestower of liberation is described. By "etavan" (this much) mantra, the glory of Hari is explained. (3)<br><br>
+                        
+                        By the same mantra, the four Vyuhas (emanations) are discussed. The glory of Aniruddha is stated by "tripada" (three-footed). (4)<br><br>
+                        
+                        By "tasmad virad", the origin of both Prakriti (nature) and Purusha from the foot of Narayana of Hari is demonstrated. (5)<br><br>
+                        
+                        By "yat purushena", the creation sacrifice is mentioned. The seven enclosures and fuel-sticks are described. (6)<br><br>
+                        
+                        By "tam yajnam" mantra, the creation sacrifice is explained. By the same mantra, liberation is also revealed. (7)<br><br>
+                        
+                        By "tasmad" mantra, the creation of the universe is declared. By "vedaham" mantras, the glory of Hari is explained. (8)<br><br>
+                        
+                        The conclusion by "yajnena" implies the creation and liberation. One who knows this indeed becomes liberated. (9)
+                    </div>
+                </div>
+                
+                <!-- Mudgala Upanishad Teachings -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-lg text-amber-200 leading-relaxed text-justify">
+                        अथ तथा मुद्गलोपनिषदि पुरुषसूक्तस्य वैभवं विस्तरेण प्रतिपादितम् ।<br>
+                        वासुदेव इन्द्राय भगवज्ज्ञानमुपदिश्य पुनरपि सूक्ष्मश्रवणाय प्रणतायेन्द्राय परमरहस्यभूतं पुरुषसूक्ताभ्यां खण्डद्वयाभ्यामुपादिशत् । द्वौ खण्डावुच्येते ।<br><br>
+                        
+                        योऽय मुक्तः स पुरुषो नामरूपज्ञानागोचरं संसारिणामतिदुर्ज्ञेयं विषयं विहाय क्लेशादिभिः संक्लिष्टदेवादिजिहीर्षया सहस्रकलावयवकल्याणं दृष्टमात्रेण मोक्षदं वेषमाददे । तेन वेषेण भूम्यादिलोकं व्याप्यानन्त- योजनमत्यतिष्ठत् ।<br><br>
+                        
+                        पुरुषो नारायणो भूतं भव्यं भविष्यच्चासीत् । स च सर्वस्मान्महिम्नो ज्यायान् । तस्मान्न कोऽपि ज्यायान् । महापुरुष आत्मानं चतुर्धा कृत्वा त्रिपादेन परमे व्योम्नि चासीत् । इतरेण चतुर्थेनानिरुद्धनारायणेन विश्वान्यासन् । स च पादनारायणो जगत्स्रष्टुं प्रकृतिमजनयत् ।<br><br>
+                        
+                        स समृद्धकायः सन्सृष्टिकर्म न जज्ञिवान् । सोऽनिरुद्धनारायणस्तस्मै सृष्टिमुपादिशत् ।<br><br>
+                        
+                        ब्रह्मंस्तवेन्द्रियाणि याजकानि ध्यात्वा कोशभूतं दृढं ग्रन्थिकलेवरं हविर्ध्यात्वा मां हविर्भुजं ध्यात्वा वसन्तकालमाज्यं ध्यात्वा ग्रीष्ममिध्मं ध्यात्वा शरदृतुं रसं ध्यात्वैवमग्नौ हुत्वाङ्ग- स्पर्शात्कलेवरो वज्रं हीष्यते । ततः स्वकार्यान्सर्व- प्राणिजीवान्सृष्ट्वा पश्वाद्याः प्रादुर्भविष्यन्ति । ततः स्थावरजङ्गमात्मकं जगद्भविष्यति ।<br><br>
+                        
+                        एतेन जीवात्मनोर्योगेन मोक्षप्रकारश्च कथित इत्यनुसन्धेयम् । य इमं सृष्टियज्ञं जानाति मोक्षप्रकारं च सर्वमायुरेति ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        Then, in that Mudgala Upanishad, the glory of Purusha Sukta is elaborately explained.<br>
+                        Vasudeva instructed Indra in divine knowledge, and then again for subtle hearing, instructed the bowed Indra in the supreme secret of the two-part Purusha Sukta. Two sections are explained.<br><br>
+                        
+                        That liberated Purusha, abandoning the domain beyond name, form and knowledge that is extremely difficult for worldly beings to understand, being afflicted by sufferings such as desire to subjugate gods, and having a form with thousands of auspicious parts that grants liberation by mere sight, assumed a form. With that form, pervading the worlds beginning with earth, he stood beyond infinite distance.<br><br>
+                        
+                        The Purusha, Narayana, was the past, present and future. He is the greatest of all glories. Therefore, none is greater than him. The Supreme Purusha divided himself into four parts: with three feet he existed in the supreme space; with the other fourth part, Aniruddha-Narayana, created the worlds. That Pāda-Nārāyaṇa created Prakriti to create the universe.<br><br>
+                        
+                        Though having a perfected body, he did not know the creation process. Aniruddha-Narayana instructed him about creation.<br><br>
+                        
+                        "O Brahma, meditate on your senses as the officiating priests; meditate on the sheath-body as the strong tied-up bundle; meditate on me as the enjoyer of the sacrifice; meditate on spring as clarified butter; summer as firewood; autumn as the Soma essence; thus offering in fire, through the touch of limbs, the body becomes the Vajra weapon. Then having created all beings and lives for your tasks, animals etc. will manifest. Then the world consisting of immovable and movable beings will come into existence.<br><br>
+                        
+                        By this method of union of Jiva and Atman, the method of liberation is explained. One who knows this creation sacrifice and the method of liberation attains a full lifespan."
+                    </div>
+                </div>
+                
+                <!-- Final Teachings -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-lg text-amber-200 leading-relaxed text-justify">
+                        एको देवो बहुधा निविष्ट अजायमानो बहुधा विजायते । तमेतमग्निरित्यध्वर्यव उपासते ।<br>
+                        यजुरित्येष हीदं सर्वं युनक्ति । सामेति छन्दोगाः । एतस्मिन्हीदं सर्वं प्रतिष्ठितम् ।<br><br>
+                        
+                        विषमिति सर्पाः । सर्प इति सर्पविदः । ऊर्गिति देवाः । रयिरिति मनुष्याः । मायेत्यसुराः । स्वधेति पितरः ।<br>
+                        देवजन इति देवजनविदः । रूपमिति गन्धर्वाः । गन्धर्व इति अप्सरसः । तं यथायथोपासते तथैव भवति ।<br>
+                        तस्माद्ब्राह्मणः पुरुषरूपं परंब्रह्मैवाहमिति भावयेत् । तद्रूपो भवति । य एवं वेद ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        The one God has entered into many forms. Though unborn, he is born in many ways. Him, Adhvaryus worship as Agni.<br>
+                        As Yajus, he yokes everything here. The Chandogas as Sama. In him, everything is established.<br><br>
+                        
+                        Snakes call him "Vish". Snake-knowers as "Sarpa". Gods as "Urg". Humans as "Raya". Asuras as "Maya". Ancestors as "Swadha".<br>
+                        Deva-knowers as "Deva-jana". Gandharvas as "Rupa". Apsaras as "Gandharva". As one worships him in whatever way, so he becomes.<br>
+                        Therefore, a Brahmin should meditate on the Supreme Brahman as his own Self in the form of the Purusha. He becomes that form. One who thus knows.
+                    </div>
+                </div>
+                
+                <!-- Purification Verses -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-lg text-amber-200 leading-relaxed text-justify">
+                        तद्ब्रह्म तापत्रयातीतं षट्कोशविनिर्मुक्तं षडूर्मिवर्जितं पञ्चकोशातीतं षड्भावविकारशून्यमेवमादि- सर्वविलक्षणं भवति ।<br>
+                        तापत्रयं त्वाध्यात्मिकाधिभौति- काधिदैविकं कर्तृकर्मकार्यज्ञातृज्ञानज्ञेय- भोक्तृभोगभोग्यमिति त्रिविधम् ।<br><br>
+                        
+                        त्वङ्मांसशोणितास्थि- स्नायुमज्जाः षट्कोशाः । कामक्रोधलोभमोहमद- मात्सर्यमित्यरिषड्वर्गः ।<br>
+                        अन्नमयप्राणमयमनोमय- विज्ञानमयानन्दमया इति पञ्चकोशाः ।<br>
+                        प्रियात्मजननवर्धनपरिणामक्षयनाशाः षड्भावाः ।<br>
+                        अशनायापिपासाशोकमोहजरामरणानीति षडूर्मयः ।<br>
+                        कुलगोत्रजातिवर्णाश्रमरूपाणि षड् भ्रमाः ।<br><br>
+                        
+                        एतद्योगेन परमपुरुषो जीवो भवति नान्यः । य एतदुपनिषदं नित्यमधीते सोऽग्निपूतो भवति ।<br>
+                        स वायुपूतो भवति । स आदित्यपूतो भवति । अरोगी भवति । श्रीमांश्च भवति ।<br>
+                        पुत्रपौत्रादिभिः समृद्धो भवति । विद्वांश्च भवति । महापातकात्पूतो भवति । सुरापानात्पूतो भवति ।<br>
+                        अगम्यागमनात्पूतो भवति । मातृगमनात्पूतो भवति । दुहितृस्नुषाभिगमनात्पूतो भवति ।<br>
+                        स्वर्णस्तेयात्पूतो भवति । वेदिजन्महानात्पूतो भवति । गुरोरशुश्रूषणात्पूतो भवति ।<br>
+                        अयाज्ययाजनात्पूतो भवति । अभक्ष्यभक्षणात्पूतो भवति । उग्रप्रतिग्रहात्पूतो भवति ।<br>
+                        परदारगमनात्पूतो भवति । कामक्रोधलोभमोहेर्ष्यादिभिरबाधितो भवति । सर्वेभ्यः पापेभ्यो मुक्तो भवति ।<br>
+                        इह जन्मनि पुरुषो भवति तस्मादेत- त्पुरुषसूक्तार्थमतिरहस्यं राजगुह्यं देवगुह्यं गुह्यादपि गुह्यतरं नादीक्षितायोपदिशेत् ।<br><br>
+                        
+                        न अनूचानाय । न अयज्ञशीलाय । न अवैष्णवाय । न अयोगिने । न बहुभाषिणे । न अप्रियवादिने ।<br>
+                        न असंवत्सरवेदिने । न अतुष्टाय । न अनधीतवेदायोपदिशेत् ।<br>
+                        गुरुरप्येवंविच्छुचौ देशे पुण्यनक्षत्रे प्राणानायम्य पुरुषं ध्यायन्नुपसन्नाय शिष्याय दक्षिणकर्णे पुरुषसूक्तार्थमुपदिशेद्विद्वान् ।<br>
+                        न बहुशो वदेत् । यातयामो भवति । असकृत्कर्णमुपदिशेत् । एतत्कुर्वाणोऽध्येताध्यापकश्च इह जन्मनि पुरुषो भवतीत्युपनिषत् ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        That Brahman is beyond the three kinds of suffering, liberated from the six sheaths, free from the six waves, beyond the five sheaths, devoid of the six modifications and all such distinctions.<br>
+                        The three kinds of suffering are: Adhyatmika (arising from oneself), Adhidaivika (caused by deities/elements), Adhibhautika (caused by other beings); the threefold: of agent, action and result; of knower, knowledge and object of knowledge; of experiencer, experience and enjoyed objects.<br><br>
+                        
+                        The six sheaths: skin, flesh, blood, bones, nerves, and marrow. The six internal enemies: desire, anger, greed, delusion, pride and envy.<br>
+                        The five sheaths: food-made, vital force-made, mind-made, intellect-made, and bliss-made.<br>
+                        The six modifications: birth, growth, change, maturity, decay, death.<br>
+                        The six waves: hunger, thirst, grief, delusion, old age, death.<br>
+                        The six illusions: family, lineage, class, caste, stage of life, form.<br><br>
+                        
+                        Only through this connection does the Jiva become the supreme Purusha, not otherwise. He who constantly studies this Upanishad becomes purified by fire.<br>
+                        He becomes purified by wind; purified by sun; becomes free from diseases; becomes endowed with prosperity; becomes abundant with sons, grandsons etc.; becomes learned; becomes purified from great sins, from drinking liquor, from improper relations, from relations with mother, from relations with daughter or daughter-in-law, from stealing gold, from insulting Vedas and Brahmins, from not serving the guru, from performing sacrifices for unworthy people, from eating prohibited foods, from taking harsh donations, from relations with others' wives.<br>
+                        He remains unaffected by desire, anger, greed, delusion, envy etc. He becomes free from all sins. He becomes Purusha in this birth. Therefore, this meaning of Purusha Sukta is extremely secret, a royal secret, a divine secret, more secret than secrets, not to be taught to the uninitiated.<br><br>
+                        
+                        Not to one who hasn't completed Vedic studies, not to one unobservant of sacrifices, not to non-Vaishnavas, not to non-yogis, not to one who speaks much, not to one who speaks unpleasant words, not to one ignorant of the year cycle, not to the dissatisfied, not to one who hasn't studied the Vedas.<br>
+                        Even a guru should, having thus judged, in a pure place, on an auspicious star day, controlling his breath, meditating on Purusha, teach this Purusha Sukta meaning to a worthy student in the right ear.<br>
+                        He should not speak much (lest he becomes exhausted). He should instruct repeatedly until understood. The one performing this (regular study), whether learner or teacher, becomes Purusha in this very birth. Thus the Upanishad.
+                    </div>
+                </div>
+                
+                <!-- Closing Prayer -->
+                <div class="verse-container grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gradient-to-b from-slate-800/30 to-slate-700/20 p-8 rounded-xl shadow-xl gold-border">
+                    <div class="devanagari text-xl text-amber-200 leading-relaxed text-justify">
+                        ॐ वाङ् मे मनसि प्रतिष्ठिता मनो मे वाचि प्रतिष्ठित- माविरावीर्म एधि ॥<br>
+                        वेदस्य म आणीस्थः श्रुतं मे मा प्रहासीरनेनाधीतेनाहोरात्रान्सन्दधाम्यृतं वदिष्यामि सत्यं वदिष्यामि ॥<br>
+                        तन्मामवतु तद्वक्तारमवतु अवतु मामवतु वक्तारमवतु वक्तारम् ॥
+                    </div>
+                    <div class="english text-gray-100 leading-relaxed text-justify italic">
+                        Om! May my speech be established in my mind; may my mind be established in my speech! Reveal yourself unto me; shine forth for my vision!<br>
+                        May what I have studied not leave me! May I join day and night by that study! I speak the Truth! I speak what is beneficial!<br>
+                        May That protect me! May That protect the speaker! May that protect me! May that protect the speaker!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Closing mantra -->
+    <footer class="py-20 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-slate-900 z-0"></div>
+        <div class="container mx-auto relative z-10">
+            <div class="flex justify-center space-x-6 mb-8">
+                <div class="shanti transform scale-150 opacity-0">
+                    <span class="text-9xl font-bold text-gold">ॐ</span>
+                </div>
+                <div class="shanti transform scale-150 opacity-0">
+                    <span class="text-6xl font-bold text-dark-gold">शान्तिः</span>
+                </div>
+                <div class="shanti transform scale-150 opacity-0">
+                    <span class="text-6xl font-bold text-dark-gold">शान्तिः</span>
+                </div>
+                <div class="shanti transform scale-150 opacity-0">
+                    <span class="text-6xl font-bold text-dark-gold">शान्तिः</span>
+                </div>
+            </div>
+            <p class="text-lg text-gray-300 italic">
+                इति मुद्गलोपनिषत्समाप्ता ॥
+            </p>
+            <p class="mt-6 text-gray-400">
+                Thus concludes the Mudgala Upanishad
+            </p>
+        </div>
+    </footer>
 </body>
 </html>
