@@ -1,370 +1,433 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punyaha Vachanam - Sanskrit Verses</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @font-face {
-            font-family: 'Sanskrit2003';
-            src: url('../../assets/fonts/Sanskrit2003.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cosmic-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
         
         .sanskrit {
-            font-family: 'Sanskrit2003', serif;
-            line-height: 2.2;
-            font-size: 1.8rem;
-            color: #3b1c14;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
+            font-weight: bold;
         }
         
-        .verse-container {
+        .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 500;
+        }
+
+        .card {
+            background: rgba(28, 27, 46, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(140, 82, 255, 0.5);
+            border-left: 1px solid rgba(140, 82, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .title-glow {
+            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
+        }
+
+        .verse-number {
+            background: linear-gradient(45deg, #7b4397, #dc2430);
+            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
+        }
+
+        .tabs button {
             transition: all 0.3s ease;
         }
         
-        .verse-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        .tabs button.active {
+            background: rgba(123, 67, 151, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
         }
         
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .verse-container {
+            transition: opacity 0.4s ease;
         }
         
         .fade-in {
             animation: fadeIn 0.8s ease forwards;
         }
         
-        @media (max-width: 768px) {
-            .sanskrit {
-                font-size: 1.5rem;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .play-btn {
+            background: rgba(123, 67, 151, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
+        }
+
+        .mantra-player {
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+        }
+
+        .translation-note {
+            background: rgba(123, 67, 151, 0.15);
+            border-left: 3px solid rgba(198, 116, 255, 0.8);
         }
     </style>
-</head>
-<body class="bg-amber-50 min-h-screen">
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-yellow-800 to-amber-900 text-white py-12 md:py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex justify-center mb-6">
-                <div class="bg-yellow-600 rounded-full p-5 shadow-xl">
-                    <i class="fas fa-om text-5xl text-yellow-200"></i>
-                </div>
-            </div>
-            <h1 class="sanskrit text-4xl md:text-6xl font-bold mt-4">॥ पुण्याहवाचनम् ॥</h1>
-            <p class="text-xl md:text-2xl text-amber-200 mt-6 font-serif italic">The Sacred Verses for Auspicious Beginnings</p>
-            <p class="mt-6 md:text-lg max-w-3xl mx-auto">
-                Explore these ancient Sanskrit mantras and their profound meanings for spiritual enlightenment and purification
-            </p>
-            <div class="mt-10 animate-pulse">
-                <i class="fas fa-angle-down text-3xl text-amber-300"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Introduction -->
-    <section class="py-12 px-4 max-w-5xl mx-auto">
-        <div class="bg-white rounded-xl shadow-md p-6 md:p-8 fade-in">
-            <h2 class="text-3xl font-bold text-amber-800 text-center mb-6">Punyaha Vachanam - The Sacred Chant</h2>
-            <div class="prose max-w-none text-amber-900">
-                <p class="text-lg">
-                    Punyaha Vachanam refers to the auspicious chant recited at the beginning of sacred ceremonies to invoke divine blessings and ward off negative influences. These timeless Sanskrit verses are drawn from various Vedic texts and are traditionally recited during housewarmings, temple consecrations, and important life events.
-                </p>
-                <p class="mt-4 font-medium">
-                    This presentation includes the complete verses in the original Sanskrit with professional English translations, preserving the sacred vibrations and profound wisdom contained in each word.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Verses Sections -->
-    <main class="py-12 px-4 max-w-5xl mx-auto space-y-12">
-        <!-- Verse 1 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Purifying Invocation</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    ॐ ब्रह्म॑जज्ञा॒नं प्र॑थ॒मं पु॒रस्ता॒द्विसी॑म॒तस्सु॒रुचो॑ वे॒न आ॑वः ।<br>
-                    सबु॒ध्निया॑ उप॒मा अ॑स्य वि॒ष्ठास्स॒तश्च॒ योनि॒मस॑तश्च॒ विवः॑ ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "Om. The foremost knowledge of Brahman that existed from the earliest times, 
-                        the excellent glories that emanated from the effulgent Vena (the sun), 
-                        established firmly. Whatever origin there is of the existent and of the non-existent 
-                        is all that."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 2 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Divine Messengers</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    नाके॑ सुप॒र्णमु॑प॒ यत्पत॑न्तं हृ॒दा वेन॑न्तो अ॒भ्य च॑क्षत त्वा ।<br>
-                    हिर॑ण्यपक्षं॒ वरु॑णस्य दू॒तं य॒मस्य॒ योनौ॑ शकु॒नं भु॑र॒ण्युम् ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "To you who fly upwards to the heaven, the wise men see in their hearts as you soar. 
-                        The golden-winged messenger of Varuna, the swift-flying bird that is born in the womb of Yama."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 3 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Worship of Soma</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    आप्या॑यस्व॒ समे॑तु ते वि॒श्वतः॑ सोम॒ वृष्णि॑यम् ।<br>
-                    भवा॒ वाज॑स्य सङ्ग॒थे ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "O Soma, be filled and come together from all sides for your exhilaration. 
-                        Be for the union of food (energy) and its accomplishment."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 4 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">Homage to the Universal Rudra</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    यो रु॒द्रो अ॒ग्नौ यो अ॒प्सु य ओष॑धीषु॒ यो रु॒द्रो विश्वा॒ भुव॑ना वि॒वेश॒ तस्मै॑ रु॒द्राय॒ नमो॑ अस्तु ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "That Rudra who is in fire, who is in waters, who is in herbs and plants, 
-                        that Rudra who has entered into all created beings - may salutations be to that Rudra."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 5 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Divine Steps of Vishnu</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    इ॒दं विष्णु॒र्विच॑क्रमे त्रे॒धा निद॑धे प॒दम् ।<br>
-                    समू॑ढमस्य पाग्ं सु॒रे ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "Vishnu strode over this (universe); thrice he planted his step. 
-                        His highest step is established in the luminous heaven."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 6 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">Praise of Lord Indra</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    इन्द्रं॒ विश्वा॑ अवीवृधन्त्समु॒द्रव्य॑चस॒ङ्गिरो॑ र॒थीत॑मग्ं रथी॒नां वाजा॑ना॒ग्ं॒ सत्प॑तिं॒ पति᳚म् ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "All beings sustain Indra, the songs (praises) extend over the vast (expanse), 
-                        he is the most chariot-borne among the chariot warriors, the lord of food, the true lord, the protector."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 7 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Divine Waters</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    आपो॒ वा इ॒दग्ं सर्वं॒ विश्वा॑ भू॒तान्यापः॑ प्रा॒णा वा आपः॑ प॒शव॒ आपोऽन्न॒मापोऽमृ॑त॒माप॑स्सं॒राडापो॑ वि॒राडाप॑स्स्व॒राडाप॒श्छन्दा॒ग्॒स्यापो॒ ज्योती॒ग्॒ष्यापो॒ यजू॒ग्॒ष्याप॑स्स॒त्यमाप॒स्सर्वा॑ दे॒वता॒ आपो॒ भूर्भुव॒स्सुव॒राप॒ ओम् ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "Waters are indeed everything; all created beings are waters. Waters are the life-breath. 
-                        Animals are waters. Food is waters. Immortality is waters. Samrad (large) are waters. 
-                        Virat (expansive) are waters. Svarat (shining) are waters. The meter (chandas) is waters. 
-                        The lights (jyotish) are waters. The yajus are waters. Truth is waters. 
-                        All deities are waters. Bhuh, Bhuvah, Suvah are waters. Om."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 8 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">The Purification with Waters</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    अ॒पः प्रण॑यति ।<br>
-                    श्र॒द्धा वा आपः॑ । श्र॒द्धामे॒वारभ्य॑ प्र॒णीय॒ प्रच॑रति ।<br>
-                    य॒ज्ञो वा आपः॑ । य॒ज्ञमे॒वारभ्य॑ प्र॒णीय॒ प्रच॑रति ।<br>
-                    अ॒पः प्रण॑यति । वज्रो॒ वा आपः॑ । वज्र॑मे॒व भ्रातृ॑व्येभ्यः प्र॒हृत्य॑ प्र॒णीय॒ प्रच॑रति ।<br>
-                    अ॒पः प्रण॑यति । आपो॒ वै र॑क्षो॒घ्नीः । रक्ष॑सा॒मप॑हत्यै ।<br>
-                    अ॒पः प्रण॑यति । आपो॒ वै दे॒वानां᳚ प्रि॒यं धाम॑ । दे॒वाना॑मे॒व प्रि॒यं धाम॑ प्र॒णीय॒ प्रच॑रति ।<br>
-                    अ॒पः प्रण॑यति । आपो॒ वै सर्वा॑ दे॒वताः᳚ । देवता॑ ए॒वारभ्य॑ प्र॒णीय॒ प्रच॑रति ।<br>
-                    अ॒पः प्रण॑यति । आपो॒ वै शा॒न्ताः । शा॒न्ताभि॑रे॒वास्य॒ शुचग्ं॑ शमयति ।
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "He leads the waters (for purification). Waters are faith. Taking the waters which represent faith, he proceeds with the ceremony.<br>
-                        Waters are the sacrifice. Taking the waters which represent the sacrifice, he proceeds with the ceremony.<br>
-                        He leads the waters. Waters are the thunderbolt (vajra). Taking the waters as a thunderbolt, he strikes his enemies and proceeds.<br>
-                        He leads the waters. Waters destroy demons. For the destruction of demons.<br>
-                        He leads the waters. Waters are the dear abode of the gods. Taking the waters as the dear abode of the gods, he proceeds.<br>
-                        He leads the waters. Waters are all deities. Taking the waters representing all deities, he proceeds.<br>
-                        He leads the waters. Waters are peaceful. With these peaceful waters, he pacifies his impurities."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 9 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">Purification by Savitri</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    दे॒वो वः॑ सवि॒तोत्पु॑ना॒त्वच्छि॑द्रेण प॒वित्रे॑ण॒ वसो॒स्सूर्य॑स्य र॒श्मिभिः॑ ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "May the god Savitri purify you with the flawless purifier, with the rays of the sun, the effulgent light."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 10 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">Ceremonial Utterances (1-3)</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    कूर्चाग्रैः राक्षसान् घोरान् छिन्धि कर्मविधातिनः ।<br>
-                    त्वामर्पयामि कुम्भेऽस्मिन् साफल्यं कुरु कर्मणि ॥ १ ॥<br><br>
-                    वृक्षराज समुद्भूताः शाखायाः पल्लवत्वचः ।<br>
-                    युष्मान् कुम्भेष्वर्पयामि सर्वपापापनुत्तये ॥ २ ॥<br><br>
-                    नालिकेर समुद्भूत त्रिनेत्र हरसत्तम ।<br>
-                    शिखया दुरितं सर्वं पापं पीडां च मे नुद ॥ ३ ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        (1) "O dreadful demons who create obstacles in actions, be cut off by the tips of kusha grass!<br>
-                        I place you in this pot; make my actions successful.<br><br>
-                        (2) "You who have sprung from the king of trees (coconut), from branches, leaves, and bark,<br>
-                        I place you in these pots for the removal of all sins.<br><br>
-                        (3) "O Lord Shiva, who has arisen from the coconut, the supreme one with three eyes,<br>
-                        Remove all my sins, afflictions, and troubles with your crest."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verse 11 -->
-        <section class="verse-container fade-in bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="bg-yellow-700 text-yellow-50 py-4 px-6">
-                <h3 class="text-xl font-semibold">Prayer to Savitri</h3>
-            </div>
-            <div class="p-6">
-                <div class="sanskrit text-center py-4 leading-relaxed">
-                    स हि रत्ना॑नि दा॒शुषे᳚ सु॒वाति॑ स॒वि॒ता भगः॑ ।<br>
-                    तं भा॒गं चि॒त्रमी॑महे ॥
-                </div>
-                <div class="mt-6 py-4 px-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-600">
-                    <h4 class="font-bold text-yellow-800 text-lg mb-2">English Translation:</h4>
-                    <p class="text-gray-700">
-                        "For Savitri bestows treasures on the worshipper, the bountiful one. 
-                        We meditate upon that resplendent portion (of divine grace)."
-                    </p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-b from-amber-800 to-yellow-900 text-yellow-100 py-10 px-4 mt-12">
-        <div class="max-w-5xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="sanskrit text-2xl font-bold">॥ शान्तिः॒ शान्तिः॒ शान्तिः॑ ॥</div>
-                    <p class="mt-2 italic">Peace, Peace, Peace</p>
-                </div>
-                <div class="text-center">
-                    <p>© 2023 | Sanskrit Wisdom Collection</p>
-                    <p class="mt-2 text-sm">For ceremonial and educational purposes only</p>
-                </div>
-            </div>
-            <div class="mt-10 text-center text-sm opacity-80">
-                <p>With reverence to the ancient traditions and wisdom keepers</p>
-                <p class="mt-2">
-                    <i class="fas fa-om mr-2"></i> 
-                    May these sacred vibrations bring peace and prosperity to all beings
-                    <i class="fas fa-om ml-2"></i>
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Simple animation trigger
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = 1;
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            100: '#1a1833',
+                            200: '#24224a',
+                            300: '#39366b',
+                        },
+                        gold: {
+                            100: '#ffedcc',
+                            200: '#f9d676',
+                            300: '#d8af4f',
+                        }
                     }
-                });
-            }, { threshold: 0.1 });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create cosmic stars
+            const container = document.querySelector('.cosmic-glow');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
             
-            fadeElements.forEach(element => {
-                element.style.opacity = 0;
-                observer.observe(element);
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.translation-tab');
+            const verseContainers = document.querySelectorAll('.verse-container');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetLang = tab.getAttribute('data-lang');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
+                    tab.classList.add('active', 'bg-purple-800');
+
+                    // Show the correct translation
+                    verseContainers.forEach(container => {
+                        container.style.opacity = '0';
+                        setTimeout(() => {
+                            if(container.classList.contains(targetLang)) {
+                                container.style.display = 'block';
+                                setTimeout(() => {
+                                    container.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                container.style.display = 'none';
+                            }
+                        }, 300);
+                    });
+                });
             });
+
+            // Activate first tab by default
+            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
+            
+            // Fade-in verse containers
+            document.querySelectorAll('.verse-container.en').forEach(container => {
+                setTimeout(() => {
+                    container.classList.add('fade-in');
+                }, 300);
+            });
+
+            // Play button effect
+            const playBtn = document.querySelector('.play-btn');
+            if(playBtn) {
+                playBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
+                        this.classList.remove('bg-green-600');
+                    }, 4000);
+                });
+            }
         });
     </script>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
 </body>
 </html>

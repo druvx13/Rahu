@@ -1,174 +1,433 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wisdom of the Upanishads</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'SanskritFont';
-            src: url('../../assets/fonts/Sanskrit2003.ttf') format('truetype');
-        }
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
         
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
             font-family: 'Poppins', sans-serif;
         }
         
+        .cosmic-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
         .sanskrit {
-            font-family: 'SanskritFont', serif;
-            font-size: 1.8rem;
-            line-height: 1.6;
-            color: #f8f3e6;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
+            font-weight: bold;
+        }
+
+        .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 500;
         }
         
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background: rgba(28, 27, 46, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(140, 82, 255, 0.5);
+            border-left: 1px solid rgba(140, 82, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
         
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        .title-glow {
+            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
         }
         
-        .om-symbol {
-            font-family: 'SanskritFont', serif;
-            animation: pulse 4s infinite ease-in-out;
+        .verse-number {
+            background: linear-gradient(45deg, #7b4397, #dc2430);
+            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
         }
         
-        .floral-border {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='20' viewBox='0 0 100 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.383 1.869.74 2.75 1.072h6.225c-2.51-.73-5.139-1.691-8.233-2.928C65.888 13.278 60.562 12 50 12c-10.626 0-16.855 1.397-26.66 5.063l-.299.13C20.148 18.26 18.47 19 15 19h-1.161l.345-.999zm-18.478 0C.937 19.332 0 18.77 0 18s.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4c0-.73.936-1.332 2.706-1.999L15 14c5 0 10 2 10 4s-5 4-10 4-10-2-10-4z' fill='%23d4af37' fill-opacity='0.3' fill-rule='evenodd'/%3E%3C/svg%3E");
-            background-repeat: repeat-x;
-            height: 20px;
+        .tabs button {
+            transition: all 0.3s ease;
+        }
+        
+        .tabs button.active {
+            background: rgba(123, 67, 151, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
+        }
+        
+        .verse-container {
+            transition: opacity 0.4s ease;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .play-btn {
+            background: rgba(123, 67, 151, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
         }
         
         @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.7; }
+            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+        .mantra-player {
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
         }
         
-        .floating {
-            animation: float 6s infinite ease-in-out;
-        }
-        
-        .gold-text {
-            color: #d4af37;
-        }
-        
-        .translation {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
-        
-        @media (max-width: 768px) {
-            .sanskrit {
-                font-size: 1.5rem;
-            }
-            
-            .card {
-                padding: 1.5rem;
-            }
+        .translation-note {
+            background: rgba(123, 67, 151, 0.15);
+            border-left: 3px solid rgba(198, 116, 255, 0.8);
         }
     </style>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            100: '#1a1833',
+                            200: '#24224a',
+                            300: '#39366b',
+                        },
+                        gold: {
+                            100: '#ffedcc',
+                            200: '#f9d676',
+                            300: '#d8af4f',
+                        }
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create cosmic stars
+            const container = document.querySelector('.cosmic-glow');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
+
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.translation-tab');
+            const verseContainers = document.querySelectorAll('.verse-container');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetLang = tab.getAttribute('data-lang');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
+                    tab.classList.add('active', 'bg-purple-800');
+
+                    // Show the correct translation
+                    verseContainers.forEach(container => {
+                        container.style.opacity = '0';
+                        setTimeout(() => {
+                            if(container.classList.contains(targetLang)) {
+                                container.style.display = 'block';
+                                setTimeout(() => {
+                                    container.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                container.style.display = 'none';
+                            }
+                        }, 300);
+                    });
+                });
+            });
+
+            // Activate first tab by default
+            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
+
+            // Fade-in verse containers
+            document.querySelectorAll('.verse-container.en').forEach(container => {
+                setTimeout(() => {
+                    container.classList.add('fade-in');
+                }, 300);
+            });
+
+            // Play button effect
+            const playBtn = document.querySelector('.play-btn');
+            if(playBtn) {
+                playBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
+                        this.classList.remove('bg-green-600');
+                    }, 4000);
+                });
+            }
+        });
+    </script>
 </head>
-<body class="text-white flex flex-col items-center justify-center py-12 px-4">
-    <div class="max-w-4xl w-full">
-        <!-- Header with Om symbol -->
-        <div class="text-center mb-12">
-            <div class="floral-border mb-6"></div>
-            <div class="om-symbol text-7xl gold-text mb-4">ॐ</div>
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">Wisdom of the Upanishads</h1>
-            <p class="text-lg text-gray-300">Ancient Sanskrit Verse and Its Timeless Meaning</p>
-            <div class="floral-border mt-6"></div>
-        </div>
-        
-        <!-- Main content card -->
-        <div class="card rounded-2xl p-8 md:p-12 relative overflow-hidden">
-            <!-- Decorative elements -->
-            <div class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-yellow-500 bg-opacity-10 blur-3xl"></div>
-            <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-purple-500 bg-opacity-10 blur-3xl"></div>
-            
-            <div class="relative z-10">
-                <!-- Sanskrit verse -->
-                <div class="text-center mb-10">
-                    <div class="sanskrit mb-6 leading-relaxed">
-                        नाहं मन्ये सुवेदेति नो न वेदेति वेद च ।<br>
-                        यो नस्तद्वेद तद्वेद नो न वेदेति वेद च ॥ २॥
-                    </div>
-                    <div class="divider my-8"></div>
-                </div>
-                
-                <!-- English translation -->
-                <div class="text-center">
-                    <h2 class="text-2xl font-bold mb-6 gold-text">English Translation</h2>
-                    <div class="translation text-xl mb-8 leading-relaxed">
-                        "I do not think 'I know well', nor 'I do not know'.<br>
-                        He among us who knows that, knows;<br>
-                        not he who thinks he does not know,<br>
-                        nor he who thinks he knows."
-                    </div>
-                    <div class="divider my-8"></div>
-                </div>
-                
-                <!-- Repeated verse for emphasis -->
-                <div class="text-center mt-12">
-                    <h3 class="text-xl font-semibold mb-6 gold-text">Repeated for Emphasis</h3>
-                    <div class="sanskrit mb-6 leading-relaxed">
-                        नाहं मन्ये सुवेदेति नो न वेदेति वेद च ।<br>
-                        यो नस्तद्वेद तद्वेद नो न वेदेति वेद च ॥ २॥
-                    </div>
-                    <div class="translation text-lg italic mt-4">
-                        "I do not think 'I know well', nor 'I do not know'.<br>
-                        He among us who knows that, knows;<br>
-                        not he who thinks he does not know,<br>
-                        nor he who thinks he knows."
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Explanation section -->
-        <div class="card rounded-2xl p-8 mt-10">
-            <h2 class="text-2xl font-bold mb-6 text-center gold-text">The Essence of Wisdom</h2>
-            <div class="space-y-4 text-gray-200">
-                <p>This profound verse from the Upanishads explores the nature of true knowledge and wisdom. It suggests that genuine understanding lies beyond the dualities of claiming knowledge or ignorance.</p>
-                
-                <p>The verse teaches us that:</p>
-                
-                <ul class="list-disc pl-6 space-y-2">
-                    <li>True wisdom transcends the concepts of "knowing" and "not knowing"</li>
-                    <li>Authentic knowledge comes from understanding the nature of knowledge itself</li>
-                    <li>Neither the one who claims ignorance nor the one who claims knowledge truly understands</li>
-                    <li>Real understanding comes from a deeper place beyond intellectual concepts</li>
-                </ul>
-                
-                <p class="pt-4">This ancient teaching invites us to embrace a state of open awareness, free from the limitations of self-assessment regarding our knowledge or lack thereof.</p>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="text-center mt-16 text-gray-400">
-            <div class="om-symbol text-5xl gold-text mb-6 floating">ॐ</div>
-            <p>Sacred Sanskrit Verse from the Upanishads</p>
-            <p class="mt-2">Designed with reverence for ancient wisdom</p>
-            <div class="floral-border my-6"></div>
-        </div>
-    </div>
+<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
 </body>
 </html>

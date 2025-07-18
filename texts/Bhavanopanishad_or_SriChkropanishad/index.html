@@ -1,252 +1,433 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhavanopanishad | भावनोपनिषत्</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        @font-face {
-            font-family: 'Sanskrit2003';
-            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf') format('truetype');
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>
+</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;500&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #e0e0ff;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .cosmic-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(67, 39, 152, 0.5) 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, rgba(94, 21, 156, 0.4) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
         
         .sanskrit {
-            font-family: 'Sanskrit2003', serif;
-            font-size: 1.4rem;
-            line-height: 1.8;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(186, 104, 200, 0.3);
+            font-weight: bold;
         }
         
-        .english {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.1rem;
-            line-height: 1.7;
+        .chinese {
+            font-family: 'Noto Serif SC', serif;
+            font-weight: 500;
         }
         
-        .gold-border {
-            border: 3px solid #d4af37;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        .card {
+            background: rgba(28, 27, 46, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(140, 82, 255, 0.5);
+            border-left: 1px solid rgba(140, 82, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
         
-        .bg-pattern {
-            background-image: radial-gradient(#f0e6d2 1px, transparent 1px);
-            background-size: 20px 20px;
+        .title-glow {
+            text-shadow: 0 0 15px rgba(198, 116, 255, 0.8);
         }
         
-        .mantra-highlight {
-            background: linear-gradient(120deg, rgba(255,253,228,0.7) 0%, rgba(255,248,225,0.7) 100%);
-            border-left: 4px solid #d4af37;
+        .verse-number {
+            background: linear-gradient(45deg, #7b4397, #dc2430);
+            box-shadow: 0 0 15px rgba(123, 67, 151, 0.5);
         }
         
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 0.5rem;
+        .tabs button {
+            transition: all 0.3s ease;
         }
         
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #d4af37, #b8860b, #d4af37);
-            border-radius: 3px;
+        .tabs button.active {
+            background: rgba(123, 67, 151, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(123, 67, 151, 0.4);
         }
         
-        .floral-divider {
-            position: relative;
-            height: 20px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 10' preserveAspectRatio='none'%3E%3Cpath d='M0,5 C20,0 40,10 60,0 C80,10 100,0 100,5 L100,10 L0,10 Z' fill='%23f5f2e9'/%3E%3C/svg%3E") no-repeat center bottom;
-            background-size: 100% 100%;
-            margin: 2rem 0;
+        .verse-container {
+            transition: opacity 0.4s ease;
         }
         
-        @media (max-width: 768px) {
-            .sanskrit {
-                font-size: 1.2rem;
-            }
-            
-            .english {
-                font-size: 1rem;
-            }
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .play-btn {
+            background: rgba(123, 67, 151, 0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(198, 116, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(198, 116, 255, 0); }
+        }
+
+        .mantra-player {
+            background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+        }
+
+        .translation-note {
+            background: rgba(123, 67, 151, 0.15);
+            border-left: 3px solid rgba(198, 116, 255, 0.8);
         }
     </style>
-</head>
-<body class="bg-amber-50 bg-pattern">
-    <!-- Header Section -->
-    <header class="bg-gradient-to-b from-amber-900 to-amber-800 text-amber-100 py-8 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="sanskrit text-4xl md:text-5xl font-bold mb-4 tracking-wide">भावनोपनिषत् अथवा श्रीचक्रोपनिषत्</h1>
-            <h2 class="text-2xl md:text-3xl font-serif font-light italic text-amber-200">Bhavanopanishad or Shri Chakra Upanishad</h2>
-            <div class="mt-6">
-                <div class="inline-block bg-amber-700 px-4 py-2 rounded-lg">
-                    <p class="sanskrit text-xl">ॐ शान्तिः शान्तिः शान्तिः</p>
-                    <p class="text-amber-100 mt-1">Om Peace, Peace, Peace</p>
-                </div>
-            </div>
-        </div>
-    </header>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            100: '#1a1833',
+                            200: '#24224a',
+                            300: '#39366b',
+                        },
+                        gold: {
+                            100: '#ffedcc',
+                            200: '#f9d676',
+                            300: '#d8af4f',
+                        }
+                    }
+                }
+            }
+        }
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Opening Mantra -->
-        <section class="mb-12">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden gold-border">
-                <div class="p-6 md:p-8">
-                    <div class="sanskrit text-center text-2xl leading-relaxed mb-6">
-                        स्वाविद्यापदतत्कार्यं श्रीचक्रोपरि भासुरम् ।<br>
-                        बिन्दुरूपशिवाकारं रामचन्द्रपदं भजे ॥
-                    </div>
-                    <div class="english text-center text-lg text-gray-700 italic">
-                        I worship the feet of Rama Chandra, which are the essence of Shiva,<br>
-                        Shining upon the Shri Chakra, the cause of one's own knowledge.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Peace Invocation -->
-        <section class="mb-12">
-            <div class="mantra-highlight rounded-xl p-6 md:p-8">
-                <div class="sanskrit text-center text-2xl leading-relaxed">
-                    ॐ भद्रं कर्णेभिः शृणुयाम देवा ।<br>
-                    भद्रं पश्येमाक्षभिर्यजत्राः ।<br>
-                    स्थिरैरङ्गैस्तुष्टुवाꣳसस्तनूभिः ।<br>
-                    व्यशेम देवहितं यदायुः ।<br>
-                    स्वस्ति न इन्द्रो वृद्धश्रवाः ।<br>
-                    स्वस्ति नः पूषा विश्ववेदाः ।<br>
-                    स्वस्ति नस्तार्क्ष्योऽरिष्टनेमिः ।<br>
-                    स्वस्ति नो बृहस्पतिर्दधातु ।<br>
-                    ॐ शान्तिः शान्तिः शान्तिः ॥
-                </div>
-                <div class="english text-center mt-6 text-lg text-gray-700">
-                    Om, may we hear with our ears what is auspicious, O Devas!<br>
-                    May we see with our eyes what is auspicious, O worshipful ones!<br>
-                    May we, with firm limbs and bodies, offering praise,<br>
-                    Enjoy the life allotted by the Devas.<br>
-                    May Indra of ancient fame be auspicious to us!<br>
-                    May Pushan, the all-knowing, be auspicious to us!<br>
-                    May Tarkshya, who destroys evil, be auspicious to us!<br>
-                    May Brihaspati bestow upon us auspiciousness!<br>
-                    Om, peace, peace, peace!
-                </div>
-            </div>
-        </section>
-
-        <!-- Floral Divider -->
-        <div class="floral-divider my-12"></div>
-
-        <!-- Main Text -->
-        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-            <!-- Sanskrit Column -->
-            <div class="bg-white rounded-xl shadow-lg p-6 gold-border">
-                <h3 class="section-title sanskrit text-2xl font-bold mb-6 text-amber-900">अथ भावनोपनिषत्</h3>
-                <div class="sanskrit text-justify">
-                    <p class="mb-4">हरिः ॐ । आत्मानमखण्डमण्डलाकारमवृत्य सकलब्रह्माण्डमण्डलं स्वप्रकाशं ध्यायेत् ।</p>
-                    <p class="mb-4">ॐ श्रीगुरुः सर्वकारणभूता शक्तिः । तेन नवरन्ध्ररूपो देहः । नवशक्तिरूपं श्रीचक्रम् । वाराही पितृरूपा । कुरुकुल्ला बलिदेवता माता । पुरुषार्थाः सागराः । देहो नवरत्नद्वीपः । त्वगादिसप्तधातुभिरनेकैः संयुक्ताः सङ्कल्पाः कल्पतरवः । तेजः कल्पकोद्यानम् । रसनया भाव्यमाना मधुराम्लतिक्तकटुकषायलवणभेदाः षड्रसाः षडृतवः क्रियाशक्तिः पीठम् । कुण्डलिनी ज्ञानशक्तिर्गृहम् । इच्छाशक्तिर्महात्रिपुरसुन्दरी । ज्ञाता होता ज्ञानमग्निः (ज्ञानमर्घ्यम्) ज्ञेयं हविः । ज्ञातृज्ञानज्ञेयानामभेदभावनं श्रीचक्रपूजनम् ।</p>
-                    <p class="mb-4">नियतिसहिताः शृङ्गारादयो नव रसा अणिमादयः । कामक्रोधलोभमोहमदमात्सर्यपुण्यपापमया ब्राह्म्याद्यष्टशक्तयः । (आधरनवकम् मुद्राशक्तयः ।) पृथिव्यप्तेजोवाय्वाकाशश्रोत्रत्वक्चक्षुर्जिह्वाघ्राणवाक्पाणिपादपायूपस्थमनोविकाराः (कामाकर्षिण्यादि) षोडश शक्तयः ।</p>
-                    <p class="mb-4">वचनादानगमनविसर्गानन्दहानो(पादानो)पेक्षा(ख्य)- भुद्धयोऽनङ्गकुसुमादिशक्तयोऽष्टौ । अलम्बुसा कुहूर्विश्वोदरी वरुणा हस्तिजिह्वा यशस्वत्यश्विनी गान्धारी पूषा शङ्खिनी सरस्वतीडा पिङ्गला सुषुम्ना चेति चतुर्दश नाड्यः । सर्वसंक्षोभिण्यादिचतुर्दशारगा देवताः ।</p>
-                    <p class="mb-4">प्राणापानव्यानोदानसमाननागकूर्मकृकरदेवदत्तधनञ्जया इति दश वायवः । सर्वसिद्धिप्रदा देव्यो बहिर्दशारगा देवताः । एतद्वायुदशकसंसर्गोपाधिभेधेन रेचकपूरकशोषकदाहप्लावका (रेचकः पाचकः शोषको दाहकः प्लावका इति) प्राणमुख्यत्वेन पञ्चधोऽस्ति (जठराग्निर्भवति) । क्षारको दारकः क्षोभको मोहको जृम्भक इत्यपालनमुख्यत्वेन पञ्चविधोऽस्ति । तेन मनुष्याणां मोहको दाहको (नागप्राधान्येन पञ्चबिधास्ते मनुष्याणां देहगा) भक्ष्यभोज्यशोष्यलेह्यपेयात्मकं चतुर्विधमन्नं (पञ्चविधमन्नं) पाचयति।</p>
-                    <p class="mb-4">एता दश वह्निकलाः सर्वज्ञत्वाद्यन्तर्दशारगा देवताः । शीतोष्णसुखदुःखेच्छासत्त्वरजस्तमोगुणा वशिन्यादिशक्तयोऽष्तौ । शब्दस्पर्शरूपरसगन्धाः पञ्चतन्मात्राः पञ्चपुष्पबाणा मन इक्षुधनुः । वश्यो वाणो रागः पाशः । द्वेषोऽङ्कुशः । अव्यक्तमहत्तत्त्वमहदहङ्कार इति कामेश्वरी-वज्रेश्वरी- भगमालिन्योऽन्तस्त्रिकोणाग्रगा देवताः ।</p>
-                    <p class="mb-4">(निरुपाधिकसंविदेव कामेश्वर । सदानन्दपूर्ण स्वात्मेव परदेवता ललिता । लौहित्यमेतस्य सर्वस्य विमर्श । अनन्यचित्तत्वेन च सिद्धिः । भावनायाः क्रिया उपचरः । अहं त्वमस्ति नास्ति कर्तव्यमकर्तव्यमुपासितव्यमिति विकल्पानामात्मनि विलापनम् होमः । भवनाविषयाणामभेदभवना तर्पणम् ।)</p>
-                    <p class="mb-4">पञ्चदशतिथिरूपेण कालस्य परिणामावलोकनस्थितिः पञ्चदशनित्याः । श्रद्धानुरूपा धीर्देवता । तयोः कामेश्वरी सदानन्दघना परिपूर्णस्वात्मैक्यरूपा देवता । सलिलमिति लौहित्यकारणं सत्त्वम् । कर्तव्यमकर्तव्यमिति भावनायुक्त उपचारः । अस्ति नास्तीति कर्तव्यतानूपचारः । बाह्याभ्यन्तःकरणानां रूपग्रहणयोग्यतास्त्त्वित्यावाहनम् । तस्य बाह्याभ्यन्तःकरणानामेकरूपविषयग्रहणमासनम् । रक्तशुक्लपदैकीकरणं पाद्यम् ।</p>
-                    <p class="mb-4">उज्ज्वलदामोदानन्दासनदानमर्घ्यम् । स्वच्छं स्वतःसिद्धमित्याचमनीयम् । चिच्चन्द्रमयीति सर्वाङ्गस्रवणं स्नानम् । चिदग्निस्वरूपपरमानन्दशक्तिस्फुरणं वस्त्रम् । प्रत्येकं सप्तविंशतिधा भिन्नत्वेनेच्छाज्ञानक्रियात्मकब्रह्मग्रन्थिमद्रसतन्तुब्रह्मनाडी ब्रह्मसूत्रम् । स्वव्यतिरिक्तवस्तुसङ्गरहितस्मरणां विभूषणम् । सच्चित्सुखपरिपूर्णतास्मरणं गन्धः । समस्तविषयाणां मनसः स्थैर्येणानुसंधानं कुसुमम् । तेषामेव सर्वदा स्वीकरणं धूपः । पवनावच्छिन्नोत्ध्वज्वलनसच्चिदुल्काकाशदेहो दीपः । समस्तयातायातवर्ज्यं नैवेद्यम् । अवस्थात्रयाणामेकीकरणं ताम्बूलम् । मूलाधारादाब्रह्मरन्ध्रपर्यन्तं ब्रह्मरन्ध्रादामूलाधारपर्यन्तं गतागतरूपेण प्रादक्षिण्यम् । तुर्यावस्था नमस्कारः । देहशून्यप्रमातृतानिमज्जनं बलिहरणम् । सत्यमस्ति लर्तव्यमकर्तव्यमौदासीन्यनित्यात्मविलापनं होमः । स्वयं तत्पादुकानिमज्जनं परिपूर्णध्यानम् ।</p>
-                    <p class="mb-4">एवं मुहूर्तत्रयं (मुहूर्तद्वितयं मुहूर्तमात्रं वा) भावनापरो जीवन्मुक्तो भवति स एव शिवयोगीति गद्यते। आदिमतेनान्तश्चक्रभावनाः । तस्य देवतात्मैक्यसिद्धिः । चिन्तितकार्याण्ययत्नेन सिद्ध्यन्ति । स एव शिवयोगीति कथ्यते । कादिहादिमतोक्तेन भावना प्रतिपादिता । जीवन्मुक्तो भवति । य एवं वेद । इत्युपनिषत् । (सोऽथर्वशिरोऽधीते ।)</p>
-                </div>
-            </div>
-
-            <!-- English Column -->
-            <div class="bg-amber-50 rounded-xl shadow-lg p-6 border border-amber-200">
-                <h3 class="section-title text-2xl font-bold mb-6 text-amber-800 font-serif">The Bhavanopanishad</h3>
-                <div class="english text-justify text-gray-700">
-                    <p class="mb-4">Hari Om. One should meditate upon the Self as an undivided circle, pervading the entire universe of Brahma, self-luminous.</p>
-                    <p class="mb-4">Om. The Guru is the power that is the cause of all. Therefore, the body with nine apertures. The Shri Chakra is of the form of nine powers. Varahi is of the form of the ancestors. Kurukulla is the deity of sacrifice, the mother. The goals of human life are the oceans. The body is the island of nine gems. The resolves (sankalpas) joined with the seven dhatus (skin, etc.) are the wish-fulfilling trees. The tejas (radiance) is the garden of Kalpa trees. The six tastes—sweet, sour, bitter, pungent, astringent, and salty—meditated upon by the tongue are the six seasons. The power of action is the seat. Kundalini, the power of knowledge, is the house. The power of will is Mahatripurasundari.</p>
-                    <p class="mb-4">The knower is the sacrificer, knowledge is the fire (or offering), the knowable is the oblation. The meditation on the non-difference of knower, knowledge, and knowable is the worship of Shri Chakra. Along with restraint, the nine rasas (sentiments) beginning with love, the eight siddhis beginning with anima, the eight powers beginning with Brahmi, consisting of desire, anger, greed, delusion, pride, jealousy, merit, and demerit. (The nine supports are the mudra powers.) The sixteen powers are the modifications of earth, water, fire, air, ether, ear, skin, eye, tongue, nose, speech, hand, foot, anus, genitals, and mind (like Kamakarshini, etc.).</p>
-                    <p class="mb-4">The eight powers: speech, taking, going, emission, bliss, abandonment, expectation, and intellect, like the flowers of Ananga, etc. The fourteen nadis: Alambusa, Kuhu, Vishvodari, Varuna, Hastijihva, Yashasvati, Ashvini, Gandhari, Pusha, Shankhini, Sarasvati, Ida, Pingala, and Sushumna. The deities of the fourteen-spoked (chakra) are Sarvasamkshobhini, etc.</p>
-                    <p class="mb-4">The ten winds: Prana, Apana, Vyana, Udana, Samana, Naga, Kurma, Krikara, Devadatta, and Dhananjaya. The deities of the outer ten-spoked (chakra) are the goddesses bestowing all accomplishments. This group of ten winds, by the difference of association with upadhis, is fivefold as the chief prana: recaka (exhalation), puraka (inhalation), shoshaka (drying), dahaka (burning), and plavaka (floating). (It becomes the gastric fire.) For protection, it is fivefold: Ksharaka, Daraka, Kshobhaka, Mohaka, and Jrimbhaka. For humans, the Mohaka and Dahaka (these five, predominant in humans, residing in the body) digest the fourfold food: eatable, chewable, lickable, and drinkable (fivefold food).</p>
-                    <p class="mb-4">These ten are the parts of fire; the deities of the inner ten-spoked (chakra) are all-knowing, etc. The eight powers: Vashini, etc., are the qualities of cold, heat, pleasure, pain, desire, sattva, rajas, and tamas. The five tanmatras: sound, touch, form, taste, and smell are the five flower-arrows. The mind is the sugarcane bow. Vashya is the arrow, raga is the noose, dvesha is the goad. The unmanifest, mahat tattva, ahamkara—these are the deities Kameshvari, Vajreshvari, and Bhagamalini at the points of the inner triangle.</p>
-                    <p class="mb-4">(Kameshvara is the unconditioned consciousness. Lalita, the supreme deity, is the self, full of eternal bliss. The reflection of all this is the redness (lauhitya). Success comes through single-mindedness. The action of meditation is the service. The burning of the alternatives—"I am you," "it is," "it is not," "should be done," "should not be done," "should be worshipped"—in the self is the homa. The meditation on non-difference of objects of existence is tarpana.)</p>
-                    <p class="mb-4">The fifteen Nityas are the state of observing the transformation of time in the form of fifteen tithis. Faith is the deity. Among them, Kameshvari is the deity of the form of unity with the self, full of eternal bliss. Water is the cause of redness, sattva. "Should be done," "should not be done"—this is the service with meditation. "It is," "it is not"—this is the service of duty. The invocation is the capability of grasping forms by the external and internal organs. The seating is the grasping of objects of the same form by the external and internal organs. The foot-washing is the unification of the red and white paths.</p>
-                    <p class="mb-4">The offering of arghya is giving the seat of shining, fragrant bliss. The acamaniya is the naturally pure and self-established. The bath is the flowing of the moon of consciousness over all limbs. The clothing is the shining of the power of supreme bliss, of the form of the fire of consciousness. The sacred thread is the Brahmanadi, the thread of Brahman, with knots of Brahman, differentiated twenty-sevenfold, of the form of will, knowledge, and action. The ornaments are the remembrance without attachment to anything other than oneself. The fragrance is the remembrance of the fullness of existence-consciousness-bliss. The flower is the steady contemplation of all objects by the mind. The incense is the constant acceptance of them. The lamp is the body of space, with flames of existence-consciousness, blazing, limited by air. The offering is free from all coming and going. The betel leaf is the unification of the three states. The circumambulation is the going and coming from muladhara to brahmarandhra and back. The salutation is the turiya state. The offering of bali is the immersion in the state of the knower devoid of body. The homa is the burning of "it is," "should be done," "should not be done," in the fire of the eternal self, indifferent. The complete meditation is the immersion in that very state.</p>
-                    <p class="mb-4">Thus, one who is engaged in this meditation for three muhurtas (or two, or one) becomes liberated while living. He alone is called Shiva Yogi. By the method from the beginning to the end, the chakra meditations. For him, unity with the deity is accomplished. The desired objectives are accomplished without effort. He alone is called Shiva Yogi. The meditation as stated from ka to ha is expounded. He becomes liberated while living. He who knows thus. Thus is the Upanishad. (He recites the Atharvashiras.)</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Closing Mantra -->
-        <section class="mb-12">
-            <div class="mantra-highlight rounded-xl p-6 md:p-8">
-                <div class="sanskrit text-center text-2xl leading-relaxed">
-                    ॐ भद्रं कर्णेभिः शृणुयाम देवा ।<br>
-                    भद्रं पश्येमाक्षभिर्यजत्राः ।<br>
-                    स्थिरैरङ्गैस्तुष्टुवाꣳसस्तनूभिः ।<br>
-                    व्यशेम देवहितं यदायुः ।<br>
-                    स्वस्ति न इन्द्रो वृद्धश्रवाः ।<br>
-                    स्वस्ति नः पूषा विश्ववेदाः ।<br>
-                    स्वस्ति नस्तार्क्ष्योऽरिष्टनेमिः ।<br>
-                    स्वस्ति नो बृहस्पतिर्दधातु ।<br>
-                    ॐ शान्तिः शान्तिः शान्तिः ॥
-                </div>
-                <div class="english text-center mt-6 text-lg text-gray-700">
-                    Om, may we hear with our ears what is auspicious, O Devas!<br>
-                    May we see with our eyes what is auspicious, O worshipful ones!<br>
-                    May we, with firm limbs and bodies, offering praise,<br>
-                    Enjoy the life allotted by the Devas.<br>
-                    May Indra of ancient fame be auspicious to us!<br>
-                    May Pushan, the all-knowing, be auspicious to us!<br>
-                    May Tarkshya, who destroys evil, be auspicious to us!<br>
-                    May Brihaspati bestow upon us auspiciousness!<br>
-                    Om, peace, peace, peace!
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Statement -->
-        <div class="text-center sanskrit text-xl text-amber-800 mb-12">
-            इत्यथर्वणवेदे भावनोपनिषत्सम्पूर्णा ॥
-            <div class="english text-lg mt-2 text-gray-600">
-                Thus ends the Bhavanopanishad, belonging to the Atharva Veda.
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gradient-to-t from-amber-900 to-amber-800 text-amber-200 py-8 px-4 text-center">
-        <div class="max-w-4xl mx-auto">
-            <div class="sanskrit text-2xl mb-4">ॐ भद्रं कर्णेभिः शृणुयाम देवा</div>
-            <p class="text-amber-100 mb-4">May we hear auspiciousness with our ears, O Divine Ones</p>
-            <div class="border-t border-amber-700 pt-4 mt-4">
-                <p class="text-sm">Sacred Text of Bhavanopanishad | भावनोपनिषत्</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Simple script to handle font loading and fallback
         document.addEventListener('DOMContentLoaded', function() {
-            const sanskritElements = document.querySelectorAll('.sanskrit');
+            // Create cosmic stars
+            const container = document.querySelector('.cosmic-glow');
+            for(let i = 0; i < 150; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 3;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                container.appendChild(star);
+            }
             
-            // Check if the custom font is loaded
-            const font = new FontFace('Sanskrit2003', 'url(https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003%20-%2021.10.2014_1.ttf)');
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.translation-tab');
+            const verseContainers = document.querySelectorAll('.verse-container');
             
-            font.load().then(function(loadedFont) {
-                document.fonts.add(loadedFont);
-                sanskritElements.forEach(el => {
-                    el.style.fontFamily = 'Sanskrit2003, serif';
-                });
-            }).catch(function(error) {
-                console.log('Font loading failed: ', error);
-                sanskritElements.forEach(el => {
-                    el.style.fontFamily = "'Playfair Display', serif";
-                    el.classList.add('italic');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetLang = tab.getAttribute('data-lang');
+
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active', 'bg-purple-800'));
+                    tab.classList.add('active', 'bg-purple-800');
+
+                    // Show the correct translation
+                    verseContainers.forEach(container => {
+                        container.style.opacity = '0';
+                        setTimeout(() => {
+                            if(container.classList.contains(targetLang)) {
+                                container.style.display = 'block';
+                                setTimeout(() => {
+                                    container.style.opacity = '1';
+                                }, 50);
+                            } else {
+                                container.style.display = 'none';
+                            }
+                        }, 300);
+                    });
                 });
             });
+
+            // Activate first tab by default
+            document.querySelector('.translation-tab').classList.add('active', 'bg-purple-800');
+
+            // Fade-in verse containers
+            document.querySelectorAll('.verse-container.en').forEach(container => {
+                setTimeout(() => {
+                    container.classList.add('fade-in');
+                }, 300);
+            });
+
+            // Play button effect
+            const playBtn = document.querySelector('.play-btn');
+            if(playBtn) {
+                playBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> 播放中...';
+                    this.classList.add('bg-green-600');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-volume-mute"></i> 播放音频';
+                        this.classList.remove('bg-green-600');
+                    }, 4000);
+                });
+            }
         });
     </script>
+</head>
+<body class="min-h-screen py-12 px-4 sm:px-6 relative overflow-x-hidden pt-16 pt-16 pt-16 pt-16 pt-16 pt-16 pt-16">
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">Home</a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<nav class="bg-gray-800 bg-opacity-50 backdrop-blur-md p-4 fixed w-full z-20 top-0">
+<div class="container mx-auto flex justify-between items-center">
+<a class="text-white text-lg font-semibold hover:text-purple-400" href="../../index.html">
+    Home
+   </a>
+</div>
+</nav>
+<div class="cosmic-glow">
+</div>
+<!-- Header -->
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
+<!-- Footer -->
+<footer class="max-w-5xl mx-auto mt-20 text-center text-sm text-purple-300 opacity-80">
+<p class="chinese">
+   神圣梵文颂歌敬献罗睺主 • 愿其诵读带来平安与护佑
+  </p>
+<p class="mt-2">
+   Sacred Sanskrit Chant to Lord Rahu • May its recitation bring peace and protection
+  </p>
+<!---<div class="mt-6 flex justify-center space-x-4">
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="w-10 h-10 rounded-full border border-purple-600 flex items-center justify-center hover:bg-purple-900">
+                <i class="fas fa-book"></i>
+            </a>
+        </div>--->
+<div class="mt-6 flex justify-center space-x-4">
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+<span>
+    ॐ रां राहवे नमः
+   </span>
+<div class="w-8 h-px bg-purple-500 mt-3">
+</div>
+</div>
+</footer>
 </body>
 </html>
