@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hymn CLII to Indra</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Marcellus&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#d4af37',
+                        'deep-blue': '#0a192f',
+                        'sky-blue': '#87ceeb',
+                        'maroon': '#800000',
+                        'parchment': '#f5f0e1'
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'marcellus': ['Marcellus', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0a192f 0%, #1a3a5f 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+        
+        .lightning {
+            position: absolute;
+            width: 3px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(135,206,235,0.5));
+            animation: flash 0.5s infinite alternate;
+            opacity: 0;
+        }
+        
+        @keyframes flash {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            20% { opacity: 0; }
+            30% { opacity: 0.7; }
+            100% { opacity: 0; }
+        }
+        
+        .vajra {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+        }
+        
+        .vajra-center {
+            position: absolute;
+            width: 20px;
+            height: 100px;
+            background: linear-gradient(to right, #d4af37, #f9e076, #d4af37);
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px;
+        }
+        
+        .vajra-prong {
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: linear-gradient(to right, #d4af37, #f9e076, #d4af37);
+            border-radius: 3px;
+        }
+        
+        .vajra-prong:nth-child(2) { top: 0; left: 0; transform: rotate(45deg); }
+        .vajra-prong:nth-child(3) { top: 0; right: 0; transform: rotate(-45deg); }
+        .vajra-prong:nth-child(4) { bottom: 0; left: 0; transform: rotate(-45deg); }
+        .vajra-prong:nth-child(5) { bottom: 0; right: 0; transform: rotate(45deg); }
+        
+        .hymn-container {
+            background: rgba(245, 240, 225, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 30px rgba(135, 206, 235, 0.2);
+        }
+        
+        .verse {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .verse:hover {
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.05);
+        }
+        
+        .verse-number {
+            font-family: 'Cinzel', serif;
+            color: #d4af37;
+            text-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
+        }
+        
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            filter: blur(20px);
+            z-index: -1;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.7);
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.5), transparent);
+        }
+    </style>
+</head>
+<body class="text-parchment flex flex-col items-center py-12 px-4">
+    <!-- Animated stars background -->
+    <div id="stars"></div>
+    
+    <!-- Lightning effects -->
+    <div id="lightning-container"></div>
+    
+    <!-- Floating clouds -->
+    <div class="cloud w-64 h-32 top-10 left-10"></div>
+    <div class="cloud w-48 h-24 bottom-20 right-10"></div>
+    <div class="cloud w-72 h-36 top-1/3 right-20"></div>
+    
+    <div class="max-w-4xl w-full hymn-container rounded-2xl p-8 md:p-12 relative overflow-hidden z-10">
+        <!-- Decorative border elements -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+        
+        <!-- Vajra symbol -->
+        <div class="vajra mb-8">
+            <div class="vajra-center"></div>
+            <div class="vajra-prong"></div>
+            <div class="vajra-prong"></div>
+            <div class="vajra-prong"></div>
+            <div class="vajra-prong"></div>
+        </div>
+        
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="text-sm uppercase tracking-widest text-sky-blue mb-2 glow">The Rigveda</div>
+            <h1 class="text-4xl md:text-5xl font-cinzel font-bold text-gold mb-2">HYMN CLII.</h1>
+            <h2 class="text-3xl md:text-4xl font-cinzel font-bold mb-6">Indra</h2>
+            <div class="divider"></div>
+        </header>
+        
+        <!-- Hymn verses -->
+        <div class="space-y-8">
+            <div class="verse p-6 rounded-xl border border-gold border-opacity-20">
+                <div class="verse-number text-xl mb-3">1.</div>
+                <p class="text-lg md:text-xl font-marcellus leading-relaxed">
+                    A mighty Governor art thou, Wondrous, Destroyer of the foe,<br>
+                    Whose friend is never done to death, and never, never overcome.
+                </p>
+            </div>
+            
+            <div class="verse p-6 rounded-xl border border-gold border-opacity-20">
+                <div class="verse-number text-xl mb-3">2.</div>
+                <p class="text-lg md:text-xl font-marcellus leading-relaxed">
+                    Lord of the clan, who brings us bliss, Strong, Warrior, Slayer of the fiend,<br>
+                    May Indra, Soma-drinker, go before us, Bull who gives us peace.
+                </p>
+            </div>
+            
+            <div class="verse p-6 rounded-xl border border-gold border-opacity-20">
+                <div class="verse-number text-xl mb-3">3.</div>
+                <p class="text-lg md:text-xl font-marcellus leading-relaxed">
+                    Drive Rākshasas and foes away, break thou in pieces Vṛtra’s jaws:<br>
+                    O Vṛtra-slaying Indra, quell the foeman’s wrath who threatens us.
+                </p>
+            </div>
+            
+            <div class="verse p-6 rounded-xl border border-gold border-opacity-20">
+                <div class="verse-number text-xl mb-3">4.</div>
+                <p class="text-lg md:text-xl font-marcellus leading-relaxed">
+                    O Indra, beat our foes away, humble the men who challenge us:<br>
+                    Send down to nether darkness him who seeks to do us injury.
+                </p>
+            </div>
+            
+            <div class="verse p-6 rounded-xl border border-gold border-opacity-20">
+                <div class="verse-number text-xl mb-3">5.</div>
+                <p class="text-lg md:text-xl font-marcellus leading-relaxed">
+                    Baffle the foeman’s plan, ward off his weapon who would conquer us:<br>
+                    Give shelter from his furious wrath, and keep his murdering dart afar.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-sky-blue text-opacity-70">
+            <div class="divider mb-6"></div>
+            <p class="text-sm">Sacred hymn from ancient Vedic tradition</p>
+            <p class="text-xs mt-2">Invoking Indra, the mighty Thunder God</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 150; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.width = `${Math.random() * 3}px`;
+            star.style.height = star.style.width;
+            star.style.setProperty('--duration', `${2 + Math.random() * 3}s`);
+            starsContainer.appendChild(star);
+        }
+        
+        // Create lightning effects
+        const lightningContainer = document.getElementById('lightning-container');
+        function createLightning() {
+            const lightning = document.createElement('div');
+            lightning.classList.add('lightning');
+            lightning.style.left = `${10 + Math.random() * 80}%`;
+            lightning.style.height = `${50 + Math.random() * 200}px`;
+            lightning.style.top = `${Math.random() * 30}%`;
+            lightningContainer.appendChild(lightning);
+            
+            setTimeout(() => {
+                lightning.remove();
+            }, 1000);
+        }
+        
+        // Create lightning periodically
+        setInterval(createLightning, 5000);
+        
+        // Add occasional lightning flashes
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createLightning();
+            }
+        }, 3000);
+        
+        // Add subtle animation to verses on load
+        document.querySelectorAll('.verse').forEach((verse, index) => {
+            setTimeout(() => {
+                verse.style.opacity = '0';
+                verse.style.transform = 'translateY(20px)';
+                verse.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                
+                setTimeout(() => {
+                    verse.style.opacity = '1';
+                    verse.style.transform = 'translateY(0)';
+                }, 50);
+            }, 300 * index);
+        });
+    </script>
+</body>
+</html>
