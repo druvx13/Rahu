@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYMN CXXIX - Creation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=EB+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cosmic: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        parchment: '#f5f0e1',
+                        deepspace: '#0a0f2b',
+                        stardust: '#d4cbb8',
+                    },
+                    fontFamily: {
+                        heading: ['Cormorant Garamond', 'serif'],
+                        body: ['EB Garamond', 'serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s infinite cubic-bezier(0.4, 0, 0.6, 1)',
+                        'float': 'float 8s ease-in-out infinite',
+                        'twinkle': 'twinkle 4s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        twinkle: {
+                            '0%, 100%': { opacity: '0.3' },
+                            '50%': { opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        body {
+            background: radial-gradient(ellipse at bottom, #0a0f2b 0%, #000000 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .cosmic-border {
+            position: relative;
+            border: 1px solid rgba(123, 97, 255, 0.2);
+        }
+        
+        .cosmic-border::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #7b61ff, #3a86ff, #8338ec, #ff006e);
+            z-index: -1;
+            filter: blur(5px);
+            opacity: 0.3;
+            border-radius: inherit;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+        
+        .verse-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(123, 97, 255, 0.25);
+        }
+        
+        .gold-text {
+            background: linear-gradient(to right, #d4af37, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .divider {
+            position: relative;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(123, 97, 255, 0.5), transparent);
+        }
+        
+        .divider::after {
+            content: '✧';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #7b61ff;
+            background: #0a0f2b;
+            padding: 0 10px;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+    </style>
+</head>
+<body class="text-parchment font-body relative overflow-x-hidden">
+    <!-- Star background -->
+    <div id="stars-container" class="fixed inset-0 pointer-events-none"></div>
+    
+    <!-- Main content -->
+    <div class="min-h-screen flex flex-col items-center justify-center px-4 py-12 relative z-10">
+        <div class="max-w-4xl w-full">
+            <!-- Header -->
+            <header class="text-center mb-16">
+                <div class="flex justify-center mb-6">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center cosmic-border animate-pulse-slow">
+                        <i class="fas fa-star text-4xl text-yellow-300 animate-spin-slow"></i>
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-heading font-bold mb-2 gold-text">HYMN CXXIX</h1>
+                <h2 class="text-4xl md:text-5xl font-heading font-semibold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">Creation</h2>
+                <div class="divider max-w-md mx-auto my-8"></div>
+            </header>
+            
+            <!-- Hymn Verses -->
+            <div class="space-y-12">
+                <!-- Verse 1 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-blue-300">1.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Then was not non-existent nor existent: there was no realm<br>
+                            of air, no sky beyond it.<br>
+                            What covered in, and where? and what gave shelter? Was<br>
+                            water there, unfathomed depth of water?
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 2 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-purple-300">2.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Death was not then, nor was there aught immortal: no sign<br>
+                            was there, the day’s and night’s divider.<br>
+                            That One Thing, breathless, breathed by its own nature: apart<br>
+                            from it was nothing whatsoever.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 3 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-blue-400">3.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Darkness there was: at first concealed in darkness this All<br>
+                            was indiscriminated chaos.<br>
+                            All that existed then was void and formless: by the great<br>
+                            power of Warmth was born that Unit.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 4 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-purple-400">4.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Thereafter rose Desire, in the beginning, Desire, the primal<br>
+                            seed and germ of Spirit.<br>
+                            Sages who searched with their heart’s thought discovered the<br>
+                            existent’s kinship in the non-existent.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 5 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-blue-300">5.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Transversely was their severing line extended: what was<br>
+                            above it then, and what below it?<br>
+                            There were begetters, there were mighty forces, free action here<br>
+                            and energy up yonder.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 6 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-purple-300">6.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            Who verily knows and who can here declare it, whence it was<br>
+                            born and whence comes this creation?<br>
+                            The Gods are later than this world’s production. Who knows<br>
+                            then whence it first came into being?
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Verse 7 -->
+                <div class="verse-container cosmic-border rounded-xl p-8 bg-gradient-to-br from-deepspace to-[#0f1538] transition-all duration-500">
+                    <div class="flex items-start mb-4">
+                        <span class="text-3xl mr-3 font-heading font-bold text-blue-400">7.</span>
+                        <p class="text-xl md:text-2xl leading-relaxed">
+                            He, the first origin of this creation, whether he formed it all<br>
+                            or did not form it,<br>
+                            Whose eye controls this world in highest heaven, he verily<br>
+                            knows it, or perhaps he knows not.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="mt-20 text-center text-stardust">
+                <div class="divider max-w-md mx-auto my-8"></div>
+                <p class="text-lg">Ancient Wisdom • Eternal Mystery</p>
+                <p class="mt-2 text-sm">"In the beginning was the Word, and the Word was with God, and the Word was God."</p>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Floating cosmic elements -->
+    <div class="absolute top-1/4 left-1/4 w-8 h-8 rounded-full bg-blue-500 opacity-20 animate-float"></div>
+    <div class="absolute top-1/3 right-1/4 w-12 h-12 rounded-full bg-purple-500 opacity-30 animate-float" style="animation-delay: 1s;"></div>
+    <div class="absolute bottom-1/4 left-1/3 w-6 h-6 rounded-full bg-indigo-500 opacity-25 animate-float" style="animation-delay: 2s;"></div>
+    
+    <!-- Scroll indicator -->
+    <div class="scroll-down hidden md:block">
+        <div class="w-10 h-16 rounded-full border-2 border-blue-400 flex justify-center p-2">
+            <div class="w-2 h-2 bg-blue-300 rounded-full animate-bounce"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Create stars
+        const starsContainer = document.getElementById('stars-container');
+        const starsCount = 150;
+        
+        for (let i = 0; i < starsCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            // Random size between 1-3px
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            
+            // Random position
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            
+            // Random animation delay
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            
+            starsContainer.appendChild(star);
+        }
+        
+        // Add parallax effect to cosmic elements
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+            
+            const cosmicElements = document.querySelectorAll('.verse-container, .cosmic-border');
+            cosmicElements.forEach(el => {
+                el.style.transform = `translate(${x/20}px, ${y/20}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
