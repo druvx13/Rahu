@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystical Quote - जो कुछ भी यहाँ नज़र आता है</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Sanskrit2003';
+            src: url('https://raw.githubusercontent.com/druvx13/Rahu/9b695250d06e7e8c123373f21dcc4f1d87646d9b/mantra/fonts/Sanskrit2003-21.10.2014_1.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        .sanskrit {
+            font-family: 'Sanskrit2003', serif;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a0b41 0%, #2c1153 50%, #4a1b6d 100%);
+            min-height: 100vh;
+            color: #f0e6ff;
+        }
+        
+        .quote-container {
+            background: rgba(22, 12, 48, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+        
+        .decoration {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(121, 40, 202, 0.15);
+            filter: blur(30px);
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .decoration:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            background: rgba(76, 201, 240, 0.1);
+            animation-delay: -5s;
+        }
+        
+        .decoration:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            background: rgba(156, 39, 176, 0.1);
+            animation-delay: -10s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(40px, -40px); }
+            50% { transform: translate(0, -80px); }
+            75% { transform: translate(-40px, -40px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hindi-text {
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+        }
+        
+        .english-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            letter-spacing: 0.3px;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(192, 132, 252, 0.5), transparent);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4 md:p-8">
+    <!-- Animated background decorations -->
+    <div class="decoration top-1/4 left-1/4"></div>
+    <div class="decoration bottom-1/3 right-1/4"></div>
+    <div class="decoration top-1/3 right-1/3"></div>
+    
+    <div class="quote-container max-w-3xl w-full rounded-3xl overflow-hidden p-8 md:p-12 relative fade-in">
+        <!-- Title -->
+        <div class="text-center mb-10">
+            <h1 class="text-2xl md:text-3xl font-light tracking-wider text-purple-300">मायावी दृष्टि</h1>
+            <h2 class="text-lg md:text-xl font-light text-purple-200 mt-2">Illusory Vision</h2>
+        </div>
+        
+        <!-- Hindi Quote -->
+        <div class="text-center mb-10">
+            <div class="hindi-text text-2xl md:text-4xl sanskrit leading-relaxed">
+                “जो कुछ भी यहाँ नज़र आता है, उसे ग़ैर मौजूद समझ़ो, जैसा कि शहर-ए-ख़याल होता है, जैसा कि सराब में पानी होता है।”
+            </div>
+        </div>
+        
+        <!-- Divider -->
+        <div class="divider my-10"></div>
+        
+        <!-- English Translation -->
+        <div class="text-center">
+            <div class="english-text text-xl md:text-2xl leading-relaxed">
+                "Consider whatever appears here as non-existent, like a city of imagination, like water in a mirage."
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute top-4 left-4 text-purple-500 opacity-30 text-3xl">“</div>
+        <div class="absolute bottom-4 right-4 text-purple-500 opacity-30 text-3xl">”</div>
+        
+        <!-- Interpretation -->
+        <div class="mt-12 text-center text-purple-200 text-sm md:text-base max-w-2xl mx-auto">
+            <p>This profound verse reminds us of the illusory nature of perception. What appears before our eyes may simply be a trick of the mind, a phantom city of thought, as fleeting as water in a desert mirage.</p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="mt-16 text-center text-xs text-purple-400 tracking-wide">
+            <p>Designed with respect for Sanskrit traditions • Accessible to all</p>
+        </div>
+    </div>
+    
+    <script>
+        // Add subtle animations on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.hindi-text, .english-text, .divider');
+            elements.forEach((el, index) => {
+                el.style.opacity = "0";
+                setTimeout(() => {
+                    el.style.transition = "opacity 1.2s ease-out, transform 1.2s ease-out";
+                    el.style.opacity = "1";
+                    el.style.transform = "translateY(0)";
+                }, 300 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
